@@ -56,7 +56,7 @@ class RecentPeriodActivity : AppCompatActivity() {
         }
 
         viewBinding.btnSave.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,FreeHomeActivity::class.java)
             startActivity(intent)
         }
     }
