@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_head"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    tools:context=".FreeAlarmEditActivity">
+    <TextView
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Set your alarm"
+        android:textSize="36sp"
+        android:textColor="@color/primary_dark"
+        android:background="@color/primary_light"
+        android:textStyle="bold"
+        android:gravity="center" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Head"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="27dp"
+                android:paddingVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent">
+
+
+                <TextView
+                    android:id="@+id/text_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start time"
+                    android:textColor="@color/primary_light"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_start"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="AM"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_start_hour"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+
+                <EditText
+                    android:id="@+id/edit_start_hour"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="10"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_start_min"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btn_start"
+                    app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="74dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:paddingVertical="15dp"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_start_min"
+                    app:layout_constraintStart_toEndOf="@+id/edit_start_hour"
+                    app:layout_constraintTop_toBottomOf="@+id/text_start_time">
+
+                    <ImageView
+                        android:id="@+id/view_start1"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_alarm_time" />
+                    <ImageView
+                        android:id="@+id/view_start2"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:srcCompat="@drawable/icon_alarm_time" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/edit_start_min"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="30"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/edit_start_hour"
+                    app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+
+                <TextView
+                    android:id="@+id/text_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="47dp"
+                    android:text="End time"
+                    android:textColor="@color/primary_light"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_start" />
+
+                <Button
+                    android:id="@+id/btn_end"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="PM"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_end_hour"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_end_time" />
+
+                <EditText
+                    android:id="@+id/edit_end_hour"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="10"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_end_min"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/btn_end"
+                    app:layout_constraintTop_toBottomOf="@+id/text_end_time" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="74dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:paddingVertical="15dp"
+                    app:layout_constraintEnd_toStartOf="@+id/edit_end_min"
+                    app:layout_constraintStart_toEndOf="@+id/edit_end_hour"
+                    app:layout_constraintTop_toBottomOf="@+id/text_end_time">
+
+                    <ImageView
+                        android:id="@+id/view_end1"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_alarm_time" />
+                    <ImageView
+                        android:id="@+id/view_end2"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:srcCompat="@drawable/icon_alarm_time" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/edit_end_min"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="30"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/edit_end_hour"
+                    app:layout_constraintTop_toBottomOf="@+id/text_end_time" />
+
+                <TextView
+                    android:id="@+id/text_cycle_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="47dp"
+                    android:text="Alarm Cycle"
+                    android:textColor="@color/primary_light"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_end" />
+
+                <EditText
+                    android:id="@+id/edit_cycle"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_alarm_edit_border"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="4"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_cycle_time" />
+
+                <TextView
+                    android:id="@+id/text_cycle_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="hours"
+                    android:textColor="@color/primary_light"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/edit_cycle"
+                    app:layout_constraintStart_toEndOf="@+id/edit_cycle"
+                    app:layout_constraintTop_toTopOf="@+id/edit_cycle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:paddingVertical="16dp"
+        android:text="save"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_dark"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

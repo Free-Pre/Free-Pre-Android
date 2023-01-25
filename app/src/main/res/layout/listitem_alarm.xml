@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12:00~22:00\n3 hours"
+            android:textSize="24sp"
+            android:textColor="@color/primary_light"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="15dp"
+            android:buttonTint="@color/primary_light"
+            android:background="@drawable/style_symptom_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/style_alarm_delete"
+            android:text="delete"
+            android:textSize="30sp"
+            android:textColor="@color/primary_light"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:paddingHorizontal="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
