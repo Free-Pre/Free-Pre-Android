@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FreeHomeLeftEditFragment">
+
+    <!--위에 분홍색 부분 : Edit My Period-->
+    <LinearLayout
+        android:id="@+id/free_home_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="14 DAYS LEFT"
+            android:textColor="@color/primary_dark"
+            android:textSize="40dp"
+            android:textStyle="bold"></TextView>
+
+        <Button
+            android:id="@+id/edit_period_button"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/primary_dark_light_round_bg"
+            android:padding="20dp"
+            android:text="Edit My Period"
+            android:textAllCaps="false"
+            android:textSize="32dp"
+            android:textStyle="bold"></Button>
+    </LinearLayout>
+</FrameLayout>
