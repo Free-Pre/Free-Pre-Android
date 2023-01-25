@@ -12,5 +12,6 @@
     <color name="primary_dark">#1A2A46</color>
     <color name="primary_yellow">#FFE459</color>
     <color name="primary_red">#F63131</color>
+    <color name="nothing">#00FFFFFF</color>
 
 </resources>
