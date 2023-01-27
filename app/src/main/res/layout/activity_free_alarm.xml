@@ -12,7 +12,7 @@
             android:layout_height="207dp"
             android:background="@color/primary_light"
             android:gravity="center"
-            android:text="Hello, NICKNAME!"
+            android:text="Sanitary Pad \nChanging Time \nAlarm"
             android:textColor="@color/primary_dark"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -25,7 +25,8 @@
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Head">
+            app:layout_constraintTop_toBottomOf="@+id/Head"
+            app:layout_constraintBottom_toTopOf="@id/button">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,19 +38,19 @@
                     tools:listitem="@layout/listitem_alarm"
                     >
                 </androidx.recyclerview.widget.RecyclerView>
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="11dp"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginBottom="22dp"
-                    android:background="@drawable/style_calendar_add"
-                    android:text="+"
-                    android:textColor="@color/primary_light"
-                    android:textSize="60sp"
-                    app:layout_constraintStart_toStartOf="parent"/>
             </LinearLayout>
-
         </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="11dp"
+        android:background="@drawable/style_calendar_add"
+        android:text="+"
+        android:textColor="@color/primary_light"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

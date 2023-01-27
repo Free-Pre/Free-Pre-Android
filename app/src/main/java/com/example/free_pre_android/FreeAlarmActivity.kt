@@ -6,10 +6,9 @@ import com.example.free_pre_android.databinding.ActivityFreeAlarmBinding
 
 
 class FreeAlarmActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivityFreeAlarmBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(viewBinding.root)
+        setContentView(R.layout.activity_free_alarm)
 
     }
 }
