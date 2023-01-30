@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_dark"
-    android:orientation="vertical"
-    tools:context=".FreeHomeActivity"
-    android:id="@+id/free_home_main">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FreeHomeFragment">
 
-    <!--linearlayout에서 constraintlayout으로 바꿈-->
-    <!--width와 height를 0값으로 주고 constraint와 margin값으로 화면 비율 맞춤-->
     <FrameLayout
         android:id="@+id/free_home_top_frame"
         android:layout_width="0dp"
@@ -29,28 +24,28 @@
             android:gravity="center"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_days_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="14 DAYS LEFT"
-            android:textColor="@color/primary_dark"
-            android:textSize="40dp"
-            android:textStyle="bold"></TextView>
+            <TextView
+                android:id="@+id/txt_days_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="14 DAYS LEFT"
+                android:textColor="@color/primary_dark"
+                android:textSize="40dp"
+                android:textStyle="bold"></TextView>
 
-        <Button
-            android:id="@+id/btn_edit_period"
-            android:layout_width="288dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/style_home_top_edit_border"
-            android:padding="20dp"
-            android:text="Edit My Period"
-            android:textAllCaps="false"
-            android:textSize="32dp"
-            android:textStyle="bold"></Button>
+            <Button
+                android:id="@+id/btn_edit_period"
+                android:layout_width="288dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/style_home_top_edit_border"
+                android:padding="20dp"
+                android:text="Edit My Period"
+                android:textAllCaps="false"
+                android:textSize="32dp"
+                android:textStyle="bold"></Button>
         </LinearLayout>
     </FrameLayout>
 
@@ -63,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/free_home_top_frame"
-        app:layout_constraintBottom_toTopOf="@+id/free_bottom_nav">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:id="@+id/free_home_scroll_linear"
@@ -136,60 +131,5 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!--bottomNavigationButton-->
-    <LinearLayout
-        android:id="@+id/free_bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/primary_dark"
-        android:minHeight="?attr/actionBarSize"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/btn_home"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:background="@color/primary_light"
-            android:text="Home"
-            android:textSize="23dp"
-            android:textStyle="bold"></Button>
-
-        <Button
-            android:id="@+id/btn_htu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:background="@color/primary_light"
-            android:text="How to Use?"
-            android:textSize="21dp"
-            android:textStyle="bold"></Button>
-
-        <Button
-            android:id="@+id/btn_calendar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/primary_light"
-            android:text="Calendar"
-            android:textSize="23dp"
-            android:textStyle="bold"></Button>
-    </LinearLayout>
-
-    <!--how to use, calendar fragment 부분-->
-    <FrameLayout
-        android:id="@+id/bottom_frame_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/free_bottom_nav"
-        android:orientation="vertical">
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

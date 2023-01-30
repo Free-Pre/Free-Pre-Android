@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RecentPeriodStartFragment"
-    android:background="@color/primary_dark">
-
+    android:background="@color/primary_dark"
+    tools:context=".EditPeriodStartFragment">
 
     <EditText
         android:id="@+id/edit_year"
@@ -23,7 +22,7 @@
         android:gravity="center"
         android:padding="10dp" />
     <TextView
-        android:id="@+id/txt_year"
+        android:id="@+id/text_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/edit_year"
@@ -52,11 +51,11 @@
         android:gravity="center"
         android:padding="10dp"/>
     <TextView
-        android:id="@+id/txt_month"
+        android:id="@+id/text_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/edit_month"
-        app:layout_constraintTop_toBottomOf="@id/txt_year"
+        app:layout_constraintTop_toBottomOf="@id/text_year"
         android:layout_marginTop="57dp"
         android:layout_marginStart="10dp"
         android:text="/month"
@@ -81,11 +80,11 @@
         android:gravity="center"
         android:padding="10dp"/>
     <TextView
-        android:id="@+id/txt_day"
+        android:id="@+id/text_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/edit_year"
-        app:layout_constraintTop_toBottomOf="@id/txt_month"
+        app:layout_constraintTop_toBottomOf="@id/text_month"
         android:layout_marginTop="57dp"
         android:layout_marginStart="10dp"
         android:text="/th"
