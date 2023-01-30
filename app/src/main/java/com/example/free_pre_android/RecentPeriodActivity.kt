@@ -2,8 +2,8 @@ package com.example.free_pre_android
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityRecentPeriodBinding
 
 class RecentPeriodActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class RecentPeriodActivity : AppCompatActivity() {
             .replace(viewBinding.frameFragment.id,RecentPeriodStartFragment())
             .commitAllowingStateLoss()
         //startBtn 색 채우기(초기)
-        viewBinding.startBtn.setBackgroundResource(R.drawable.primary_light_filled_round_bg)
+        viewBinding.startBtn.setBackgroundResource(R.drawable.style_clicked_period_border)
         //viewBinding.startBtn.setTextColor(application.resources.getColor(R.color.primary_dark))
         viewBinding.startBtn.setTextColor(Color.parseColor("#1A2A46"))   //dark
 
@@ -31,11 +31,11 @@ class RecentPeriodActivity : AppCompatActivity() {
                 .commitAllowingStateLoss()
 
             //startBtn 색 채우기-start 버튼
-            viewBinding.startBtn.setBackgroundResource(R.drawable.primary_light_filled_round_bg)
+            viewBinding.startBtn.setBackgroundResource(R.drawable.style_clicked_period_border)
             viewBinding.startBtn.setTextColor(Color.parseColor("#1A2A46"))   //dark
 
             //endBtn 색 없애기 - end 버튼
-            viewBinding.endBtn.setBackgroundResource(R.drawable.primary_light_dark_round_bg)
+            viewBinding.endBtn.setBackgroundResource(R.drawable.style_unclicked_period_border)
             viewBinding.endBtn.setTextColor(Color.parseColor("#FDE3F4"))
         }
         //end 버튼 누를 시
@@ -46,17 +46,17 @@ class RecentPeriodActivity : AppCompatActivity() {
                 .commitAllowingStateLoss()
 
             //endBtn 색 채우기-end 버튼
-            viewBinding.endBtn.setBackgroundResource(R.drawable.primary_light_filled_round_bg)
+            viewBinding.endBtn.setBackgroundResource(R.drawable.style_clicked_period_border)
             viewBinding.endBtn.setTextColor(Color.parseColor("#1A2A46"))   //dark
 
             //startBtn 색 없애기 -start 버튼
-            viewBinding.startBtn.setBackgroundResource(R.drawable.primary_light_dark_round_bg)
+            viewBinding.startBtn.setBackgroundResource(R.drawable.style_unclicked_period_border)
             viewBinding.startBtn.setTextColor(Color.parseColor("#FDE3F4"))
 
         }
 
         viewBinding.btnSave.setOnClickListener {
-            val intent = Intent(this,FreeHomeActivity::class.java)
+            val intent = Intent(this,FreeActivity::class.java)
             startActivity(intent)
         }
     }

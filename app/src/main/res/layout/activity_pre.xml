@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PreActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_top"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/primary_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Did You Start Your First Period?"
+            android:textSize="30dp"
+            android:textColor="@color/primary_dark"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+        </TextView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_home_top_edit_border"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Go to Free"
+            android:textSize="36dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_dark"
+            android:padding="20dp">
+        </Button>
+    </LinearLayout>
+
+    <!--스크롤 뷰-->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_pre_contents"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/primary_dark"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_top"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linear_scroll_contents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_what_is_menstruation"
+                android:layout_width="288dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:text="What is Menstruation?"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_light"
+                android:textSize="36dp"
+                android:textStyle="bold"></Button>
+
+            <Button
+                android:id="@+id/btn_protecting_my_body"
+                android:layout_width="288dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:text="Protecting\n my body"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_light"
+                android:textSize="36dp"
+                android:textStyle="bold"></Button>
+
+            <Button
+                android:id="@+id/btn_menstrual_products"
+                android:layout_width="288dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:text="Menstrual products"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_light"
+                android:textSize="36dp"
+                android:textStyle="bold"></Button>
+
+            <Button
+                android:id="@+id/btn_faq"
+                android:layout_width="288dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:text="FAQ"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_light"
+                android:textSize="36dp"
+                android:textStyle="bold"></Button>
+
+            <Button
+                android:id="@+id/btn_test1"
+                android:layout_width="288dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:text="TEST1"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_light"
+                android:textSize="36dp"
+                android:textStyle="bold"></Button>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,10 @@
 package com.example.free_pre_android
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.accessibility.AccessibilityEvent
-import android.view.accessibility.AccessibilityNodeInfo
-import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityFreeHomeBinding
-import com.example.free_pre_android.databinding.ActivityMainBinding
-import com.example.free_pre_android.databinding.FragmentHowToUseBinding
-import java.util.zip.Inflater
 
 class FreeHomeActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityFreeHomeBinding
@@ -52,20 +46,13 @@ class FreeHomeActivity : AppCompatActivity() {
                 .commitAllowingStateLoss()
 
             //focus 부분 되긴 되는데 효율성 떨어짐.. -> 확장 함수를 이용해서 바꿔보기
+            //Home 부분을 fragment로 바꾸면 필요없어진다.
             viewBinding.bottomFrameFragment.importantForAccessibility=View.IMPORTANT_FOR_ACCESSIBILITY_YES                   //focus 되도록
             viewBinding.freeHomeScrollView.importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS  //focus 안되게
             viewBinding.freeHomeTopFrame.importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS    //focus 안되게
         }
 
 
-        //test용
-        //fragment 확인을 위한 test용
-        viewBinding.btnEditPeriod.setOnClickListener {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(viewBinding.freeHomeTopFrame.id,FreeHomeLeftStartFragment())
-                .commitAllowingStateLoss()
-        }
 
     }
 
@@ -82,8 +69,6 @@ class FreeHomeActivity : AppCompatActivity() {
             }
         }
     }*/
-
-
 
 }
 

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditPeriodListActivity"
+    android:background="@color/primary_dark">
+
+    <!--textsize 30dp에서 35dp로 늘림-->
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="0dp"
+        android:layout_height="84dp"
+        android:text="Edit My Period"
+        android:textColor="@color/primary_dark"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:padding="20dp"
+        android:gravity="center"
+        android:background="@color/primary_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/head"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add"
+        >
+        <!--orientation 추가 가능?-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--30dp-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="95dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2022, May, 1 \n~ 2022, May, 6"
+                    android:textColor="@color/primary_light"
+                    android:textStyle="bold"
+                    android:textSize="28dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="95dp"
+                    android:src="@drawable/style_edit_perioid_line"
+                    android:layout_marginStart="50dp">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 days"
+                    android:textSize="28dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_light"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp">
+                </TextView>
+            </LinearLayout>
+
+            <!--20dp-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="95dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2022, May, 1 \n~ 2022, May, 6"
+                    android:textColor="@color/primary_light"
+                    android:textStyle="bold"
+                    android:textSize="28dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="95dp"
+                    android:src="@drawable/style_edit_perioid_line"
+                    android:layout_marginStart="50dp">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 days"
+                    android:textSize="28dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_light"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+    <!--생리 편집 추가 버튼-->
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="0dp"
+        android:layout_height="95dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/style_unclicked_period_border"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="22dp"
+        android:text="+"
+        android:textSize="60dp"
+        android:textColor="@color/primary_light"
+        android:textStyle="bold">
+    </Button>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

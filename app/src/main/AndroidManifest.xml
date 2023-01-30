@@ -13,6 +13,18 @@
         android:theme="@style/Theme.FreePreAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".NicknameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditPeriodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditPeriodListActivity"
+            android:exported="false" />
+        <activity
             android:name=".FreeAlarmEditActivity"
             android:exported="true">
         </activity>
@@ -28,7 +40,6 @@
             android:name=".SymptomActivity"
             android:exported="false">
         </activity>
-
         <activity
             android:name=".FreeHomeActivity"
             android:exported="true" />
@@ -42,7 +53,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".NicknameActivity"
+            android:name=".PreActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,4 +66,5 @@
                 android:value="" />
         </activity>
     </application>
+
 </manifest>
