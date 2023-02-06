@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,7 +17,13 @@
         android:theme="@style/Theme.FreePreAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".NicknameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PreActivity"
             android:exported="false" />
         <activity
             android:name=".FreeActivity"
@@ -26,20 +36,16 @@
             android:exported="false" />
         <activity
             android:name=".FreeAlarmEditActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".FreeAlarmActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".FreeSettingActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".SymptomActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".FreeHomeActivity"
             android:exported="true" />
@@ -53,7 +59,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".PreActivity"
+            android:name=".GoogleLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
