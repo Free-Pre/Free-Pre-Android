@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoogleLoginActivity"
+    android:background="@color/primary_dark">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_google_login"
+        android:src="@drawable/img_logo"
+        android:layout_marginBottom="100dp">
+    </ImageView>
+
+
+    <Button
+        android:id="@+id/btn_google_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Google Login"
+        android:textColor="@color/primary_dark"
+        android:textSize="30dp"
+        android:textAllCaps="false"
+        android:padding="20dp"
+        android:background="@drawable/style_google_login_logout"
+        android:elevation="3dp">
+
+    </Button>
+
+    <Button
+        android:id="@+id/btn_google_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_google_login"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Google Logout"
+        android:textColor="@color/primary_dark"
+        android:textSize="30dp"
+        android:textAllCaps="false"
+        android:padding="20dp"
+        android:background="@drawable/style_google_login_logout"
+        android:elevation="3dp">
+    </Button>
+
+
+
+    <!--예시이다.-->
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+    </com.google.android.gms.common.SignInButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
