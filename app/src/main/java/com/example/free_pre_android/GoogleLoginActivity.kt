@@ -37,7 +37,6 @@ class GoogleLoginActivity : AppCompatActivity() {
     private var tokenId: String? = null
 
     lateinit var sharedPreferences: SharedPreferences
-
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
 
@@ -46,7 +45,7 @@ class GoogleLoginActivity : AppCompatActivity() {
         viewBinding = ActivityGoogleLoginBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        //상태바 색상 변경
+        //상태바 색상 변경 - 나머지는 분홍색, 로그인 부분만 남색
         window.statusBarColor = ContextCompat.getColor(this,R.color.primary_dark)
 
         //구글 로그인
@@ -170,6 +169,11 @@ class GoogleLoginActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         setSharedData("Email","emailKey",email)
+    }
+
+    //로그인 유지 되야함
+    override fun onRestart() {
+        super.onRestart()
     }
 
 
