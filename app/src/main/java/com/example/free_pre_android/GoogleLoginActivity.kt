@@ -1,7 +1,9 @@
 package com.example.free_pre_android
 
+import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,8 +11,10 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.free_pre_android.databinding.ActivityGoogleLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthCredential
@@ -22,22 +26,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-
 class GoogleLoginActivity : AppCompatActivity() {
+
     private lateinit var viewBinding: ActivityGoogleLoginBinding
-    private lateinit var launcher: ActivityResultLauncher<Intent>
+    private lateinit var launcher: ActivityResultLauncher<Intent>    //액티비티에서 액티비티로 값 전달
     private lateinit var firebaseAuth: FirebaseAuth
 
 
     private var email: String = ""
     private var tokenId: String? = null
 
+    lateinit var sharedPreferences: SharedPreferences
+
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityGoogleLoginBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+        //상태바 색상 변경
+        window.statusBarColor = ContextCompat.getColor(this,R.color.primary_dark)
 
         //구글 로그인
         firebaseAuth = FirebaseAuth.getInstance()
@@ -50,13 +60,17 @@ class GoogleLoginActivity : AppCompatActivity() {
                     try {
                         task.getResult(ApiException::class.java)?.let { account ->
                             tokenId = account.idToken
-                            if (tokenId != null && tokenId != "") {
-                                val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+                            if (tokenId != null && tokenId != "") {   //회원가입 되어있지 않은 경우?
+                                val credential: AuthCredential =
+                                    GoogleAuthProvider.getCredential(account.idToken, null)
                                 firebaseAuth.signInWithCredential(credential)
                                     .addOnCompleteListener {
-                                        if (firebaseAuth.currentUser != null) {
+                                        if (firebaseAuth.currentUser != null) {                         //로그인이 안되어있을 경우?
                                             val user: FirebaseUser = firebaseAuth.currentUser!!
                                             email = user.email.toString()
+                                            setSharedData("Email","emailKey",email)    //sharedPreference 값 저장
+                                            getSharedData("Email","emailKey")          //sharedPreference 값 가져오기
+                                            //Log.d(TAG,"email: $email")
                                             Log.e(TAG, "email : $email")
                                             val googleSignInToken = account.idToken ?: ""
                                             if (googleSignInToken != "") {
@@ -64,15 +78,18 @@ class GoogleLoginActivity : AppCompatActivity() {
                                             } else {
                                                 Log.e(TAG, "googleSignInToken이 null")
                                             }
+                                            startActivity(Intent(this, NicknameActivity::class.java))    //회원가입?(로그인?)하면 닉네임액티비티로 넘어감
+
                                         }
                                     }
                             }
                         } ?: throw Exception()
-                    }   catch (e: Exception) {
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     }
                 }
             })
+
 
         viewBinding.run {
             btnGoogleLogin.setOnClickListener {
@@ -92,14 +109,9 @@ class GoogleLoginActivity : AppCompatActivity() {
                     launcher.launch(signInIntent)
 
 
+
                 }
-                /*
-                //되긴 되는데.. login 부분을 한번 더 눌러야 닉네임 부분으로 넘어간다...
-                if(success){
-                    Toast.makeText(this@GoogleLoginActivity,"Login Succeed!",Toast.LENGTH_SHORT)
-                    val intent = Intent(this@GoogleLoginActivity,NicknameActivity::class.java)
-                    startActivity(intent)
-                }*/
+
 
             }
 
@@ -109,8 +121,12 @@ class GoogleLoginActivity : AppCompatActivity() {
                 val googleSignInClient = GoogleSignIn.getClient(this@GoogleLoginActivity, gso)
 
                 googleSignInClient.signOut()
-                    .addOnCompleteListener(this@GoogleLoginActivity){
-                        Toast.makeText(this@GoogleLoginActivity,"Logout Success!!",Toast.LENGTH_SHORT).show()
+                    .addOnCompleteListener(this@GoogleLoginActivity) {
+                        Toast.makeText(
+                            this@GoogleLoginActivity,
+                            "Logout Success!!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
             }
@@ -118,23 +134,70 @@ class GoogleLoginActivity : AppCompatActivity() {
 
     }
 
-
     //이미 로그인한 사용자인지 검사하기
     //앱 실행하자마자 띄어져야 하니까 onStart()에다가
     override fun onStart() {
         super.onStart()
-        val account = this?.let{GoogleSignIn.getLastSignedInAccount(this)}  //로그인한 기존 사용자인지 확인 //it...?
-        if (account != null){
-            Toast.makeText(this@GoogleLoginActivity,"You are already logged in!",Toast.LENGTH_SHORT).show()
+        val account =
+            this?.let { GoogleSignIn.getLastSignedInAccount(this) }  //로그인한 기존 사용자인지 확인 //it...?
+        if (account != null) {
+            getSharedData("Email","emailKey")
+            Toast.makeText(
+                this@GoogleLoginActivity,
+                "You are already logged in!",
+                Toast.LENGTH_SHORT
+            ).show()
 
-            //이미 로그인 되어 있을 경우 바로 NickNameActivity로 넘어가도록!
-           //startActivity(Intent(this,NicknameActivity::class.java))
+            //startActivity(Intent(this,FreeActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
 
-        }else{
-            Toast.makeText(this@GoogleLoginActivity,"You are not logged in yet!",Toast.LENGTH_SHORT).show()
+
+        } else {
+            Toast.makeText(
+                this@GoogleLoginActivity,
+                "You are not logged in yet!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
+
+    override fun onStop() {
+        setSharedData("Email","emailKey",email)
+        super.onStop()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        setSharedData("Email","emailKey",email)
+    }
+
+
+    //sharedPreference
+    fun setSharedData(name: String, key: String, data: String) {
+        //Editor로 데이터 저장하기
+        var sharedPreferences: SharedPreferences = getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, data)
+        editor.apply()
+
+        Log.d(TAG,"SetEmail: $data")   //값 잘 들어감
+
+        /*
+        //email라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
+        email = sharedPreferences.getString("email", "").toString()
+        Toast.makeText(this, email, Toast.LENGTH_SHORT).show()*/
+    }
+
+    fun getSharedData(name: String, key: String) {
+        var sharedPreferences: SharedPreferences = getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var getEmail: String? = sharedPreferences.getString(key,"there's no email")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
+        Log.d(TAG,"GetEmail: $getEmail")
+    }
+}
+
+
+
 
     //1. 이미 로그인 -> 자동로그인이 되어있는 상태
     //2. 자동 로그인이 안되어 있는 상태
@@ -146,4 +209,3 @@ class GoogleLoginActivity : AppCompatActivity() {
     }*/
 
     /*이미 로그인이 되어있을 경우.. 바로 Free나 Pre 홈으로 넘어가게 하는 것도 필요하다.*/
-}
