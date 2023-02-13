@@ -1,20 +1,23 @@
 package com.example.free_pre_android
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityCameraBinding
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.TextRecognizer
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
 
 class CameraActivity : BaseActivity() {
 
     val PERM_CAMERA=100//카메라 권한 처리
     val REQ_CAMERA=101//카메라 촬영 요청
+
 
     private lateinit var viewBinding: ActivityCameraBinding
 
@@ -39,6 +42,8 @@ class CameraActivity : BaseActivity() {
                     if(data?.extras?.get("data")!=null){
                         val bitmap=data?.extras?.get("data")as Bitmap
                         viewBinding.imagePreView.setImageBitmap(bitmap)
+                        val settedImage:InputImage=setImage(bitmap) //bitmap을 InputImage로 변환
+                        callCloudVision(settedImage)//google vision Api 호출
                     }
                 }
             }
@@ -62,6 +67,37 @@ class CameraActivity : BaseActivity() {
     fun openCamera(){
         val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent,REQ_CAMERA)
+    }
+
+    fun setImage(bitmap: Bitmap):InputImage{
+        val image = InputImage.fromBitmap(bitmap, 0)
+        Log.d("camera","이미지 변환")
+        return image
+    }
+
+    fun callCloudVision(image: InputImage){
+        val reconizer:TextRecognizer=TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+        val result=reconizer.process(image)
+            .addOnSuccessListener { visionText->//텍스트 인식 작업 성공
+                Log.d("camera","텍스트 인식 작업 성공")
+                Log.d("camera",visionText.toString())
+                for (block in visionText.textBlocks) {
+                    val boundingBox = block.boundingBox
+                    val cornerPoints = block.cornerPoints
+                    val text = block.text
+                    Log.d("camera",text)
+                    for (line in block.lines) {
+                        // ...
+                        for (element in line.elements) {
+                            // ...
+                        }
+                    }
+                }
+        }
+            .addOnFailureListener { e->//텍스트 인식 작업 실패
+                Log.e("camera","텍스트 인식 작업 실패")
+                //...
+            }
     }
 
 }
