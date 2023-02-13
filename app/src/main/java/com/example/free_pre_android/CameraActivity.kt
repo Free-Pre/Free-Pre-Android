@@ -3,6 +3,7 @@ package com.example.free_pre_android
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -11,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityCameraBinding
 
 class CameraActivity : BaseActivity() {
+
+    val PERM_CAMERA=100//카메라 권한 처리
+    val REQ_CAMERA=101//카메라 촬영 요청
+
     private lateinit var viewBinding: ActivityCameraBinding
 
     companion object{
@@ -23,27 +28,40 @@ class CameraActivity : BaseActivity() {
         viewBinding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         //여기서 바로 카메라 실행되도록 해야함.
-        requirePermissions(arrayOf(Manifest.permission.CAMERA),10)
+        requirePermissions(arrayOf(Manifest.permission.CAMERA), PERM_CAMERA)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode==10){
-            if(resultCode== Activity.RESULT_OK){
-                Log.d("camera","촬영 성공")
-            }else{
-                Log.d("camera","촬영 실패")
+        if(resultCode== RESULT_OK){
+            when(requestCode){
+                REQ_CAMERA->{
+                    if(data?.extras?.get("data")!=null){
+                        val bitmap=data?.extras?.get("data")as Bitmap
+                        viewBinding.imagePreView.setImageBitmap(bitmap)
+                    }
+                }
             }
         }
     }
 
     override fun permissionGranted(requestCode: Int) {
-        val intent= Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent,99)
+        when(requestCode){
+            PERM_CAMERA->openCamera()
+        }
     }
 
     override fun permissionDenied(requestCode: Int) {
-        Toast.makeText(baseContext,"카메라 권한 거부됨",Toast.LENGTH_SHORT).show()
+        when(requestCode){
+            PERM_CAMERA->{
+                Toast.makeText(baseContext,"권한을 승인해야 카메라를 사용할 수 있습니다.",Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+    fun openCamera(){
+        val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent,REQ_CAMERA)
     }
 
 }

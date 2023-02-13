@@ -4,6 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraActivity">
+    tools:context=".CameraActivity"
+    android:background="@color/primary_dark">
+    <TextView
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:text="Camera"
+        android:textColor="@color/primary_dark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Head">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingHorizontal="30dp"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:id="@+id/image_pre_view"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="텍스트 인식 결과값"
+                android:textColor="@color/primary_light"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
