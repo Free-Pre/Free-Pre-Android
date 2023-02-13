@@ -62,5 +62,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
     //입증
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    //google vision
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
 
 }
