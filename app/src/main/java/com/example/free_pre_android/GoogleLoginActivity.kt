@@ -115,18 +115,22 @@ class GoogleLoginActivity : AppCompatActivity() {
             }
 
             //로그아웃 부분
+            //만약 로그인이 되어있지 않았는데 로그아웃을 누르면 -> "로그인이 되어있지 않습니다"라는 토스 메시지 띄우기
             btnGoogleLogout.setOnClickListener {
                 val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
                 val googleSignInClient = GoogleSignIn.getClient(this@GoogleLoginActivity, gso)
-
-                googleSignInClient.signOut()
-                    .addOnCompleteListener(this@GoogleLoginActivity) {
-                        Toast.makeText(
-                            this@GoogleLoginActivity,
-                            "Logout Success!!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                if(tokenId != null && tokenId != ""){
+                    googleSignInClient.signOut()
+                        .addOnCompleteListener(this@GoogleLoginActivity) {
+                            Toast.makeText(
+                                this@GoogleLoginActivity,
+                                "Logout Success!!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                  }
+                }else{
+                    Toast.makeText(this@GoogleLoginActivity,"you are not login yet",Toast.LENGTH_SHORT).show()
+                }
 
             }
         }
@@ -135,10 +139,10 @@ class GoogleLoginActivity : AppCompatActivity() {
 
     //이미 로그인한 사용자인지 검사하기
     //앱 실행하자마자 띄어져야 하니까 onStart()에다가
+    //앱 시작할 때 로그인이 되어있는 상태라면
     override fun onStart() {
         super.onStart()
-        val account =
-            this?.let { GoogleSignIn.getLastSignedInAccount(this) }  //로그인한 기존 사용자인지 확인 //it...?
+        val account = this?.let { GoogleSignIn.getLastSignedInAccount(this) }  //로그인한 기존 사용자인지 확인 //it...?
         if (account != null) {
             getSharedData("Email","emailKey")
             Toast.makeText(
@@ -146,7 +150,6 @@ class GoogleLoginActivity : AppCompatActivity() {
                 "You are already logged in!",
                 Toast.LENGTH_SHORT
             ).show()
-
             //startActivity(Intent(this,FreeActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
 
 
@@ -193,7 +196,7 @@ class GoogleLoginActivity : AppCompatActivity() {
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show()*/
     }
 
-    fun getSharedData(name: String, key: String) {
+    public fun getSharedData(name: String, key: String) {
         var sharedPreferences: SharedPreferences = getSharedPreferences(name, Activity.MODE_PRIVATE)
         var getEmail: String? = sharedPreferences.getString(key,"there's no email")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
         Log.d(TAG,"GetEmail: $getEmail")
