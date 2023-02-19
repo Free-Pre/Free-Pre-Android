@@ -60,6 +60,7 @@
 
 
     <!--예시이다.-->
+    <!--
     <com.google.android.gms.common.SignInButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -69,6 +70,6 @@
         android:layout_marginBottom="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp">
-    </com.google.android.gms.common.SignInButton>
+    </com.google.android.gms.common.SignInButton>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
