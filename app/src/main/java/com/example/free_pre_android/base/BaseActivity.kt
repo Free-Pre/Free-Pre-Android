@@ -1,4 +1,4 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.base
 
 import android.content.pm.PackageManager
 import android.os.Build
