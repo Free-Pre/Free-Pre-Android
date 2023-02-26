@@ -26,6 +26,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FreePreAndroid"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <!--구글 지도 api키-->
         <meta-data
@@ -33,7 +34,7 @@
             android:value="AIzaSyCPTMTbInRNijlQfHmhrOpGQp1kyXHbFMA">
         </meta-data>
         <activity
-            android:name=".GoogleLoginActivity"
+            android:name=".CameraActivity"
             android:exported="false" />
 
         <meta-data
@@ -41,7 +42,7 @@
             android:value="ocr" />
 
         <activity
-            android:name=".CameraActivity"
+            android:name=".GoogleLoginActivity"
             android:exported="true" />
         <activity
             android:name=".NicknameActivity"
