@@ -3,6 +3,7 @@
     <style name="Theme.FreePreAndroid" parent="Theme.AppCompat.Light.NoActionBar">
         <!--<item name="android:windowFullscreen">true</item>-->
         <!-- Primary brand color. -->
+
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/primary_light</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -13,5 +14,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!--상태바 없애기: 상태바를 없앨지 말지 회의하기, 일단은 없애 놓은 상태-->
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>
