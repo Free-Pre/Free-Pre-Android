@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_unselected_marker"
+        android:gravity="center"
+        android:text="가나다라마바사병원"
+        android:textStyle="bold"
+        android:padding="15dp"
+        android:textSize="10sp"
+        android:elevation="3dp"></TextView>
+
+</FrameLayout>

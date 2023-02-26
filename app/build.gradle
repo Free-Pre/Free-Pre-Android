@@ -65,4 +65,10 @@ dependencies {
     //google vision
     implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.2'
 
+
+
+    //google-map
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
 }
