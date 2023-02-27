@@ -360,7 +360,7 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
 
 
 
-    
+
 }
 
 
