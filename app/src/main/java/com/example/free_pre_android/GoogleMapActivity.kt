@@ -288,12 +288,14 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
             contents.text = marker.snippet
         }*/
 
-        //클릭했을 때마다 문자 생성되는거 막는다.(if로)
-        if (name.text != marker.title){
+        //클릭했을 때마다 문자 생성되는거 막는다.(if로) (**중복문제**)
+        //근데 다른데 갔다오면 추가 생성되어 있는데..?
+        if (name.text != marker.title){     //병원명이 같지 않다면 변경해줌
             name.text = marker.title
             contents.text = marker.snippet
-        }else{
-
+        }else{                              //병원명이 같다면 동작X
+            name.text = null
+            contents.text = null
         }
 
         //name.text = marker.title
@@ -322,7 +324,7 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         // 선택한 마커 표시
         if (marker != null) {
             selectedMarker = addMarker(marker, true);
-            marker.remove();
+            marker.remove()
         }
     }
 
