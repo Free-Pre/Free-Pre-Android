@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    tools:context=".KnowledgeOfMenstruationActivity">
+
+    <TextView
+        android:id="@+id/text_knowledge_of_menstuation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Knowledge of\nMenstruation"
+        android:textColor="@color/primary_dark"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
+    <LinearLayout
+        android:id="@+id/layout_knowledge_of_menstruation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_knowledge_of_menstuation">
+
+        <TextView
+            android:id="@+id/text_ob_gyn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/style_knoewledge_of_menstruation_content"
+            android:gravity="center"
+            android:text="OB-GYN"
+            android:textStyle="bold"
+            android:textColor="@color/primary_light"
+            android:textSize="40dp"></TextView>
+
+        <TextView
+            android:id="@+id/text_drug_information"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/style_knoewledge_of_menstruation_content"
+            android:gravity="center"
+            android:text="drug information"
+            android:textStyle="bold"
+            android:textColor="@color/primary_light"
+            android:textSize="40dp"></TextView>
+
+        <TextView
+            android:id="@+id/text_pms"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/style_knoewledge_of_menstruation_content"
+            android:gravity="center"
+            android:text="pms"
+            android:textStyle="bold"
+            android:textColor="@color/primary_light"
+            android:textSize="40dp"></TextView>
+
+        <TextView
+            android:id="@+id/text_female_disease"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="female disease"
+            android:textColor="@color/primary_light"
+            android:textSize="40dp"></TextView>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

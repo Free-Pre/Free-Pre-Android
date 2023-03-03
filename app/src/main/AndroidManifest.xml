@@ -6,16 +6,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
-    <!--네트워크로만 위치 측정 (대략적 위치, 3km이내)-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!--GPS 센서를 사용하여 위치 측정(정확한 위치, 50m이내)-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <!-- Required only when requesting background location access on Android 10 (API level 29) and higher. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 네트워크로만 위치 측정 (대략적 위치, 3km이내) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- GPS 센서를 사용하여 위치 측정(정확한 위치, 50m이내) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Required only when requesting background location access on Android 10 (API level 29) and higher. -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
 
     <application
         android:allowBackup="true"
@@ -28,11 +22,49 @@
         android:theme="@style/Theme.FreePreAndroid"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <!--구글 지도 api키-->
+        <activity
+            android:name=".PeriodUnderwearActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenstrualCupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TamponActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SanitaryPadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PcosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VaginitisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FemaleDiseaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DrugInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OralContraceptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KnowledgeOfMenstruationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmergencyContraceptiveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleMapActivity"
+            android:exported="false" /> <!-- 구글 지도 api키 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCPTMTbInRNijlQfHmhrOpGQp1kyXHbFMA">
-        </meta-data>
+            android:value="AIzaSyCPTMTbInRNijlQfHmhrOpGQp1kyXHbFMA" />
+
         <activity
             android:name=".CameraActivity"
             android:exported="false" />
@@ -42,7 +74,7 @@
             android:value="ocr" />
 
         <activity
-            android:name=".GoogleLoginActivity"
+            android:name=".FreeActivity"
             android:exported="true" />
         <activity
             android:name=".NicknameActivity"
@@ -51,7 +83,7 @@
             android:name=".PreActivity"
             android:exported="false" />
         <activity
-            android:name=".FreeActivity"
+            android:name=".PMSActivity"
             android:exported="false" />
         <activity
             android:name=".EditPeriodActivity"
@@ -73,7 +105,7 @@
             android:exported="false" />
         <activity
             android:name=".FreeHomeActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".RecentPeriodActivity"
             android:exported="false" />
@@ -84,7 +116,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".GoogleMapActivity"
+            android:name=".GoogleLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

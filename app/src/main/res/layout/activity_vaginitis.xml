@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    tools:context=".VaginitisActivity">
+
+    <TextView
+        android:id="@+id/text_vaginitis"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:text="Vaginitis"
+        android:textColor="@color/primary_dark"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_vaginitis"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true">
+
+            <!--질염이란?-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_what_vaginitis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="What is Vaginitis?"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_what_vaginitis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_what_vaginitis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_what_vaginitis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--질염 유형-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_vaginitis_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Types of Vaginitis"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_vaginitis_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_vaginitis_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_vaginitis_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--질염 증상-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_vaginitis_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Symptoms"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_vaginitis_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_vaginitis_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_vaginitis_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--위험 요소-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_risk_factors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Risk factors"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_risk_factors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_risk_factors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_risk_factors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--방지-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_prevention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Prevention"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_prevention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_prevention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_prevention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

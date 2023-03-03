@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,6 +9,7 @@
     android:padding="8dp"
     android:elevation="4dp">
 
+    <!--지워도 되는 layout-->
 
     <TextView
         android:id="@+id/text_view_title"
@@ -35,4 +36,4 @@
         android:textSize="16sp"
         android:text="02-123-4567"/>
 
-</FrameLayout>
+</LinearLayout>
