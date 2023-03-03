@@ -12,7 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.free_pre_android.data.emailCheckDTO
+import com.example.free_pre_android.data.EmailCheckResultDTO
 import com.example.free_pre_android.databinding.ActivityGoogleLoginBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -72,8 +72,15 @@ class GoogleLoginActivity : AppCompatActivity() {
                                         if (firebaseAuth.currentUser != null) {                         //로그인이 안되어있을 경우?
                                             val user: FirebaseUser = firebaseAuth.currentUser!!
                                             email = user.email.toString()
-                                            setSharedData("Email","emailKey",email)    //sharedPreference 값 저장
-                                            getSharedData("Email","emailKey")          //sharedPreference 값 가져오기
+                                            setSharedData(
+                                                "Email",
+                                                "emailKey",
+                                                email
+                                            )    //sharedPreference 값 저장
+                                            getSharedData(
+                                                "Email",
+                                                "emailKey"
+                                            )          //sharedPreference 값 가져오기
                                             //Log.d(TAG,"email: $email")
                                             Log.e(TAG, "email : $email")
                                             val googleSignInToken = account.idToken ?: ""
@@ -83,9 +90,12 @@ class GoogleLoginActivity : AppCompatActivity() {
                                                 Log.e(TAG, "googleSignInToken이 null")
                                             }
                                             //DB에 이미 있는 회원인지 확인 필요
-                                            emailCheck()
-                                            //startActivity(Intent(this, NicknameActivity::class.java))    //회원가입?(로그인?)하면 닉네임액티비티로 넘어감
-
+                                            if (emailCheck()){//DB에 email있으면 true
+                                                startActivity(Intent(this, FreeHomeActivity::class.java))
+                                            }
+                                            else{//없으면 false
+                                                startActivity(Intent(this, NicknameActivity::class.java))    //회원가입?(로그인?)하면 닉네임액티비티로 넘어감
+                                            }
                                         }
                                     }
                             }
@@ -144,17 +154,17 @@ class GoogleLoginActivity : AppCompatActivity() {
 
     }
 
-    fun emailCheck() {
-        RetrofitBuilder.loginApi.emailCheck(email).enqueue(object : Callback<emailCheckDTO> {
-            override fun onResponse(call: Call<emailCheckDTO>, response: Response<emailCheckDTO>) {
+    fun emailCheck():Boolean {
+        var result:Boolean=false
+        RetrofitBuilder.loginApi.emailCheck(email).enqueue(object : Callback<EmailCheckResultDTO> {
+            override fun onResponse(call: Call<EmailCheckResultDTO>, response: Response<EmailCheckResultDTO>) {
                 if (response.isSuccessful) {//연결 성공한 경우에만 처리
                     Log.d("LOGIN",response.body().toString())
 
                     if (response.body()?.result == true) {//회원이 DB에 존재하는 경우
-                        //mainActivity으로 넘어감
+                        result=true
 
                     } else {//회원이 DB에 존재하지 않는 경우
-                        //nicknameActivity으로 넘어감
 
                     }
                 }
@@ -164,10 +174,11 @@ class GoogleLoginActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<emailCheckDTO>, t: Throwable) {
+            override fun onFailure(call: Call<EmailCheckResultDTO>, t: Throwable) {
                 Log.e("LOGIN", t.message.toString())
             }
         })
+        return result
     }
 
 

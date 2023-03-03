@@ -56,6 +56,7 @@ class RecentPeriodActivity : AppCompatActivity() {
         }
 
         viewBinding.btnSave.setOnClickListener {
+            //월경일 입력 api 연결하기
             val intent = Intent(this,FreeActivity::class.java)
             startActivity(intent)
         }
