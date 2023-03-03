@@ -12,7 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.free_pre_android.data.emailCheckResultDTO
+import com.example.free_pre_android.data.EmailCheckResultDTO
 import com.example.free_pre_android.databinding.ActivityGoogleLoginBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -96,7 +96,6 @@ class GoogleLoginActivity : AppCompatActivity() {
                                             else{//없으면 false
                                                 startActivity(Intent(this, NicknameActivity::class.java))    //회원가입?(로그인?)하면 닉네임액티비티로 넘어감
                                             }
-
                                         }
                                     }
                             }
@@ -157,8 +156,8 @@ class GoogleLoginActivity : AppCompatActivity() {
 
     fun emailCheck():Boolean {
         var result:Boolean=false
-        RetrofitBuilder.loginApi.emailCheck(email).enqueue(object : Callback<emailCheckResultDTO> {
-            override fun onResponse(call: Call<emailCheckResultDTO>, response: Response<emailCheckResultDTO>) {
+        RetrofitBuilder.loginApi.emailCheck(email).enqueue(object : Callback<EmailCheckResultDTO> {
+            override fun onResponse(call: Call<EmailCheckResultDTO>, response: Response<EmailCheckResultDTO>) {
                 if (response.isSuccessful) {//연결 성공한 경우에만 처리
                     Log.d("LOGIN",response.body().toString())
 
@@ -175,7 +174,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<emailCheckResultDTO>, t: Throwable) {
+            override fun onFailure(call: Call<EmailCheckResultDTO>, t: Throwable) {
                 Log.e("LOGIN", t.message.toString())
             }
         })
