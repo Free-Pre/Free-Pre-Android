@@ -31,6 +31,10 @@ class FreeActivity : AppCompatActivity() {
         //BottomNav - 캘린더 부분
         viewBinding.btnCalendar.setOnClickListener {
 
+            supportFragmentManager
+                .beginTransaction()
+                .replace(viewBinding.frameFragment.id,CalendarFragment())
+                .commitAllowingStateLoss()
         }
 
         //BottomNav - How To Use 부분

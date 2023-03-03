@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    tools:context=".PMSActivity">
+
+    <TextView
+        android:id="@+id/text_pms"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:text="PMS"
+        android:textColor="@color/primary_dark"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_pms"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true">
+
+            <!--pms란?-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_what_pms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="What is PMS?"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_what_pms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_what_pms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_what_pms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--pms 증상-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_pms_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Symptoms of PMS"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_pms_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_pms_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_pms_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--얼마나 빨리-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_emotional_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Emotional and behavioral symptoms"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_emotional_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_emotional_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_emotional_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--신체적인 증상-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_physical_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Physical Symptoms"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_physical_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_physical_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_physical_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--원인-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_pms_causes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="What causes PMS?"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_pms_causes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_pms_causes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_pms_causes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--완화 방법-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_pms_easing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/primary_light"
+                app:cardCornerRadius="20dp"
+                app:rippleColor="@color/primary_light">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Easing the symptoms of PMS"
+                    android:padding="10dp"
+                    android:textColor="@color/primary_dark"
+                    android:textSize="22dp"
+                    android:textStyle="bold"/>
+                <ImageButton
+                    android:id="@+id/layout_btn_pms_easing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/icon_arrow_up"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:padding="10dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_detail_pms_easing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/primary_light"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:id="@+id/text_detail_pms_easing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_dark"/>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
