@@ -74,7 +74,7 @@
             android:value="ocr" />
 
         <activity
-            android:name=".GoogleLoginActivity"
+            android:name=".FreeActivity"
             android:exported="true" />
         <activity
             android:name=".NicknameActivity"
@@ -116,7 +116,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".FreeActivity"
+            android:name=".GoogleLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -42,8 +42,9 @@
             android:background="@drawable/style_knoewledge_of_menstruation_content"
             android:gravity="center"
             android:text="OB-GYN"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:id="@+id/text_drug_information"
@@ -53,8 +54,9 @@
             android:background="@drawable/style_knoewledge_of_menstruation_content"
             android:gravity="center"
             android:text="drug information"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:id="@+id/text_pms"
@@ -64,8 +66,9 @@
             android:background="@drawable/style_knoewledge_of_menstruation_content"
             android:gravity="center"
             android:text="pms"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:id="@+id/text_female_disease"
@@ -73,9 +76,10 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="female disease"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
     </LinearLayout>
 
 

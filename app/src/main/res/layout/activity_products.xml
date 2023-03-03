@@ -42,8 +42,9 @@
             android:background="@drawable/style_products_content"
             android:gravity="center"
             android:text="sanitary pad"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:id="@+id/text_tampon"
@@ -53,8 +54,9 @@
             android:background="@drawable/style_products_content"
             android:gravity="center"
             android:text="tampon"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:id="@+id/text_menstrual_cup"
@@ -64,8 +66,9 @@
             android:background="@drawable/style_products_content"
             android:gravity="center"
             android:text="menstrual cup"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
 
         <TextView
             android:id="@+id/text_period_underwear"
@@ -74,8 +77,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="period underwear"
+            android:textStyle="bold"
             android:textColor="@color/primary_light"
-            android:textSize="36dp"></TextView>
+            android:textSize="40dp"></TextView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
