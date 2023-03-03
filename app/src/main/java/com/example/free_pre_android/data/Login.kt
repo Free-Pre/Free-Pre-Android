@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 // 로그인 이메일 확인
-data class emailCheckResultDTO(
+data class EmailCheckResultDTO(
     @SerializedName("isSuccess")
     val isSeccess: Boolean,
     @SerializedName("code")
@@ -15,8 +15,8 @@ data class emailCheckResultDTO(
     val result:Boolean
 ) : Serializable
 
-//Pre 회원가입
-data class preSignUpDTO(
+//회원가입
+data class SignUpDTO(
     val email:String,
     val nickname:String,
     val first_period:Boolean
