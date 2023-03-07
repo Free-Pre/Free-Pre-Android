@@ -19,6 +19,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,20 +36,157 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <TextView
+                android:id="@+id/text_headache"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                tools:listitem="@layout/listitem_symptom">
+                android:layout_height="135dp"
+                android:text="headache"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_breast_pain"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="breast pain"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_depressed"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="depressed"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_fatigue"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="fatigue"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_anxious"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="anxious"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_swollen_breast"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="swollen breasts"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_appetite_change"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="appetite changes"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_constipation"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="constipation"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_diarrhea"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="diarrhea"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_dema"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="dema"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_back_pain"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="back pain"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="84dp"
         android:text="save"
         android:textColor="@color/primary_dark"
         android:textSize="48sp"
@@ -57,7 +195,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/primary_light"
-        android:paddingVertical="16dp"
         android:gravity="center"
         android:textAllCaps="false">
     </Button>
