@@ -105,12 +105,12 @@
                 android:textStyle="bold"></Button>
 
             <Button
-                android:id="@+id/btn_etc1"
+                android:id="@+id/btn_faq"
                 android:layout_width="288dp"
                 android:layout_height="128dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/style_unclicked_period_border"
-                android:text="Knowledge of Menstruation"
+                android:text="FAQ"
                 android:textAllCaps="false"
                 android:textColor="@color/primary_light"
                 android:textSize="36dp"
