@@ -1,12 +1,13 @@
 package com.example.free_pre_android
 
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.free_pre_android.databinding.FragmentHowToUseBinding
+import java.io.InputStream
 
 
 class HowToUseFragment : Fragment() {
@@ -29,7 +30,15 @@ class HowToUseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(context,"hello",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context,"hello",Toast.LENGTH_SHORT).show()
+        howToUseText()
+    }
+
+    fun howToUseText(){
+        val assetManager: AssetManager = resources.assets
+        var inputStream: InputStream = assetManager.open("how_to_use.txt")
+        val inputString = inputStream.bufferedReader().use { it.readText() }
+        viewBinding.textHowToUse.text = inputString
     }
 
 

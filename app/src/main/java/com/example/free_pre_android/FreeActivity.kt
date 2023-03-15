@@ -1,16 +1,39 @@
 package com.example.free_pre_android
 
+import android.content.Context
+import android.content.Intent
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityFreeBinding
 
 class FreeActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityFreeBinding
+
+    private var mSensorManager: SensorManager? = null
+    private var mAccelerometer: Sensor? = null
+    private var mShakeDetector: ShakeDetector? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityFreeBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
+        //shake event
+        // ShakeDetector 초기화
+        mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        mAccelerometer = mSensorManager!!
+            .getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        mShakeDetector = ShakeDetector()
+        mShakeDetector!!.setOnShakeListener(object : ShakeDetector.OnShakeListener {
+            override fun onShake(count: Int) {
+                //감지시 할 작업 작성
+                val intent = Intent(this@FreeActivity, CameraActivity::class.java)
+                startActivity(intent)
+            }
+        })
+
+        //하단 bottom 네비게이션바
         //처음 LeftEdit VERSION
         supportFragmentManager
             .beginTransaction()
@@ -45,5 +68,18 @@ class FreeActivity : AppCompatActivity() {
                 .commitAllowingStateLoss()
 
         }
+    }
+
+    override fun onResume() {
+        //Sensor Manager 등록을 취소
+        mSensorManager!!.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
+        super.onResume()
+    }
+
+    // background 상황에서도 흔들림을 감지하고 적용할 필요는 없다
+    override fun onPause() {
+        //Sensor Manager 등록을 취소
+        mSensorManager!!.unregisterListener(mShakeDetector);
+        super.onPause()
     }
 }
