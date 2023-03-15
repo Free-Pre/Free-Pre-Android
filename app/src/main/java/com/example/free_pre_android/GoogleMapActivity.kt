@@ -197,6 +197,16 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
         latlngdata.add(LatLngData("11",LatLng(35.803307,127.102724),"미르피아여성병원","063-211-1004","전북 전주시 완산구 쑥고개로 343"))
         latlngdata.add(LatLngData("12",LatLng(35.842745,127.124392),"한나여성병원","063-250-3500","전북 전주시 덕진구 기린대로 489 한나여성의원"))
         latlngdata.add(LatLngData("13",LatLng(35.830954,127.158624),"한별여성병원","063-244-3559","전북 전주시 덕진구 견훤로 215"))
+        //시각장애인 전용 텍스트 제공
+        latlngdata.add(LatLngData("14",LatLng(37.610503,126.929216),"최윤영산부인과","02-382-0220","서울특별시 은평구 통일로 731"))
+        latlngdata.add(LatLngData("15",LatLng(35.159458,126.883789),"미래와희망산부인과","062-361-3344","광주광역시 서구 죽봉대로 68"))
+        latlngdata.add(LatLngData("16",LatLng(35.159458,126.883789),"삼성미즈산부인과","032-516-3838","인천시 부평구 부평1동 465-2"))
+        latlngdata.add(LatLngData("17",LatLng(37.516844,127.020487),"제이엘산부인과","02-514-1021","서울시 강남구 신사동 514-1번지 동원빌딩2층"))
+        latlngdata.add(LatLngData("18",LatLng(37.265906,127.001679),"미스미즈산부인과","031-255-0903","경기도 수원시 팔달구 매산로1가 57-105 비전포에버상가 304"))
+        latlngdata.add(LatLngData("19",LatLng(36.860125,127.439912),"미래산부인과"," 043-533-1223","충청북도 진천군 진천읍 읍내리 650번지"))
+        latlngdata.add(LatLngData("20",LatLng(37.410916,127.129225),"이유미산부인과","031-783-8770","경기도 성남시 분당구 성남대로 912 BYC건물 4층"))
+        latlngdata.add(LatLngData("21",LatLng(37.491073,126.893655),"미래사랑산부인과","02-837-7511","서울시 구로구 구로6동 148-13 미래사랑산부인과"))
+
 
         for (i in latlngdata.indices){
             addMarker(latlngdata[i],false)

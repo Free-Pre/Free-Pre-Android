@@ -28,6 +28,7 @@
         </TextView>
 
         <Button
+            android:id="@+id/btn_go_free"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/style_home_top_edit_border"
@@ -75,12 +76,12 @@
                 android:textStyle="bold"></Button>
 
             <Button
-                android:id="@+id/btn_protecting_my_body"
+                android:id="@+id/btn_knowledge_menstruation"
                 android:layout_width="288dp"
                 android:layout_height="128dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/style_unclicked_period_border"
-                android:text="Protecting\n my body"
+                android:text="Knowledge of Menstruation"
                 android:textAllCaps="false"
                 android:textColor="@color/primary_light"
                 android:textSize="36dp"

@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_dark"
-    tools:context=".OralContraceptionActivity">
+    tools:context=".PreMenstruationKnowledgeActivity">
 
     <TextView
-        android:id="@+id/text_oral_contraceptives"
+        android:id="@+id/text_knowledge"
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:background="@color/primary_light"
         android:gravity="center"
-        android:text="Oral Contraceptives"
+        android:text="Knowledge of\n Menstruation"
         android:textColor="@color/primary_dark"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -21,12 +21,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_oral_contraceptives"
+        app:layout_constraintTop_toBottomOf="@+id/text_knowledge"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -35,9 +36,9 @@
             android:orientation="vertical"
             android:animateLayoutChanges="true">
 
-            <!--경구피임약이란?-->
+            <!--월경주기란?-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_what_pill"
+                android:id="@+id/layout_what_cycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -51,13 +52,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="What is the Oral \nContraceptives"
+                    android:text="What is a menstrual cycle?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_what_pill"
+                    android:id="@+id/layout_btn_what_cycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -69,7 +70,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_what_pill"
+                android:id="@+id/layout_detail_what_cycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -79,7 +80,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_what_pill"
+                    android:id="@+id/text_detail_what_cycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -90,9 +91,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--호르몬 어떻게 작용?-->
+            <!--정상주기-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_how_work"
+                android:id="@+id/layout_normal_cycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -107,13 +108,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="How does th Oral Contraceptives work?"
+                    android:text="How long is a normal \nmenstrual cycle?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_how_work"
+                    android:id="@+id/layout_btn_normal_cycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -125,7 +126,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_how_work"
+                android:id="@+id/layout_detail_normal_cycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -135,7 +136,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_how_work"
+                    android:id="@+id/text_detail_normal_cycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -146,9 +147,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--이점-->
+            <!--정상적인 기간-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_advantage_pill"
+                android:id="@+id/layout_normal_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -163,13 +164,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="Advantage of Oral Contraceptives"
+                    android:text="How long does a normal \nperiod last?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_advantage_pill"
+                    android:id="@+id/layout_btn_normal_period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -181,7 +182,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_advantage_pill"
+                android:id="@+id/layout_detail_normal_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -191,7 +192,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_advantage_pill"
+                    android:id="@+id/text_detail_normal_period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -202,9 +203,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--부작용-->
+            <!--월경 몇살에 시작-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_disadvantage_pill"
+                android:id="@+id/layout_start_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -219,13 +220,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="Adverse Effects of Oral Contraceptives"
+                    android:text="At what age does \nmenstruation typically begin?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_disadvantage_pill"
+                    android:id="@+id/layout_btn_start_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -237,7 +238,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_disadvantage_pill"
+                android:id="@+id/layout_detail_start_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -247,7 +248,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_disadvantage_pill"
+                    android:id="@+id/text_detail_start_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -258,9 +259,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--복용법-->
+            <!--생리하면 어떤 증상 있나요-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_take_pill"
+                android:id="@+id/layout_symptoms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -275,13 +276,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="How to take Oral \nContraceptives"
+                    android:text="What are symptoms of \ngetting your period?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_take_pill"
+                    android:id="@+id/layout_btn_symptoms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -293,7 +294,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_take_pill"
+                android:id="@+id/layout_detail_symptoms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -304,7 +305,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_take_pill"
+                    android:id="@+id/text_detail_symptoms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -316,7 +317,7 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-       </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

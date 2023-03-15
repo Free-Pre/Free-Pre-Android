@@ -105,6 +105,18 @@
                 android:textStyle="bold"></Button>
 
             <Button
+                android:id="@+id/btn_female_disease"
+                android:layout_width="288dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/style_unclicked_period_border"
+                android:text="Female\n Disease"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_light"
+                android:textSize="36dp"
+                android:textStyle="bold"></Button>
+
+            <Button
                 android:id="@+id/btn_faq"
                 android:layout_width="288dp"
                 android:layout_height="128dp"
@@ -116,17 +128,7 @@
                 android:textSize="36dp"
                 android:textStyle="bold"></Button>
 
-            <Button
-                android:id="@+id/btn_etc2"
-                android:layout_width="288dp"
-                android:layout_height="128dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/style_unclicked_period_border"
-                android:text="Knowledge of Menstruation"
-                android:textAllCaps="false"
-                android:textColor="@color/primary_light"
-                android:textSize="36dp"
-                android:textStyle="bold"></Button>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

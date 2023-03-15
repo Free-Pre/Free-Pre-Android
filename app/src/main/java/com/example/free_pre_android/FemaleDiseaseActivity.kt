@@ -17,13 +17,29 @@ class FemaleDiseaseActivity : AppCompatActivity() {
 
     fun viewBindingRun(){
         viewBinding.run {
+            //유방암 페이지
+            textBreastCancer.setOnClickListener {
+                startActivity(Intent(this@FemaleDiseaseActivity,BreastCancerActivity::class.java))
+            }
+            //자궁경부암 페이지
+            textCervicalCancer.setOnClickListener {
+                startActivity(Intent(this@FemaleDiseaseActivity,CervicalCancerActivity::class.java))
+            }
             //질염 페이지로 이동
-            btnVaginitis.setOnClickListener {
+            textVaginitis.setOnClickListener {
                 startActivity(Intent(this@FemaleDiseaseActivity,VaginitisActivity::class.java))
             }
             //다낭성 난소 증후군 페이지로 이동
-            btnPcos.setOnClickListener {
+            textPcos.setOnClickListener {
                 startActivity(Intent(this@FemaleDiseaseActivity,PcosActivity::class.java))
+            }
+            //에이즈 페이지
+            textAids.setOnClickListener {
+                startActivity(Intent(this@FemaleDiseaseActivity,AidsActivity::class.java))
+            }
+            //방광염 페이지
+            textCystitis.setOnClickListener {
+                startActivity(Intent(this@FemaleDiseaseActivity,CystitisActivity::class.java))
             }
         }
     }
