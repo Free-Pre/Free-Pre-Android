@@ -24,6 +24,9 @@ class NicknameActivity : AppCompatActivity() {
         val getEmail: String? = sharedPreferences.getString("emailKey","there's no email")
         Log.d(ContentValues.TAG,"NickNameGetEmail: $getEmail")
 
+
+
+
         setNickname()
     }
 

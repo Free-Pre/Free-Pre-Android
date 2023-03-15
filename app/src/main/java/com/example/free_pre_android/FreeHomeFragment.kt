@@ -37,6 +37,12 @@ class FreeHomeFragment : Fragment() {
             btnProducts.setOnClickListener {
                 startActivity(Intent(activity, ProductsActivity::class.java))
             }
+            btnFemaleDisease.setOnClickListener {
+                startActivity(Intent(activity,FemaleDiseaseActivity::class.java))
+            }
+            btnFaq.setOnClickListener {
+                startActivity(Intent(activity,FreeFaqActivity::class.java))
+            }
         }
     }
 

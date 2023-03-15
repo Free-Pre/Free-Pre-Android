@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_dark"
-    tools:context=".OralContraceptionActivity">
+    tools:context=".FreeFaqActivity">
 
     <TextView
-        android:id="@+id/text_oral_contraceptives"
+        android:id="@+id/text_free_faq"
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:background="@color/primary_light"
         android:gravity="center"
-        android:text="Oral Contraceptives"
+        android:text="FAQ"
         android:textColor="@color/primary_dark"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -21,12 +21,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_oral_contraceptives"
+        app:layout_constraintTop_toBottomOf="@+id/text_free_faq"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -35,9 +36,9 @@
             android:orientation="vertical"
             android:animateLayoutChanges="true">
 
-            <!--경구피임약이란?-->
+            <!--생리를 하지 않아요-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_what_pill"
+                android:id="@+id/layout_no_menstruation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -51,13 +52,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="What is the Oral \nContraceptives"
+                    android:text="I don't menstruate."
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_what_pill"
+                    android:id="@+id/layout_btn_no_menstruation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -69,7 +70,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_what_pill"
+                android:id="@+id/layout_detail_no_menstruation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -79,7 +80,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_what_pill"
+                    android:id="@+id/text_detail_no_menstruation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -90,9 +91,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--호르몬 어떻게 작용?-->
+            <!--탐폰,생리컵 빠지면 어떡해-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_how_work"
+                android:id="@+id/layout_fall_out_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -107,13 +108,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="How does th Oral Contraceptives work?"
+                    android:text="What if my menstrual cup or tampon falls out?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_how_work"
+                    android:id="@+id/layout_btn_fall_out_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -125,7 +126,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_how_work"
+                android:id="@+id/layout_detail_fall_out_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -135,7 +136,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_how_work"
+                    android:id="@+id/text_detail_fall_out_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -146,9 +147,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--이점-->
+            <!--생리 약 적음-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_advantage_pill"
+                android:id="@+id/layout_small_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -163,13 +164,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="Advantage of Oral Contraceptives"
+                    android:text="Menstrual flow is too small"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_advantage_pill"
+                    android:id="@+id/layout_btn_small_period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -181,7 +182,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_advantage_pill"
+                android:id="@+id/layout_detail_small_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -191,7 +192,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_advantage_pill"
+                    android:id="@+id/text_detail_small_period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -202,9 +203,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--부작용-->
+            <!--생리양 많음-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_disadvantage_pill"
+                android:id="@+id/layout_much_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -219,13 +220,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="Adverse Effects of Oral Contraceptives"
+                    android:text="Menstrual flow is too much"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_disadvantage_pill"
+                    android:id="@+id/layout_btn_much_period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -237,7 +238,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_disadvantage_pill"
+                android:id="@+id/layout_detail_much_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -247,7 +248,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_disadvantage_pill"
+                    android:id="@+id/text_detail_much_period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -258,9 +259,9 @@
                     android:textColor="@color/primary_dark"/>
             </com.google.android.material.card.MaterialCardView>
 
-            <!--복용법-->
+            <!--자궁경부암 주사 꼭 맞아야 하나요-->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_take_pill"
+                android:id="@+id/layout_prevention_cervical_cancer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -275,13 +276,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="How to take Oral \nContraceptives"
+                    android:text="Do I need to get cervical\ncancer vaccination?"
                     android:padding="10dp"
                     android:textColor="@color/primary_dark"
                     android:textSize="22dp"
                     android:textStyle="bold"/>
                 <ImageButton
-                    android:id="@+id/layout_btn_take_pill"
+                    android:id="@+id/layout_btn_prevention_cervical_cancer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -293,7 +294,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/layout_detail_take_pill"
+                android:id="@+id/layout_detail_prevention_cervical_cancer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
@@ -304,7 +305,7 @@
                 app:cardCornerRadius="20dp">
 
                 <TextView
-                    android:id="@+id/text_detail_take_pill"
+                    android:id="@+id/text_detail_prevention_cervical_cancer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -316,7 +317,7 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-       </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

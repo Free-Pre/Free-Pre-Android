@@ -24,8 +24,33 @@
         android:theme="@style/Theme.FreePreAndroid"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".PreProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PreMenstruationKnowledgeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CystitisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AidsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CervicalCancerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BreastCancerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PreFaqActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FreeFaqActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WhatMenstruationActivity"
+            android:exported="false" />
         <activity
             android:name=".PeriodUnderwearActivity"
             android:exported="false" />
@@ -78,7 +103,7 @@
             android:value="ocr" />
 
         <activity
-            android:name=".GoogleLoginActivity"
+            android:name=".FreeActivity"
             android:exported="true" />
         <activity
             android:name=".NicknameActivity"
@@ -120,7 +145,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".FreeActivity"
+            android:name=".GoogleLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
