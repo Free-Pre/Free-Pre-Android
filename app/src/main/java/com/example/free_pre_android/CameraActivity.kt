@@ -14,6 +14,7 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
 
+
 class CameraActivity : BaseActivity() {
 
     val PERM_CAMERA=100//카메라 권한 처리
@@ -33,6 +34,8 @@ class CameraActivity : BaseActivity() {
         setContentView(viewBinding.root)
         //여기서 바로 카메라 실행되도록 해야함.
         requirePermissions(arrayOf(Manifest.permission.CAMERA), PERM_CAMERA)
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

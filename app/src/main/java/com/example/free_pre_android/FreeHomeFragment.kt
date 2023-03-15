@@ -12,6 +12,7 @@ import com.example.free_pre_android.databinding.FragmentFreeHomeBinding
 class FreeHomeFragment : Fragment() {
     private lateinit var viewBinding: FragmentFreeHomeBinding
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,6 +25,8 @@ class FreeHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBindingRun()
+
+
     }
 
     fun viewBindingRun(){
@@ -42,6 +45,10 @@ class FreeHomeFragment : Fragment() {
             }
             btnFaq.setOnClickListener {
                 startActivity(Intent(activity,FreeFaqActivity::class.java))
+            }
+
+            btnEditPeriod.setOnClickListener {
+                startActivity(Intent(activity,EditPeriodActivity::class.java))
             }
         }
     }
