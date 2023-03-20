@@ -1,4 +1,4 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.information
 
 import android.content.res.AssetManager
 import android.os.Bundle

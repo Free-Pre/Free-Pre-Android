@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.free_pre_android.databinding.ActivityGoogleMapBinding
+import com.example.free_pre_android.information.LatLngData
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
@@ -215,7 +216,7 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnM
     }
 
     //4. 실제 마커를 추가하는 함수
-    fun addMarker(latlngdata:LatLngData, isSelectedMarker:Boolean): Marker? {
+    fun addMarker(latlngdata: LatLngData, isSelectedMarker:Boolean): Marker? {
 
         var list: List<Address>? = null
         if (isSelectedMarker) {

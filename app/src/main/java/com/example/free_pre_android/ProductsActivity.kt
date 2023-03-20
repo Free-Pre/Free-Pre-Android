@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityProductsBinding
+import com.example.free_pre_android.information.MenstrualCupActivity
+import com.example.free_pre_android.information.PeriodUnderwearActivity
+import com.example.free_pre_android.information.SanitaryPadActivity
+import com.example.free_pre_android.information.TamponActivity
 
 class ProductsActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityProductsBinding
@@ -18,16 +22,16 @@ class ProductsActivity : AppCompatActivity() {
     fun viewBindingRun(){
         viewBinding.run {
             textSanitaryPad.setOnClickListener {
-                startActivity(Intent(this@ProductsActivity,SanitaryPadActivity::class.java))
+                startActivity(Intent(this@ProductsActivity, SanitaryPadActivity::class.java))
             }
             textTampon.setOnClickListener {
-                startActivity(Intent(this@ProductsActivity,TamponActivity::class.java))
+                startActivity(Intent(this@ProductsActivity, TamponActivity::class.java))
             }
             textMenstrualCup.setOnClickListener {
-                startActivity(Intent(this@ProductsActivity,MenstrualCupActivity::class.java))
+                startActivity(Intent(this@ProductsActivity, MenstrualCupActivity::class.java))
             }
             textPeriodUnderwear.setOnClickListener {
-                startActivity(Intent(this@ProductsActivity,PeriodUnderwearActivity::class.java))
+                startActivity(Intent(this@ProductsActivity, PeriodUnderwearActivity::class.java))
             }
         }
     }
