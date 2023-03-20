@@ -34,17 +34,9 @@ class FirstPeriodActivity : AppCompatActivity() {
     fun clickBtn(){
         viewBinding.btnYes.setOnClickListener {
             signUp(true)
-            val intent = Intent(this,RecentPeriodActivity::class.java)
-            Log.d("FIRST_PERIOD", "$nickname YES")
-            startActivity(intent)
-
         }
         viewBinding.btnNo.setOnClickListener {
             signUp(false)
-            val intent = Intent(this,PreActivity::class.java)
-            Log.d("FIRST_PERIOD", "$nickname NO")
-            startActivity(intent)
-
         }
     }
 
@@ -53,6 +45,16 @@ class FirstPeriodActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if(response.isSuccessful){
                     Toast.makeText(this@FirstPeriodActivity,"Sign Up was completed", Toast.LENGTH_SHORT).show()
+                    if(first_period){//FREE
+                        val intent =Intent(this@FirstPeriodActivity,RecentPeriodActivity::class.java)
+                        Log.d("FIRST_PERIOD", "$nickname YES")
+                        startActivity(intent)
+                    }
+                    else{//PRE
+                        val intent =Intent(this@FirstPeriodActivity,PreActivity::class.java)
+                        Log.d("FIRST_PERIOD", "$nickname NO")
+                        startActivity(intent)
+                    }
                 }
                 else{
                     //에러 처리

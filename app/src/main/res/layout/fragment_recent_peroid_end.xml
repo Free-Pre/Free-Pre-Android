@@ -17,7 +17,8 @@
         android:layout_marginStart="69dp"
         android:layout_marginTop="119dp"
         android:textSize="36dp"
-        android:inputType="date"
+        android:inputType="number"
+        android:maxLength="4"
         android:textColor="@color/primary_light"
         android:gravity="center"
         android:padding="10dp" />
@@ -41,15 +42,16 @@
         android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:background="@drawable/style_enter_period_date_line"
-        app:layout_constraintTop_toBottomOf="@id/edit_year"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="69dp"
         android:layout_marginTop="57dp"
-        android:inputType="date"
+        android:inputType="number"
         android:textSize="36dp"
         android:textColor="@color/primary_light"
         android:gravity="center"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:maxLength="2"
+        app:layout_constraintTop_toBottomOf="@id/edit_year"
+        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/txt_month"
         android:layout_width="wrap_content"
@@ -76,6 +78,7 @@
         android:layout_marginTop="57dp"
         android:textSize="36dp"
         android:inputType="date"
+        android:maxLength="2"
         android:textColor="@color/primary_light"
         android:gravity="center"
         android:padding="10dp"/>
