@@ -8,7 +8,7 @@ import retrofit2.http.POST
 interface PeriodService {
     //월경일 추가
     @POST("freepre/period/first")
-    fun periodAdd(
+    fun periodAddFirst(
         @Body period:PeriodAddDTO
     ): Call<Void>
 }
