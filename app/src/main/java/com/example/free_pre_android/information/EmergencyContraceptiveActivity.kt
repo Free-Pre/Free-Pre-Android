@@ -1,70 +1,59 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.information
 
 import android.content.res.AssetManager
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.free_pre_android.databinding.ActivityOralContraceptivesBinding
+import com.example.free_pre_android.databinding.ActivityEmergencyContraceptiveBinding
 import java.io.InputStream
 
-class OralContraceptionActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivityOralContraceptivesBinding
-
-
+class EmergencyContraceptiveActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityEmergencyContraceptiveBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityOralContraceptivesBinding.inflate(layoutInflater)
+        viewBinding = ActivityEmergencyContraceptiveBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        WhatOralContraception()
-        HowWorkOralContraception()
-        Advantage()
-        Disadvantage()
-        HowToTake()
+        WhatEmergencyContraception()
+        HowGetEC()
+        HowQuicklyEC()
+        DisadvantageEC()
         viewBindingRun()
     }
 
 
-    //경구피임약 무엇
-    fun WhatOralContraception() {
+    //응급피임약 무엇
+    fun WhatEmergencyContraception() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("oral_contraceptives_what.txt")
+        var inputStream: InputStream = assetManager.open("emergency_contraceptive_what.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
         viewBinding.textDetailWhatPill.text = inputString
     }
 
-    //호르몬 어떻게 작용
-    fun HowWorkOralContraception() {
+    //호르몬 어떻게 얻어
+    fun HowGetEC() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("oral_contraceptives_how_work.txt")
+        var inputStream: InputStream = assetManager.open("emergency_contraceptive_how_get.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
-        viewBinding.textDetailHowWork.text = inputString
+        viewBinding.textDetailHowGet.text = inputString
     }
 
-    //이점
-    fun Advantage() {
+    //얼마나 빨리 복용
+    fun HowQuicklyEC() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("oral_contraceptives_advantages.txt")
+        var inputStream: InputStream = assetManager.open("emergency_contraceptive_how_quickly.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
-        viewBinding.textDetailAdvantagePill.text = inputString
+        viewBinding.textDetailHowQuickly.text = inputString
     }
 
-    //단점
-    fun Disadvantage() {
+    //부작용
+    fun DisadvantageEC() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("oral_contraceptives_disadvantages.txt")
+        var inputStream: InputStream =
+            assetManager.open("emergency_contraceptive_disadvantages.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
         viewBinding.textDetailDisadvantagePill.text = inputString
     }
-
-    //복용법
-    fun HowToTake() {
-        val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("oral_contraceptives_taking.txt")
-        val inputString = inputStream.bufferedReader().use { it.readText() }
-        viewBinding.textDetailTakePill.text = inputString
-    }
-
 
 
     //viewBinding 동작
@@ -87,34 +76,34 @@ class OralContraceptionActivity : AppCompatActivity() {
                 }
             }
 
-            //호르몬 어떻게 작용?
-            layoutHowWork.setOnClickListener {
-                if (layoutDetailHowWork.visibility == View.VISIBLE) {
-                    layoutDetailHowWork.visibility = View.GONE
-                    layoutBtnHowWork.animate().apply {
+            //어떻게 얻어?
+            layoutHowGet.setOnClickListener {
+                if (layoutDetailHowGet.visibility == View.VISIBLE) {
+                    layoutDetailHowGet.visibility = View.GONE
+                    layoutBtnHowGet.animate().apply {
                         duration = 300
                         rotation(0f)
                     }
                 } else {
-                    layoutDetailHowWork.visibility = View.VISIBLE
-                    layoutBtnHowWork.animate().apply {
+                    layoutDetailHowGet.visibility = View.VISIBLE
+                    layoutBtnHowGet.animate().apply {
                         duration = 300
                         rotation(180f)    //화살표 180회전
                     }
                 }
             }
 
-            //이점
-            layoutAdvantagePill.setOnClickListener {
-                if (layoutDetailAdvantagePill.visibility == View.VISIBLE) {
-                    layoutDetailAdvantagePill.visibility = View.GONE
-                    layoutBtnAdvantagePill.animate().apply {
+            //얼마나 빨리
+            layoutHowQuickly.setOnClickListener {
+                if (layoutDetailHowQuickly.visibility == View.VISIBLE) {
+                    layoutDetailHowQuickly.visibility = View.GONE
+                    layoutBtnHowQuickly.animate().apply {
                         duration = 300
                         rotation(0f)
                     }
                 } else {
-                    layoutDetailAdvantagePill.visibility = View.VISIBLE
-                    layoutBtnAdvantagePill.animate().apply {
+                    layoutDetailHowQuickly.visibility = View.VISIBLE
+                    layoutBtnHowQuickly.animate().apply {
                         duration = 300
                         rotation(180f)    //화살표 180회전
                     }
@@ -138,26 +127,7 @@ class OralContraceptionActivity : AppCompatActivity() {
                 }
             }
 
-            //복용법
-            layoutTakePill.setOnClickListener {
-                if (layoutDetailTakePill.visibility == View.VISIBLE) {
-                    layoutDetailTakePill.visibility = View.GONE
-                    layoutBtnTakePill.animate().apply {
-                        duration = 300
-                        rotation(0f)
-                    }
-                } else {
-                    layoutDetailTakePill.visibility = View.VISIBLE
-                    layoutBtnTakePill.animate().apply {
-                        duration = 300
-                        rotation(180f)    //화살표 180회전
-                    }
-                }
-            }
-
 
         }
     }
-
-//돋보기 기능 있으면 좋을 듯?
 }

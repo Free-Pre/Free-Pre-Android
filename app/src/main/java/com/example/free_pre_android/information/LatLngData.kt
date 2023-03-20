@@ -1,4 +1,4 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.information
 
 import com.google.android.gms.maps.model.LatLng
 

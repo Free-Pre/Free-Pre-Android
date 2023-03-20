@@ -1,59 +1,70 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.information
 
 import android.content.res.AssetManager
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.free_pre_android.databinding.ActivityEmergencyContraceptiveBinding
+import com.example.free_pre_android.databinding.ActivityOralContraceptivesBinding
 import java.io.InputStream
 
-class EmergencyContraceptiveActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivityEmergencyContraceptiveBinding
+class OralContraceptionActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityOralContraceptivesBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityEmergencyContraceptiveBinding.inflate(layoutInflater)
+        viewBinding = ActivityOralContraceptivesBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        WhatEmergencyContraception()
-        HowGetEC()
-        HowQuicklyEC()
-        DisadvantageEC()
+        WhatOralContraception()
+        HowWorkOralContraception()
+        Advantage()
+        Disadvantage()
+        HowToTake()
         viewBindingRun()
     }
 
 
-    //응급피임약 무엇
-    fun WhatEmergencyContraception() {
+    //경구피임약 무엇
+    fun WhatOralContraception() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("emergency_contraceptive_what.txt")
+        var inputStream: InputStream = assetManager.open("oral_contraceptives_what.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
         viewBinding.textDetailWhatPill.text = inputString
     }
 
-    //호르몬 어떻게 얻어
-    fun HowGetEC() {
+    //호르몬 어떻게 작용
+    fun HowWorkOralContraception() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("emergency_contraceptive_how_get.txt")
+        var inputStream: InputStream = assetManager.open("oral_contraceptives_how_work.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
-        viewBinding.textDetailHowGet.text = inputString
+        viewBinding.textDetailHowWork.text = inputString
     }
 
-    //얼마나 빨리 복용
-    fun HowQuicklyEC() {
+    //이점
+    fun Advantage() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream = assetManager.open("emergency_contraceptive_how_quickly.txt")
+        var inputStream: InputStream = assetManager.open("oral_contraceptives_advantages.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
-        viewBinding.textDetailHowQuickly.text = inputString
+        viewBinding.textDetailAdvantagePill.text = inputString
     }
 
-    //부작용
-    fun DisadvantageEC() {
+    //단점
+    fun Disadvantage() {
         val assetManager: AssetManager = resources.assets
-        var inputStream: InputStream =
-            assetManager.open("emergency_contraceptive_disadvantages.txt")
+        var inputStream: InputStream = assetManager.open("oral_contraceptives_disadvantages.txt")
         val inputString = inputStream.bufferedReader().use { it.readText() }
         viewBinding.textDetailDisadvantagePill.text = inputString
     }
+
+    //복용법
+    fun HowToTake() {
+        val assetManager: AssetManager = resources.assets
+        var inputStream: InputStream = assetManager.open("oral_contraceptives_taking.txt")
+        val inputString = inputStream.bufferedReader().use { it.readText() }
+        viewBinding.textDetailTakePill.text = inputString
+    }
+
 
 
     //viewBinding 동작
@@ -76,34 +87,34 @@ class EmergencyContraceptiveActivity : AppCompatActivity() {
                 }
             }
 
-            //어떻게 얻어?
-            layoutHowGet.setOnClickListener {
-                if (layoutDetailHowGet.visibility == View.VISIBLE) {
-                    layoutDetailHowGet.visibility = View.GONE
-                    layoutBtnHowGet.animate().apply {
+            //호르몬 어떻게 작용?
+            layoutHowWork.setOnClickListener {
+                if (layoutDetailHowWork.visibility == View.VISIBLE) {
+                    layoutDetailHowWork.visibility = View.GONE
+                    layoutBtnHowWork.animate().apply {
                         duration = 300
                         rotation(0f)
                     }
                 } else {
-                    layoutDetailHowGet.visibility = View.VISIBLE
-                    layoutBtnHowGet.animate().apply {
+                    layoutDetailHowWork.visibility = View.VISIBLE
+                    layoutBtnHowWork.animate().apply {
                         duration = 300
                         rotation(180f)    //화살표 180회전
                     }
                 }
             }
 
-            //얼마나 빨리
-            layoutHowQuickly.setOnClickListener {
-                if (layoutDetailHowQuickly.visibility == View.VISIBLE) {
-                    layoutDetailHowQuickly.visibility = View.GONE
-                    layoutBtnHowQuickly.animate().apply {
+            //이점
+            layoutAdvantagePill.setOnClickListener {
+                if (layoutDetailAdvantagePill.visibility == View.VISIBLE) {
+                    layoutDetailAdvantagePill.visibility = View.GONE
+                    layoutBtnAdvantagePill.animate().apply {
                         duration = 300
                         rotation(0f)
                     }
                 } else {
-                    layoutDetailHowQuickly.visibility = View.VISIBLE
-                    layoutBtnHowQuickly.animate().apply {
+                    layoutDetailAdvantagePill.visibility = View.VISIBLE
+                    layoutBtnAdvantagePill.animate().apply {
                         duration = 300
                         rotation(180f)    //화살표 180회전
                     }
@@ -127,7 +138,26 @@ class EmergencyContraceptiveActivity : AppCompatActivity() {
                 }
             }
 
+            //복용법
+            layoutTakePill.setOnClickListener {
+                if (layoutDetailTakePill.visibility == View.VISIBLE) {
+                    layoutDetailTakePill.visibility = View.GONE
+                    layoutBtnTakePill.animate().apply {
+                        duration = 300
+                        rotation(0f)
+                    }
+                } else {
+                    layoutDetailTakePill.visibility = View.VISIBLE
+                    layoutBtnTakePill.animate().apply {
+                        duration = 300
+                        rotation(180f)    //화살표 180회전
+                    }
+                }
+            }
+
 
         }
     }
+
+//돋보기 기능 있으면 좋을 듯?
 }

@@ -1,4 +1,4 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.information
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,10 +21,10 @@ class DrugInformationActivity : AppCompatActivity() {
     fun viewBindingRun(){
         viewBinding.run {
             btnOralContraceptives.setOnClickListener {
-                startActivity(Intent(this@DrugInformationActivity,OralContraceptionActivity::class.java))
+                startActivity(Intent(this@DrugInformationActivity, OralContraceptionActivity::class.java))
             }
             btnEmergencyContraceptives.setOnClickListener {
-                startActivity(Intent(this@DrugInformationActivity,EmergencyContraceptiveActivity::class.java))
+                startActivity(Intent(this@DrugInformationActivity, EmergencyContraceptiveActivity::class.java))
             }
         }
     }
