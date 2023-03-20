@@ -11,4 +11,9 @@ interface PeriodService {
     fun periodAddFirst(
         @Body period:PeriodAddDTO
     ): Call<Void>
+    //월경일 추가
+    @POST("freepre/period")
+    fun periodAdd(
+        @Body period:PeriodAddDTO
+    ): Call<Void>
 }

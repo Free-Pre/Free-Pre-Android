@@ -53,8 +53,6 @@ class RecentPeriodActivity : AppCompatActivity() {
         viewBinding.saveBtn.setOnClickListener {
             //월경일 입력 api 연결하기
             saveDate()
-            val intent = Intent(this, FreeActivity::class.java)
-            //startActivity(intent)
         }
     }
     fun initSetFragment(){
@@ -141,7 +139,7 @@ class RecentPeriodActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 Log.d("RECENT_PERIOD",response.message())
                 if(response.isSuccessful){
-                    val intent=Intent(this@RecentPeriodActivity,FreeHomeActivity::class.java)
+                    val intent=Intent(this@RecentPeriodActivity,FreeActivity::class.java)
                     startActivity(intent)
                 }
                 else{
