@@ -1,65 +1,153 @@
 package com.example.free_pre_android
 
+import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.free_pre_android.data.PeriodAddDTO
 import com.example.free_pre_android.databinding.ActivityEditPeriodBinding
+import com.example.free_pre_android.retrofit.RetrofitBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.ParseException
 
 class EditPeriodActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityEditPeriodBinding
+    var start_year: String? = ""
+    var start_month: String? = ""
+    var start_day: String? = ""
+    var end_year: String? = ""
+    var end_month: String? = ""
+    var end_day: String? = ""
+    val fragmentManager=supportFragmentManager
+    var startFragment:EditPeriodStartFragment?=null
+    var endFragment:EditPeriodEndFragment?=null
+    var email=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityEditPeriodBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
-        //초기화면
-        supportFragmentManager
-            .beginTransaction()
-            .replace(viewBinding.frameFragment.id,EditPeriodStartFragment())
-            .commitAllowingStateLoss()
-        //startBtn 색 채우기(초기)
-        viewBinding.btnStart.setBackgroundResource(R.drawable.style_clicked_period_border)
-        //viewBinding.startBtn.setTextColor(application.resources.getColor(R.color.primary_dark))
-        viewBinding.btnStart.setTextColor(Color.parseColor("#1A2A46"))   //dark
-
+        //이메일 데이터 가져오기 - test용
+        val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
+        email= sharedPreferences.getString("emailKey","there's no email").toString()
+        Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
+        //초기 화면
+        initSetFragment()
         //start 버튼 누를 시
-        viewBinding.btnStart.setOnClickListener{
-            supportFragmentManager
-                .beginTransaction()
-                .replace(viewBinding.frameFragment.id,EditPeriodStartFragment())
-                .commitAllowingStateLoss()
-
-            //startBtn 색 채우기-start 버튼
-            viewBinding.btnStart.setBackgroundResource(R.drawable.style_clicked_period_border)
-            viewBinding.btnStart.setTextColor(Color.parseColor("#1A2A46"))   //dark
-
-            //endBtn 색 없애기 - end 버튼
-            viewBinding.btnEnd.setBackgroundResource(R.drawable.style_unclicked_period_border)
-            viewBinding.btnEnd.setTextColor(Color.parseColor("#FDE3F4"))
+        viewBinding.btnStart.setOnClickListener {
+            setEditPeriodStartFragment()
         }
         //end 버튼 누를 시
         viewBinding.btnEnd.setOnClickListener {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(viewBinding.frameFragment.id,EditPeriodEndFragment())
-                .commitAllowingStateLoss()
-
-            //endBtn 색 채우기-end 버튼
-            viewBinding.btnEnd.setBackgroundResource(R.drawable.style_clicked_period_border)
-            viewBinding.btnEnd.setTextColor(Color.parseColor("#1A2A46"))   //dark
-
-            //startBtn 색 없애기 -start 버튼
-            viewBinding.btnStart.setBackgroundResource(R.drawable.style_unclicked_period_border)
-            viewBinding.btnStart.setTextColor(Color.parseColor("#FDE3F4"))
-
+            setEditPeriodEndFragment()
         }
 
         viewBinding.btnSave.setOnClickListener {
             //월경일 입력 api 연결하기
-            val intent = Intent(this,FreeActivity::class.java)
-            startActivity(intent)
+            saveDate()
         }
+    }
+    fun initSetFragment(){
+        startFragment= EditPeriodStartFragment()
+        fragmentManager.beginTransaction().replace(viewBinding.frameFragment.id, startFragment!!).commit()
+        startBtn()
+    }
+    fun setEditPeriodStartFragment() {
+        if(startFragment==null){
+            startFragment= EditPeriodStartFragment()
+            fragmentManager.beginTransaction().add(viewBinding.frameFragment.id, startFragment!!).commit()
+        }
+        if(startFragment!=null){
+            fragmentManager.beginTransaction().show(startFragment!!).commit()
+        }
+        if(endFragment!=null){
+            fragmentManager.beginTransaction().hide(endFragment!!).commit()
+        }
+        startBtn()
+    }
+    fun setEditPeriodEndFragment() {
+        if(endFragment==null){
+            endFragment= EditPeriodEndFragment()
+            fragmentManager.beginTransaction().add(viewBinding.frameFragment.id, endFragment!!).commit()
+        }
+        if(endFragment!=null){
+            fragmentManager.beginTransaction().show(endFragment!!).commit()
+        }
+        if(startFragment!=null){
+            fragmentManager.beginTransaction().hide(startFragment!!).commit()
+        }
+        endBtn()
+    }
+    fun startBtn(){
+        //startBtn 색 채우기-start 버튼
+        viewBinding.btnStart.setBackgroundResource(R.drawable.style_clicked_period_border)
+        viewBinding.btnStart.setTextColor(Color.parseColor("#1A2A46"))   //dark
+
+        //endBtn 색 없애기 - end 버튼
+        viewBinding.btnEnd.setBackgroundResource(R.drawable.style_unclicked_period_border)
+        viewBinding.btnEnd.setTextColor(Color.parseColor("#FDE3F4"))
+    }
+    fun endBtn(){
+        //endBtn 색 채우기-end 버튼
+        viewBinding.btnEnd.setBackgroundResource(R.drawable.style_clicked_period_border)
+        viewBinding.btnEnd.setTextColor(Color.parseColor("#1A2A46"))   //dark
+
+        //startBtn 색 없애기 -start 버튼
+        viewBinding.btnStart.setBackgroundResource(R.drawable.style_unclicked_period_border)
+        viewBinding.btnStart.setTextColor(Color.parseColor("#FDE3F4"))
+    }
+    fun saveDate(){
+        start_month=if(start_month?.trim()?.length==1)"0"+start_month?.trim()else start_month?.trim()
+        start_day=if(start_day?.trim()?.length==1)"0"+start_day?.trim()else start_day?.trim()
+        end_month=if(end_month?.trim()?.length==1)"0"+end_month?.trim()else end_month?.trim()
+        end_day=if(end_day?.trim()?.length==1)"0"+end_day?.trim()else end_day?.trim()
+
+        val start_date= "$start_year$start_month$start_day"
+        val end_date= "$end_year$end_month$end_day"
+        Log.d("EDIT_PERIOD",start_date+" "+end_date)
+        if(start_date.length!=8||end_date.length!=8){
+            Log.e("EDIT_PERIOD","length error")
+            Toast.makeText(this,"please enter a valid date", Toast.LENGTH_SHORT).show()
+            return
+        }
+        try {
+            val sdf = SimpleDateFormat("yyyyMMdd")
+            sdf.isLenient = false
+            sdf.parse(start_date)
+            sdf.parse(end_date)
+        } catch (e: ParseException) {
+            Log.e("EDIT_PERIOD","not valid date")
+            e.printStackTrace()
+            return
+        }
+        if(start_date.toInt()>end_date.toInt()){
+            Log.e("EDIT_PERIOD","start date>end date")
+            Toast.makeText(this,"start date can't be later than end date", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val dateInfo= PeriodAddDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
+        RetrofitBuilder.periodAPi.periodAdd(dateInfo).enqueue(object: Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Log.d("EDIT_PERIOD",response.message())
+                if(response.isSuccessful){
+                    finish()
+                }
+                else{
+                    Log.e("EDIT_PERIOD","response fail")
+                }
+            }
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.e("EDIT_PERIOD",t.message.toString())
+            }
+        })
     }
 }
 
