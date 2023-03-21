@@ -20,7 +20,7 @@ class CameraActivity : BaseActivity() {
     val PERM_CAMERA=100//카메라 권한 처리
     val REQ_CAMERA=101//카메라 촬영 요청
 
-
+    var result:String=""
     private lateinit var viewBinding: ActivityCameraBinding
 
     companion object{
@@ -90,6 +90,7 @@ class CameraActivity : BaseActivity() {
                     val cornerPoints = block.cornerPoints
                     val text = block.text
                     Log.d("camera",text)
+                    result=result+text+"\n"
                     for (line in block.lines) {
                         // ...
                         for (element in line.elements) {
@@ -97,6 +98,7 @@ class CameraActivity : BaseActivity() {
                         }
                     }
                 }
+                viewBinding.txtResult.text=result
         }
             .addOnFailureListener { e->//텍스트 인식 작업 실패
                 Log.e("camera","텍스트 인식 작업 실패")
