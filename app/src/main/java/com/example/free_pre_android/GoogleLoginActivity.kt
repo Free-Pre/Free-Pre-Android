@@ -90,12 +90,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                                                 Log.e(TAG, "googleSignInToken이 null")
                                             }
                                             //DB에 이미 있는 회원인지 확인 필요
-                                            if (emailCheck()){//DB에 email있으면 true
-                                                startActivity(Intent(this, FreeHomeActivity::class.java))
-                                            }
-                                            else{//없으면 false
-                                                startActivity(Intent(this, NicknameActivity::class.java))    //회원가입?(로그인?)하면 닉네임액티비티로 넘어감
-                                            }
+                                            emailCheck()//DB에 email있으면 true
                                         }
                                     }
                             }
@@ -154,23 +149,21 @@ class GoogleLoginActivity : AppCompatActivity() {
 
     }
 
-    fun emailCheck():Boolean {
-        var result:Boolean=false
+    fun emailCheck(){
         RetrofitBuilder.loginApi.emailCheck(email).enqueue(object : Callback<EmailCheckResultDTO> {
             override fun onResponse(call: Call<EmailCheckResultDTO>, response: Response<EmailCheckResultDTO>) {
+                Log.d("LOGIN",response.body().toString())
                 if (response.isSuccessful) {//연결 성공한 경우에만 처리
-                    Log.d("LOGIN",response.body().toString())
-
                     if (response.body()?.result == true) {//회원이 DB에 존재하는 경우
-                        result=true
-
+                        Log.d("LOGIN","exist email")
+                        startActivity(Intent(this@GoogleLoginActivity, FreeHomeActivity::class.java))
                     } else {//회원이 DB에 존재하지 않는 경우
-
+                        Log.d("LOGIN","new email")
+                        startActivity(Intent(this@GoogleLoginActivity, NicknameActivity::class.java))
                     }
                 }
                 else{
-                    Log.d("LOGIN",response.code().toString())
-
+                    Log.d("LOGIN","response fail")
                 }
             }
 
@@ -178,7 +171,6 @@ class GoogleLoginActivity : AppCompatActivity() {
                 Log.e("LOGIN", t.message.toString())
             }
         })
-        return result
     }
 
 
