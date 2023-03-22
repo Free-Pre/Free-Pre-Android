@@ -122,7 +122,7 @@
             android:exported="true" />
         <activity
             android:name=".EditPeriodListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FreeAlarmEditActivity"
             android:exported="true" />

@@ -9,7 +9,7 @@ interface LoginService {
     //이메일 확인
     @GET("freepre/user/{userEmail}")
     fun emailCheck(
-        @Query("userEmail")user_email:String
+        @Path("userEmail")userEmail:String
     ): Call<EmailCheckResultDTO>
 
     //회원가입
