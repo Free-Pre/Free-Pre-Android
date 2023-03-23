@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.free_pre_android.databinding.FragmentFreeHomeBinding
+import com.example.free_pre_android.information.FemaleDiseaseActivity
+import com.example.free_pre_android.information.KnowledgeOfMenstruationActivity
 
 
 class FreeHomeFragment : Fragment() {
@@ -35,13 +37,13 @@ class FreeHomeFragment : Fragment() {
                 startActivity(Intent(activity ,CameraActivity::class.java))   //getActivity or context -> fragment에서 this 불가
             }
             btnKnowledge.setOnClickListener {
-                startActivity(Intent(activity,KnowledgeOfMenstruationActivity::class.java))
+                startActivity(Intent(activity, KnowledgeOfMenstruationActivity::class.java))
             }
             btnProducts.setOnClickListener {
                 startActivity(Intent(activity, ProductsActivity::class.java))
             }
             btnFemaleDisease.setOnClickListener {
-                startActivity(Intent(activity,FemaleDiseaseActivity::class.java))
+                startActivity(Intent(activity, FemaleDiseaseActivity::class.java))
             }
             btnFaq.setOnClickListener {
                 startActivity(Intent(activity,FreeFaqActivity::class.java))

@@ -8,6 +8,9 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityPreBinding
+import com.example.free_pre_android.information.PreMenstruationKnowledgeActivity
+import com.example.free_pre_android.information.PreProductActivity
+import com.example.free_pre_android.information.WhatMenstruationActivity
 
 class PreActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityPreBinding
@@ -56,15 +59,15 @@ class PreActivity : AppCompatActivity() {
             }
             //생리가 무엇인지
             btnWhatIsMenstruation.setOnClickListener {
-                startActivity(Intent(this@PreActivity,WhatMenstruationActivity::class.java))
+                startActivity(Intent(this@PreActivity, WhatMenstruationActivity::class.java))
             }
             //생리에 관한 정보
             btnKnowledgeMenstruation.setOnClickListener {
-                startActivity(Intent(this@PreActivity,PreMenstruationKnowledgeActivity::class.java))
+                startActivity(Intent(this@PreActivity, PreMenstruationKnowledgeActivity::class.java))
             }
             //생리용품
             btnMenstrualProducts.setOnClickListener {
-                startActivity(Intent(this@PreActivity,PreProductActivity::class.java))
+                startActivity(Intent(this@PreActivity, PreProductActivity::class.java))
             }
             //faq
             btnFaq.setOnClickListener {

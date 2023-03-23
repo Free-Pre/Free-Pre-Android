@@ -1,8 +1,9 @@
-package com.example.free_pre_android
+package com.example.free_pre_android.information
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.free_pre_android.GoogleMapActivity
 import com.example.free_pre_android.databinding.ActivityKnowledgeOfMenstruationBinding
 
 class KnowledgeOfMenstruationActivity : AppCompatActivity() {
@@ -21,16 +22,16 @@ class KnowledgeOfMenstruationActivity : AppCompatActivity() {
         viewBinding.run {
             //산부인과 클릭시
             textObGyn.setOnClickListener {
-                startActivity(Intent(this@KnowledgeOfMenstruationActivity,GoogleMapActivity::class.java))
+                startActivity(Intent(this@KnowledgeOfMenstruationActivity, GoogleMapActivity::class.java))
             }
             textDrugInformation.setOnClickListener {
-                startActivity(Intent(this@KnowledgeOfMenstruationActivity,DrugInformationActivity::class.java))
+                startActivity(Intent(this@KnowledgeOfMenstruationActivity, DrugInformationActivity::class.java))
             }
             textPms.setOnClickListener {
-                startActivity(Intent(this@KnowledgeOfMenstruationActivity,PMSActivity::class.java))
+                startActivity(Intent(this@KnowledgeOfMenstruationActivity, PMSActivity::class.java))
             }
             textFemaleDisease.setOnClickListener {
-                startActivity(Intent(this@KnowledgeOfMenstruationActivity,FemaleDiseaseActivity::class.java))
+                startActivity(Intent(this@KnowledgeOfMenstruationActivity, FemaleDiseaseActivity::class.java))
             }
         }
 

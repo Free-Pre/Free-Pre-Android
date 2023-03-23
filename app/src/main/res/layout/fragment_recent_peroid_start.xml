@@ -1,97 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RecentPeriodStartFragment"
-    android:background="@color/primary_dark">
+    android:background="@color/primary_dark"
+    tools:context=".RecentPeriodStartFragment">
 
 
     <EditText
         android:id="@+id/edit_year"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/style_enter_period_date_line"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="69dp"
         android:layout_marginTop="119dp"
-        android:textSize="36dp"
-        android:inputType="date"
-        android:textColor="@color/primary_light"
+        android:background="@drawable/style_enter_period_date_line"
         android:gravity="center"
-        android:padding="10dp" />
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColor="@color/primary_light"
+        android:textSize="36dp"
+        android:maxLength="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txt_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/edit_year"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="119dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="119dp"
+        android:padding="10dp"
         android:text="/year"
-        android:textStyle="bold"
         android:textColor="@color/primary_light"
         android:textSize="38dp"
-        android:padding="10dp" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/edit_year"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
         android:id="@+id/edit_month"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/style_enter_period_date_line"
-        app:layout_constraintTop_toBottomOf="@id/edit_year"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="69dp"
         android:layout_marginTop="57dp"
-        android:inputType="date"
-        android:textSize="36dp"
-        android:textColor="@color/primary_light"
+        android:background="@drawable/style_enter_period_date_line"
         android:gravity="center"
-        android:padding="10dp"/>
+        android:inputType="date"
+        android:padding="10dp"
+        android:textColor="@color/primary_light"
+        android:textSize="36dp"
+        android:maxLength="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_year" />
+
     <TextView
         android:id="@+id/txt_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/edit_month"
-        app:layout_constraintTop_toBottomOf="@id/txt_year"
-        android:layout_marginTop="57dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="57dp"
+        android:padding="10dp"
         android:text="/month"
-        android:textStyle="bold"
         android:textColor="@color/primary_light"
         android:textSize="38dp"
-        android:padding="10dp"/>
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/edit_month"
+        app:layout_constraintTop_toBottomOf="@id/txt_year" />
 
 
     <EditText
         android:id="@+id/edit_day"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/style_enter_period_date_line"
-        app:layout_constraintTop_toBottomOf="@id/edit_month"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="69dp"
         android:layout_marginTop="57dp"
-        android:textSize="36dp"
-        android:inputType="date"
-        android:textColor="@color/primary_light"
+        android:background="@drawable/style_enter_period_date_line"
         android:gravity="center"
-        android:padding="10dp"/>
+        android:inputType="date"
+        android:padding="10dp"
+        android:textColor="@color/primary_light"
+        android:textSize="36dp"
+        android:maxLength="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_month" />
+
     <TextView
         android:id="@+id/txt_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/edit_year"
-        app:layout_constraintTop_toBottomOf="@id/txt_month"
-        android:layout_marginTop="57dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="57dp"
+        android:padding="10dp"
         android:text="/th"
-        android:textStyle="bold"
         android:textColor="@color/primary_light"
         android:textSize="38dp"
-        android:padding="10dp"/>
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/edit_year"
+        app:layout_constraintTop_toBottomOf="@id/txt_month" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

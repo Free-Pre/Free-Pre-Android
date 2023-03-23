@@ -29,22 +29,22 @@
         android:name=".model.GlobalVariable"
         tools:targetApi="31">
         <activity
-            android:name=".PreProductActivity"
+            android:name=".information.PreProductActivity"
+            android:exported="true" />
+        <activity
+            android:name=".information.PreMenstruationKnowledgeActivity"
             android:exported="false" />
         <activity
-            android:name=".PreMenstruationKnowledgeActivity"
+            android:name=".information.CystitisActivity"
             android:exported="false" />
         <activity
-            android:name=".CystitisActivity"
+            android:name=".information.AidsActivity"
             android:exported="false" />
         <activity
-            android:name=".AidsActivity"
+            android:name=".information.CervicalCancerActivity"
             android:exported="false" />
         <activity
-            android:name=".CervicalCancerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BreastCancerActivity"
+            android:name=".information.BreastCancerActivity"
             android:exported="false" />
         <activity
             android:name=".PreFaqActivity"
@@ -53,43 +53,43 @@
             android:name=".FreeFaqActivity"
             android:exported="false" />
         <activity
-            android:name=".WhatMenstruationActivity"
+            android:name=".information.WhatMenstruationActivity"
             android:exported="false" />
         <activity
-            android:name=".PeriodUnderwearActivity"
+            android:name=".information.PeriodUnderwearActivity"
             android:exported="false" />
         <activity
-            android:name=".MenstrualCupActivity"
+            android:name=".information.MenstrualCupActivity"
             android:exported="false" />
         <activity
-            android:name=".TamponActivity"
+            android:name=".information.TamponActivity"
             android:exported="false" />
         <activity
             android:name=".ProductsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".information.SanitaryPadActivity"
             android:exported="false" />
         <activity
-            android:name=".SanitaryPadActivity"
+            android:name=".information.PcosActivity"
             android:exported="false" />
         <activity
-            android:name=".PcosActivity"
+            android:name=".information.VaginitisActivity"
             android:exported="false" />
         <activity
-            android:name=".VaginitisActivity"
+            android:name=".information.FemaleDiseaseActivity"
             android:exported="false" />
         <activity
-            android:name=".FemaleDiseaseActivity"
+            android:name=".information.DrugInformationActivity"
             android:exported="false" />
         <activity
-            android:name=".DrugInformationActivity"
+            android:name=".information.OralContraceptionActivity"
             android:exported="false" />
         <activity
-            android:name=".OralContraceptionActivity"
+            android:name=".information.KnowledgeOfMenstruationActivity"
             android:exported="false" />
         <activity
-            android:name=".KnowledgeOfMenstruationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EmergencyContraceptiveActivity"
+            android:name=".information.EmergencyContraceptiveActivity"
             android:exported="false" />
         <activity
             android:name=".GoogleMapActivity"
@@ -100,7 +100,7 @@
 
         <activity
             android:name=".CameraActivity"
-            android:exported="false" />
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
@@ -116,11 +116,11 @@
             android:name=".PreActivity"
             android:exported="false" />
         <activity
-            android:name=".PMSActivity"
+            android:name=".information.PMSActivity"
             android:exported="false" />
         <activity
             android:name=".EditPeriodActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".EditPeriodListActivity"
             android:exported="false" />
@@ -141,10 +141,10 @@
             android:exported="false" />
         <activity
             android:name=".RecentPeriodActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FirstPeriodActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
