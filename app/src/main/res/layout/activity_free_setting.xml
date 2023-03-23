@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/style_free_setting_content"
@@ -55,9 +55,10 @@
                 android:text="Edit nickname"
                 android:textColor="@color/primary_light"
                 android:textSize="35sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/style_free_setting_content"
@@ -65,9 +66,10 @@
                 android:text="Record of my period"
                 android:textColor="@color/primary_light"
                 android:textSize="35sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/style_free_setting_content"
@@ -75,7 +77,8 @@
                 android:text="Sanitary pad time"
                 android:textColor="@color/primary_light"
                 android:textSize="35sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch1"
@@ -98,7 +101,17 @@
                 android:textColor="@color/primary_light"
                 android:textSize="35sp"
                 android:textStyle="bold" />
-
+            <Button
+                android:id="@+id/btn_free_to_pre"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/style_free_setting_content"
+                android:gravity="center"
+                android:text="Go To Pre"
+                android:textColor="@color/primary_light"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
     </ScrollView>

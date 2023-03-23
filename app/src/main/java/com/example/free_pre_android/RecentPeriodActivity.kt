@@ -40,6 +40,7 @@ class RecentPeriodActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
+
         //초기 화면
         initSetFragment()
         //start 버튼 누를 시
