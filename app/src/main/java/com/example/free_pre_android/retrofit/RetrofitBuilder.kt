@@ -1,8 +1,10 @@
 package com.example.free_pre_android.retrofit
 
 import com.example.free_pre_android.BuildConfig.BASE_URL
+import com.example.free_pre_android.api.CalendarService
 import com.example.free_pre_android.api.LoginService
 import com.example.free_pre_android.api.PeriodService
+import com.example.free_pre_android.api.SymptomService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
@@ -13,6 +15,9 @@ object RetrofitBuilder {
     //사용할 API 인터페이스 선언
     val loginApi: LoginService
     val periodAPi:PeriodService
+    val calendarApi: CalendarService         //캘린더
+    val symptomApi : SymptomService
+
 
     val gson:Gson= GsonBuilder().setLenient().create()
 
@@ -25,5 +30,7 @@ object RetrofitBuilder {
 
         loginApi=retrofit.create(LoginService::class.java)
         periodAPi=retrofit.create(PeriodService::class.java)
+        calendarApi = retrofit.create(CalendarService::class.java)    //캘린더
+        symptomApi = retrofit.create(SymptomService::class.java)     //증상
     }
 }
