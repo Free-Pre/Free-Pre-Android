@@ -1,9 +1,12 @@
 package com.example.free_pre_android.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.free_pre_android.EditPeriodActivity
 import com.example.free_pre_android.data.PeriodListResult
 import com.example.free_pre_android.databinding.ListitemEditPeriodBinding
 import java.text.SimpleDateFormat
@@ -35,5 +38,14 @@ class PeriodListHolder(val binding:ListitemEditPeriodBinding,val context: Contex
         binding.txtNumber.text=diffDays.toString()
         if(diffDays==1L)
             binding.txtDays.text="day"
+
+        binding.root.setOnClickListener {
+            val intent = Intent(binding.root.context, EditPeriodActivity::class.java)
+            intent.putExtra("period_id", periodDetail.period_id)
+            intent.putExtra("start_date",periodDetail.start_date)
+            intent.putExtra("end_date",periodDetail.end_date)
+            ContextCompat.startActivity(binding.root.context, intent, null)
+        }
     }
+
 }

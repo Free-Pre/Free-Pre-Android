@@ -13,8 +13,8 @@ import com.example.free_pre_android.databinding.FragmentEditPeriodEndBinding
 class EditPeriodEndFragment : Fragment() {
 
     var mainActivity:EditPeriodActivity?=null
+    var end_date=""
     private lateinit var viewBinding: FragmentEditPeriodEndBinding
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentEditPeriodEndBinding.inflate(layoutInflater)
         viewBinding.editYear.addTextChangedListener {
@@ -26,12 +26,20 @@ class EditPeriodEndFragment : Fragment() {
         viewBinding.editDay.addTextChangedListener {
             mainActivity?.end_day=viewBinding.editDay.text.toString()
         }
+        viewBinding.editYear.setText(end_date.substring(0,4))
+        viewBinding.editMonth.setText(end_date.substring(5,7))
+        viewBinding.editDay.setText(end_date.substring(8))
         return viewBinding.root
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is EditPeriodActivity) mainActivity=context
-        Log.d("EDIT_PERIOD_END","onAttach")
+        end_date= mainActivity?.end_date!!
+        Log.d("EDIT_PERIOD_END","onAttach $end_date" )
+    }
+    override fun onResume() {
+        super.onResume()
+        Log.d("EDIT_PERIOD_END","onResume")
     }
 }

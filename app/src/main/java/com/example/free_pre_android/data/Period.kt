@@ -9,12 +9,18 @@ data class PeriodAddDTO(
     val start_date:String,
     val end_date:String
 ): Serializable
+
 data class PeriodAddResultDTO(
+    @SerializedName("isSuccess")
     val isSuccess:Boolean,
+    @SerializedName("code")
     val code:Int,
+    @SerializedName("message")
     val message:String,
+    @SerializedName("result")
     val result:PeriodAddResult
 ) : Serializable
+
 data class PeriodAddResult(
     @SerializedName("period_id")
     val period_id:Int,
@@ -26,8 +32,25 @@ data class PeriodAddResult(
     val end_date:String
 ) : Serializable
 
-//월경일 리스트 가져오기
+//월경일 편집
+data class PeriodUpdateDTO(
+    val email:String,
+    val start_date:String,
+    val end_date:String
+): Serializable
 
+data class PeriodUpdateResultDTO(
+    @SerializedName("isSuccess")
+    val isSuccess:Boolean,
+    @SerializedName("code")
+    val code:Int,
+    @SerializedName("message")
+    val message:String,
+    @SerializedName("result")
+    val result:String
+):Serializable
+
+//월경일 리스트 가져오기
 data class PeriodListResultDTO(
     @SerializedName("isSuccess")
     val isSuccess:Boolean,
