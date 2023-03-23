@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.data.PeriodAddDTO
+import com.example.free_pre_android.data.PeriodAddResultDTO
 import com.example.free_pre_android.databinding.ActivityRecentPeriodBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import retrofit2.Call
@@ -135,8 +136,9 @@ class RecentPeriodActivity : AppCompatActivity() {
         }
         Log.d("RECENT_PERIOD",start_date+" "+end_date)
         val dateInfo=PeriodAddDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
-        RetrofitBuilder.periodAPi.periodAddFirst(dateInfo).enqueue(object: Callback<Void>{
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        RetrofitBuilder.periodAPi.periodAddFirst(dateInfo).enqueue(object: Callback<PeriodAddResultDTO>{
+            override fun onResponse(call: Call<PeriodAddResultDTO>, response: Response<PeriodAddResultDTO>) {
+                Log.d("RECENT_PERIOD",response.body().toString())
                 Log.d("RECENT_PERIOD",response.message())
                 if(response.isSuccessful){
                     val intent=Intent(this@RecentPeriodActivity,FreeActivity::class.java)
@@ -146,7 +148,7 @@ class RecentPeriodActivity : AppCompatActivity() {
                     Log.e("RECENT_PERIOD","response fail")
                 }
             }
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<PeriodAddResultDTO>, t: Throwable) {
                 Log.e("RECENT_PERIOD",t.message.toString())
             }
         })
