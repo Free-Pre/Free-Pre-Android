@@ -8,8 +8,8 @@ interface CalendarService {
     //캘린더
     @GET("freepre/user/{userEmail}/{month}")
     fun calendarCheck(
-        @Query("email")user_email:String,
-        @Query("month")user_month:String
+        @Path("email")user_email:String,
+        @Path("month")user_month:String
     ): Call<CalendarCheckResultDTO>
 
 }

@@ -29,6 +29,7 @@ class FirstPeriodActivity : AppCompatActivity() {
         nickname=intent.getStringExtra("nickname").toString()
 
         clickBtn()
+
     }
 
     fun clickBtn(){

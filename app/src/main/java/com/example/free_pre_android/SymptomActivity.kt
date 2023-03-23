@@ -7,9 +7,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.free_pre_android.adapter.SymptomAdapter
+import com.example.free_pre_android.data.SymptomCheckDTO
 import com.example.free_pre_android.databinding.ActivitySymptomBinding
 import com.example.free_pre_android.model.GlobalVariable
 import com.example.free_pre_android.model.SymptomData
+import com.example.free_pre_android.retrofit.RetrofitBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SymptomActivity : AppCompatActivity() {
@@ -88,7 +93,7 @@ class SymptomActivity : AppCompatActivity() {
             startActivity(intent)
             (applicationContext as GlobalVariable).boolean = true           //전역변수
 
-            //PostSymptom("yjs000616","2020-03-01","vomit","","","","","","","","acne","")
+            PostSymptom("yjs000616","2020-03-01","vomit","","","","","","","","acne","")
 
         }
 
@@ -112,7 +117,7 @@ class SymptomActivity : AppCompatActivity() {
 
 
     private fun PostSymptom(
-        /*email:String,
+        email:String,
         date:String,
         vomit:String,
         headache:String,
@@ -123,17 +128,13 @@ class SymptomActivity : AppCompatActivity() {
         fainting:String,
         sensitivity:String,
         acne:String,
-        muscular_pain:String*/){
+        muscular_pain:String){
         //getsharedPreference
         //val email
         //val date
 
-        /*
-        val postSymptom = SymptomCheckDTO(
-
-        )
-
-        RetrofitBuilder.symptomApi.symptomCheck(selectedSymptom).enqueue(object : Callback<Void> {
+        val postSymptom = SymptomCheckDTO(email,date,vomit,headache,backache,constipation,giddiness,tiredness,fainting,sensitivity,acne,muscular_pain)
+        RetrofitBuilder.symptomApi.symptomCheck(postSymptom).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {//연결 성공한 경우에만 처리
                     Log.d("PostSymptom","연결성공")     //response.body().toString()
@@ -148,7 +149,7 @@ class SymptomActivity : AppCompatActivity() {
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.e("PostSymptom", "연결실패")      //t.message.toString()
             }
-        })*/
+        })
     }
 
 

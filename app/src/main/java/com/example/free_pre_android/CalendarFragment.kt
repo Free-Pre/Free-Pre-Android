@@ -1,6 +1,8 @@
 package com.example.free_pre_android
 
+import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.text.style.ForegroundColorSpan
@@ -25,21 +27,35 @@ import retrofit2.Response
 
 class CalendarFragment : Fragment(){
     private lateinit var viewBinding : FragmentCalendarBinding
-    private lateinit var calendarView: MaterialCalendarView;
+    private lateinit var calendarView: MaterialCalendarView
+    var user_email:String =""
+    var user_month:String =""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentCalendarBinding.inflate(layoutInflater)
         return viewBinding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         calendarView = viewBinding.calendarView
 
+        //이메일 불러오기
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Email", Activity.MODE_PRIVATE)
+        user_email = sharedPreferences.getString("emailKey","there's no email").toString()               //로그인 되어있는 유저의 이메일
+        user_month = viewBinding.calendarView.currentDate.month.toString()                    //현재달
+
+        Log.d("TestEmail","${user_email}")    //잘 들어옴
+        Log.d("TestEmail","${user_email}")
+
+        //user_email = "example@test.com"
+        //user_month ="202203"
+
         viewBindingRun()
         CustomCalendar()
         viewBindingView()
+        CalendarCheck("${user_email}","${user_month}")
 
-        CalendarCheck("yjs","1223")
 
 
     }
@@ -72,12 +88,13 @@ class CalendarFragment : Fragment(){
 
     //레트로핏
     fun CalendarCheck(
-        user_email:String,
-        user_month:String
+        email:String,
+        month:String,
     ){
         // API 호출
-        RetrofitBuilder.calendarApi.calendarCheck(user_email, user_month).enqueue(object : Callback<CalendarCheckResultDTO> {
+        RetrofitBuilder.calendarApi.calendarCheck(email, month).enqueue(object : Callback<CalendarCheckResultDTO> {
             override fun onResponse(call: Call<CalendarCheckResultDTO>, response: Response<CalendarCheckResultDTO>) {
+                Log.d("calendar11",response.body().toString())
                 if (response.isSuccessful) {
                     // 응답이 성공적으로 왔을 때 처리할 내용
                     val result: CalendarCheckResultDTO? = response.body()
@@ -99,6 +116,8 @@ class CalendarFragment : Fragment(){
             }
         })
     }
+
+
 
 
 
