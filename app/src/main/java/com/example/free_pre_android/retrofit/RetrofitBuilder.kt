@@ -3,16 +3,19 @@ package com.example.free_pre_android.retrofit
 import com.example.free_pre_android.BuildConfig.BASE_URL
 import com.example.free_pre_android.api.LoginService
 import com.example.free_pre_android.api.PeriodService
+import com.example.free_pre_android.api.VersionService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 
 object RetrofitBuilder {
     //사용할 API 인터페이스 선언
     val loginApi: LoginService
     val periodAPi:PeriodService
+    val versionApi:VersionService
 
     val gson:Gson= GsonBuilder().setLenient().create()
 
@@ -25,5 +28,6 @@ object RetrofitBuilder {
 
         loginApi=retrofit.create(LoginService::class.java)
         periodAPi=retrofit.create(PeriodService::class.java)
+        versionApi=retrofit.create(VersionService::class.java)
     }
 }
