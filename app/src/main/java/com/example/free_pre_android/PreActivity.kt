@@ -56,13 +56,10 @@ class PreActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-
                 override fun onFailure(call: Call<VersionChangeResultDTO>, t: Throwable) {
                     Log.e("PRE_TO_FREE",t.message.toString())
                 }
-
             })
-
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.free_pre_android.api
 
+import com.example.free_pre_android.data.CycleCheckResultDTO
 import com.example.free_pre_android.data.VersionChangeDTO
 import com.example.free_pre_android.data.VersionChangeResultDTO
 import retrofit2.Call
@@ -19,5 +20,5 @@ interface VersionService {
     @GET("freepre/user/cycle/{userEmail}")
     fun cycleCheck(
         @Path("userEmail")userEmail: String
-    ):Call<VersionChangeResultDTO>
+    ):Call<CycleCheckResultDTO>
 }
