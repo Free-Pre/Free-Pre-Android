@@ -48,9 +48,13 @@ class EditPeriodActivity : AppCompatActivity() {
         //EdirPreiodList에서 넘어온 intent
         period_id=intent.getIntExtra("period_id",-1)
         Log.d("EDIT_PERIOD",period_id.toString())
-        start_date=intent.getStringExtra("start_date").toString()
-        end_date=intent.getStringExtra("end_date").toString()
+        if(period_id==-1){//월경일 추가
 
+        }
+        else{//월경일 편집
+            start_date=intent.getStringExtra("start_date").toString()
+            end_date=intent.getStringExtra("end_date").toString()
+        }
         //초기 화면
         initSetFragment()
         //start 버튼 누를 시

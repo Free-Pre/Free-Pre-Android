@@ -16,7 +16,7 @@ class EditPeriodStartFragment : Fragment() {
     var mainActivity:EditPeriodActivity?=null
     private lateinit var viewBinding: FragmentEditPeriodStartBinding
     var start_date=""
-
+    var period_id=-1
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = FragmentEditPeriodStartBinding.inflate(layoutInflater)
         viewBinding.editYear.addTextChangedListener {
@@ -28,9 +28,11 @@ class EditPeriodStartFragment : Fragment() {
         viewBinding.editDay.addTextChangedListener {
             mainActivity?.start_day=viewBinding.editDay.text.toString()
         }
-        viewBinding.editYear.setText(start_date.substring(0,4))
-        viewBinding.editMonth.setText(start_date.substring(5,7))
-        viewBinding.editDay.setText(start_date.substring(8))
+        if(period_id!=-1){
+            viewBinding.editYear.setText(start_date.substring(0,4))
+            viewBinding.editMonth.setText(start_date.substring(5,7))
+            viewBinding.editDay.setText(start_date.substring(8))
+        }
         return viewBinding.root
     }
 
@@ -38,6 +40,7 @@ class EditPeriodStartFragment : Fragment() {
         super.onAttach(context)
         if(context is EditPeriodActivity) mainActivity=context
         start_date=mainActivity?.start_date!!
+        period_id=mainActivity?.period_id!!
         Log.d("EDIT_PERIOD_START","onAttach $start_date")
 
     }
