@@ -41,7 +41,7 @@ data class SymptomGetDTO(
     @SerializedName("message")
     val message: String,
     @SerializedName("result")
-    var result: List<ResultSymptom>
+    var result: ResultSymptom
 ): Serializable
 
 data class ResultSymptom(

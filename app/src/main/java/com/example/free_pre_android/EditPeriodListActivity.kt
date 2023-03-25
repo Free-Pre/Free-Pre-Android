@@ -1,6 +1,7 @@
 package com.example.free_pre_android
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -26,6 +27,17 @@ class EditPeriodListActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d("EDIT_PERIOD_LIST","email: $email")
+        getList()
+        viewBinding.btnAdd.setOnClickListener {
+            startActivity(Intent(this@EditPeriodListActivity, EditPeriodActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getList()
+    }
+    fun getList(){
         RetrofitBuilder.periodAPi.periodList("flora7883@gmail.com").enqueue(object : Callback<PeriodListResultDTO> {
             override fun onResponse(call: Call<PeriodListResultDTO>, response: Response<PeriodListResultDTO>) {
                 Log.d("EDIT_PERIOD_LIST",response.body().toString())
@@ -51,12 +63,9 @@ class EditPeriodListActivity : AppCompatActivity() {
                     Log.e("EDIT_PERIOD_LIST","response fail")
                 }
             }
-
             override fun onFailure(call: Call<PeriodListResultDTO>, t: Throwable) {
                 Log.d("EDIT_PERIOD_LIST",t.message.toString())
             }
-
-
         })
     }
 }

@@ -1,6 +1,7 @@
 package com.example.free_pre_android
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,10 +14,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.free_pre_android.data.CalendarCheckResultDTO
+import com.example.free_pre_android.data.SymptomGetDTO
 import com.example.free_pre_android.databinding.FragmentCalendarBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import com.prolificinteractive.materialcalendarview.CalendarDay
@@ -39,8 +42,6 @@ class CalendarFragment : Fragment() {
     var userEmail: String = ""
     var month: String = ""
 
-    var selectDate: String = ""
-
     //시작, 끝 날짜
     var startDay: String = ""
     var endDay: String = ""
@@ -54,6 +55,10 @@ class CalendarFragment : Fragment() {
     var endPeriodDate: String = ""
 
 
+    lateinit var sharedPreferences: SharedPreferences     //sharedPreference
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +68,7 @@ class CalendarFragment : Fragment() {
         viewBinding = FragmentCalendarBinding.inflate(layoutInflater)
         return viewBinding.root
 
-        //CalendarCheck("${userEmail}","${month}")
+
 
     }
 
@@ -74,24 +79,13 @@ class CalendarFragment : Fragment() {
         calendarView = viewBinding.calendarView
 
         //이메일 불러오기
-        val sharedPreferences: SharedPreferences =
-            requireActivity().getSharedPreferences("Email", Activity.MODE_PRIVATE)
-        userEmail = sharedPreferences.getString("emailKey", "there's no email")
-            .toString()               //로그인 되어있는 유저의 이메일
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Email", Activity.MODE_PRIVATE)
+        userEmail = sharedPreferences.getString("emailKey", "there's no email").toString()               //로그인 되어있는 유저의 이메일
         month = viewBinding.calendarView.currentDate.month.toString()                    //현재달
 
 
-        selectDate = viewBinding.calendarView.selectedDate.toString()
-        Log.d("TestEmail", "${selectDate}")    //null값 들어옴
-
-        Log.d("TestEmail", "${userEmail}")    //잘 들어옴
-        Log.d("TestEmail", "${month}")    //잘 들어옴
-
-        //user_email = "example@test.com"
-        //user_month ="202203"
 
         viewBindingRun()
-        CustomCalendar()
         viewBindingView()
         CalendarCheck("${userEmail}", "${month}")       //api 연결
 
@@ -100,11 +94,8 @@ class CalendarFragment : Fragment() {
         calendarView.setOnRangeSelectedListener { widget, dates -> // 아래 로그를 통해 시작일, 종료일이 어떻게 찍히는지 확인하고 본인이 필요한 방식에 따라 바꿔 사용한다
         }
 
-        // 일자 선택 시 내가 정의한 드로어블이 적용되도록 한다
-        //calendarView.addDecorators(TodayDecorator(this))
-
-
     }
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun viewBindingView() {
@@ -136,24 +127,41 @@ class CalendarFragment : Fragment() {
     //클릭시 이동
     fun viewBindingRun() {
         viewBinding.run {
-            button.setOnClickListener {
-                startActivity(Intent(activity, SymptomActivity::class.java))
+            btnAddSymptom.setOnClickListener {
+                val selectedDate = calendarView.selectedDate
+                //Log.d("CalendarView","${selectedDate}")               //예시- CalendarDay{2023-3-22}
+                if(selectedDate == null){
+                    Toast.makeText(requireContext(), "Please select a date",Toast.LENGTH_SHORT).show()
+                }else{
+                    startActivity(Intent(activity, SymptomActivity::class.java))
+                }
+
             }
             btnSetting.setOnClickListener {
                 startActivity(Intent(activity, FreeSettingActivity::class.java))
             }
+
         }
     }
 
-    fun CustomCalendar() {
-        //달, 월 영어로 표시
-        //calendarView.setTitleFormatter(MonthArrayTitleFormatter(resources.getTextArray(R.array.custom_months)))
-        //calendarView.setWeekDayFormatter(ArrayWeekDayFormatter(resources.getTextArray(R.array.custom_weekdays)))
 
+    private fun setSharedData(context: Context, key: String, data: org.threeten.bp.LocalDate?) {
+        //Editor로 데이터 저장하기
+        var sharedPreferences: SharedPreferences =requireContext().getSharedPreferences("selected_date", Activity.MODE_PRIVATE)
+        var editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, data.toString())
+        editor.apply()
+
+        Log.d(ContentValues.TAG,"SetClickDate: $data")   //값 잘 들어감
     }
 
+    private fun getSharedData(context: Context, key: String, defaultValue: String) {
+        var sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("selected_date", Activity.MODE_PRIVATE)
+        var getSelectedDate: String? = sharedPreferences.getString(key,"No date selected.")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
+        Log.d(ContentValues.TAG,"getClickDate: $getSelectedDate")
+    }
 
-    //레트로핏
+    //캘린더 api 연결
     fun CalendarCheck(
         userEmail: String,
         month: String,
@@ -205,20 +213,59 @@ class CalendarFragment : Fragment() {
 
                             // CalendarDay 객체 생성
                             val startDay = CalendarDay.from(startDate.year, startDate.monthValue, startDate.dayOfMonth)
-                            Log.d("calendarTest", "안녕 : ${startDay}")
                             val endDay = CalendarDay.from(endDate.year, endDate.monthValue, endDate.dayOfMonth)
 
-                            // start_date와 end_date 사이의 날짜를 모두 Decorator로 지정하여 핑크 배경으로 만듦
+                            // 월경기간 데코-start_date와 end_date 사이의 날짜를 모두 Decorator로 지정하여 핑크 배경으로 만듦
                             viewBinding.calendarView.addDecorator(RangeDayDecorator(context!!,startDay, endDay))
 
 
+                            //클릭한 날짜 데코
                             val clickedDrawable = ContextCompat.getDrawable(context!!, R.drawable.style_calendar_clicked)
                             val clickedDayDecorator = ClickedDayDecorator(clickedDrawable!!)
                             calendarView.addDecorator(clickedDayDecorator)
 
+                            //날짜를 클릭하지 않았을 때 Symptom 위의 날짜는 현재 날짜로 한다. (디폴트)
+                            val calendar = Calendar.getInstance()
+
+                            //현재 달 한국어로 출력됨
+                            //val TodayMonth = SimpleDateFormat("MMMM", Locale.getDefault()).format(calendar.time)
+                            //현재 달 숫자로 출력됨
+                            //val TodayMonth = CalendarDay.today().month.toString()
+
+                            //현재 달 영어로 출력됨 - March
+                            val TodayMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH)
+                            Log.d("hello", TodayMonth) // March
+
+                            //날짜를 클릭하지 않았을 때는 현재 날짜가 보인다.
+                            viewBinding.textSymptomSelectDate.text = "${TodayMonth} ${CalendarDay.today().day}"
+                            Log.d("hello","noSelectClick: ${viewBinding.textSymptomSelectDate.text}")
+
+                            //날짜 클릭 했을 때
                             calendarView.setOnDateChangedListener { widget, date, selected ->
-                                clickedDayDecorator.setClickedDay(date)
+                                val selectedDate = date?.date                     //선택된 날짜
+                                //Log.d("hello","${selectedDate}")
+                                clickedDayDecorator.setClickedDay(date)          //선택된 날짜 데코
                                 widget.invalidateDecorators()
+
+                                // 사용자가 선택한 날짜 저장 - sharedPreference
+                                setSharedData(requireContext(), "selectDate",selectedDate) // 사용자가 선택한 날짜를 저장합니다.
+                                Log.d("hello","setSharedData: ${selectedDate}")
+
+                                // 사용자가 선택한 날짜 가져오기- sharedPreference
+                                val getDate = getSharedData(requireContext(), "selectDate","")
+                                //Log.d("hello","getSharedData: ${getDate}")
+
+                                val selectedYear = selectedDate!!.year
+                                val selectedMonth = selectedDate!!.month
+                                val selectedDay = selectedDate!!.dayOfMonth
+
+                                //날짜를 선택했으니 증상 위의 날짜 부분은 현재 날짜를 띄워준다.
+                                viewBinding.textSymptomSelectDate.text = "${selectedMonth} ${selectedDay}"
+
+                                //해당 날짜의 증상 가져오기
+                                //email = 사용자의 이메일
+                                //date = 선택한 날짜
+                                GetSymptoms(userEmail,selectedDate.toString())
                             }
 
 
@@ -237,6 +284,77 @@ class CalendarFragment : Fragment() {
                 }
             })
     }
+
+    //해당 날짜에 증상 가져오기
+    fun GetSymptoms(
+        email: String,
+        date: String,
+    ) {
+        // API 호출
+        RetrofitBuilder.symptomApi.symptomGet(email, date)
+            .enqueue(object : Callback<SymptomGetDTO> {
+                @RequiresApi(Build.VERSION_CODES.N)
+                override fun onResponse(
+                    call: Call<SymptomGetDTO>,
+                    response: Response<SymptomGetDTO>
+                ) {
+                    Log.d("GetSymptoms", response.body().toString())
+
+                    if (response.isSuccessful) {
+                        // 응답이 성공적으로 왔을 때 처리할 내용
+                        val resultSymptom: SymptomGetDTO? = response.body()
+                        resultSymptom?.let {
+                            Log.d("GetSymptoms", "연결성공")
+                            //val resultSymptom:SymptomGetDTO = result
+
+                            if(resultSymptom.result == null){
+                                viewBinding.textViewContents.text = "There are no recorded symptoms.\n" + "Enter your symptoms!"
+                            }else{
+                                val symptomList = mutableListOf<String>()
+                                if(resultSymptom.result.vomit) symptomList.add("vomit")
+                                if(resultSymptom.result.headache) symptomList.add("headache")
+                                if(resultSymptom.result.backache) symptomList.add("backache")
+                                if(resultSymptom.result.constipation) symptomList.add("constipation")
+                                if(resultSymptom.result.giddiness) symptomList.add("giddiness")
+                                if(resultSymptom.result.tiredness) symptomList.add("tiredness")
+                                if(resultSymptom.result.fainting) symptomList.add("fainting")
+                                if(resultSymptom.result.sensitivity) symptomList.add("sensitivity")
+                                if(resultSymptom.result.acne) symptomList.add("acne")
+                                if(resultSymptom.result.muscular_pain) symptomList.add("muscular_pain")
+                                viewBinding.textViewContents.text = symptomList.joinToString(", ")
+
+                            }
+
+
+
+                            /*증상 넣기
+                            //val vomit = result.result.vomit
+                            if (result.result == null){
+                                //입력한 증상이 없습니다. 증상을 추가해 보세요!
+                                viewBinding.textViewContents.text="There are no recorded symptoms.\n" + "Enter your symptoms!"
+                            }else if(result.result != null && result.result.vomit){
+                                viewBinding.textViewContents.text="vomit"
+                            }else{
+                                viewBinding.textViewContents.text = "그 외의 증상들입니다."
+                            }*/
+
+
+                        }
+                    } else {
+                        // 응답이 실패한 경우
+                        // 에러 메시지 출력 등의 처리 수행
+                        Log.d("GetSymptoms", "연결미스")
+                    }
+                }
+
+                override fun onFailure(call: Call<SymptomGetDTO>, t: Throwable) {
+                    // 네트워크 오류 등으로 인해 요청이 실패한 경우
+                    // 에러 메시지 출력 등의 처리 수행
+                    Log.e("GetSymptoms", t.message.toString())
+                }
+            })
+    }
+
 
     //현재 날짜
     class CurrentDayDecorator(context: Activity?, currentDay: CalendarDay) : DayViewDecorator {

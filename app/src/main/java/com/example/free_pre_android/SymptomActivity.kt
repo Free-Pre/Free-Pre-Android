@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.adapter.SymptomAdapter
 import com.example.free_pre_android.data.SymptomCheckDTO
@@ -23,9 +25,10 @@ class SymptomActivity : AppCompatActivity() {
     private lateinit var symptomAdapter: SymptomAdapter
     private lateinit var dataList: ArrayList<SymptomData>
 
+
     private var email = ""
     private var date = ""
-    private var vomit: Boolean = false
+    private var vomit: Boolean =false
     private var headache: Boolean = false
     private var backache: Boolean = false
     private var constipation: Boolean = false
@@ -45,11 +48,67 @@ class SymptomActivity : AppCompatActivity() {
         viewBinding = ActivitySymptomBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        viewBindingRun()
+        //viewBindingRun()
 
+        //사용자 이메일 가져오기
         val sharedPreferences: SharedPreferences = this.getSharedPreferences("Email", Activity.MODE_PRIVATE)
         email = sharedPreferences.getString("emailKey","there's no email").toString()               //로그인 되어있는 유저의 이메일
-        //date = viewBinding..currentDate.month.toString()                    //날짜도 getsharedPreference로..? - 선택한 날짜 보내기
+        Log.d("symptomTest",email)
+
+        //사용자가 선택한 날짜 가져오기
+        val sharedPreferencesDate: SharedPreferences = this.getSharedPreferences("selected_date", Activity.MODE_PRIVATE)
+        date = sharedPreferencesDate.getString("selectDate", "No date selected.").toString()               //선택한 날짜
+        Log.d("symptomTest",date)
+
+
+        //viewBindingRun()보다 코드 간결 - 이거 사용하자.
+        /*
+        val textViewList = listOf<TextView>(
+            viewBinding.textVomit,
+            viewBinding.textHeadache,
+            viewBinding.textBackache,
+            viewBinding.textConstipation,
+            viewBinding.textGiddiness,
+            viewBinding.textTiredness,
+            viewBinding.textFainting,
+            viewBinding.textSensitivity,
+            viewBinding.textAcne,
+            viewBinding.textMuscularPain)
+        val isSelectedArray = BooleanArray(textViewList.size)      //텍스트의 선택여부 저장
+        Log.d("symptomTest","선택전: ${isSelectedArray[0]}")
+
+        for ((index, textView) in textViewList.withIndex()) {
+            Log.d("symptomTest","vomit은: ${vomit}")
+            textView.setOnClickListener {
+                isSelectedArray[index] = !isSelectedArray[index]
+                //textView.setBackgroundColor(if (isSelectedArray[index]) {resources.getColor(R.color.primary_light)} else resources.getColor(R.color.primary_dark))
+                textView.setBackgroundResource(if (isSelectedArray[index]) {R.drawable.style_symptom_content_dark } else R.drawable.style_symptom_content)
+                textView.setTextColor(if (isSelectedArray[index]) resources.getColor(R.color.primary_dark) else resources.getColor(R.color.primary_light))
+                //textView.setBackgroundResource(R.drawable.style_symptom_content)
+                vomit = isSelectedArray[0]
+                headache = isSelectedArray[1]
+                backache = isSelectedArray[2]
+                constipation = isSelectedArray[3]
+                giddiness = isSelectedArray[4]
+                tiredness = isSelectedArray[5]
+                fainting = isSelectedArray[6]
+                sensitivity = isSelectedArray[7]
+                acne = isSelectedArray[8]
+                muscular_pain = isSelectedArray[9]
+                Log.d("symptomTest","isSelectedArray의 ${index}번째 원소는: ${isSelectedArray[index]}")
+            }
+        }
+
+        viewBinding.btnSave.setOnClickListener {
+            // 액티비티1에서 변수를 전달하는 코드
+            val intent = Intent(this@SymptomActivity, FreeActivity::class.java)
+            //intent.putExtra("boolean", true)
+            startActivity(intent)
+            (applicationContext as GlobalVariable).boolean = true           //전역변수
+
+            SymptomCheck()                                                  //입력한 증상 서버에 보내기
+        }*/
+
 
         /*
         loadData()
@@ -109,94 +168,88 @@ class SymptomActivity : AppCompatActivity() {
 
          */
 
+        viewBindingRun()
     }
+
 
 
     fun viewBindingRun() {
         viewBinding.run {
             textVomit.setOnClickListener {
-                vomit = true
-                textVomit.setBackgroundResource(R.color.primary_light)
-                textVomit.setTextColor(Color.parseColor("#1A2A46"))
+                vomit = !vomit
+                checkDeco(vomit,textVomit)
             }
             textHeadache.setOnClickListener {
-                headache = true
-                textHeadache.setBackgroundResource(R.color.primary_light)
-                textHeadache.setTextColor(Color.parseColor("#1A2A46"))
+                headache = !headache
+                checkDeco(headache,textHeadache)
             }
             textBackache.setOnClickListener {
-                backache = true
-                textBackache.setBackgroundResource(R.color.primary_light)
-                textBackache.setTextColor(Color.parseColor("#1A2A46"))
+                backache = !backache
+                checkDeco(backache, textBackache)
             }
             textConstipation.setOnClickListener {
-                constipation = true
-                textConstipation.setBackgroundResource(R.color.primary_light)
-                textConstipation.setTextColor(Color.parseColor("#1A2A46"))
+                constipation = !constipation
+                checkDeco(constipation, textConstipation)
             }
             textGiddiness.setOnClickListener {
-                giddiness = true
-                textGiddiness.setBackgroundResource(R.color.primary_light)
-                textGiddiness.setTextColor(Color.parseColor("#1A2A46"))
+                giddiness = !giddiness
+                checkDeco(giddiness, textGiddiness)
             }
             textTiredness.setOnClickListener {
-                tiredness = true
-                textTiredness.setBackgroundResource(R.color.primary_light)
-                textTiredness.setTextColor(Color.parseColor("#1A2A46"))
+                tiredness = !tiredness
+                checkDeco(tiredness, textTiredness)
             }
             textFainting.setOnClickListener {
-                fainting = true
-                textFainting.setBackgroundResource(R.color.primary_light)
-                textFainting.setTextColor(Color.parseColor("#1A2A46"))
+                fainting = !fainting
+                checkDeco(fainting, textFainting)
             }
             textSensitivity.setOnClickListener {
-                sensitivity = true
-                textSensitivity.setBackgroundResource(R.color.primary_light)
-                textSensitivity.setTextColor(Color.parseColor("#1A2A46"))
+                sensitivity = !sensitivity
+                checkDeco(sensitivity, textSensitivity)
             }
             textAcne.setOnClickListener {
-                acne = true
-                textAcne.setBackgroundResource(R.color.primary_light)
-                textAcne.setTextColor(Color.parseColor("#1A2A46"))
+                acne = !acne
+                checkDeco(acne, textAcne)
             }
             textMuscularPain.setOnClickListener {
-                muscular_pain = true
-                textMuscularPain.setBackgroundResource(R.color.primary_light)
-                textMuscularPain.setTextColor(Color.parseColor("#1A2A46"))
+                muscular_pain = !muscular_pain
+                checkDeco(muscular_pain, textMuscularPain)
             }
             btnSave.setOnClickListener {
-                // 액티비티1에서 변수를 전달하는 코드
-                val intent = Intent(this@SymptomActivity, FreeActivity::class.java)
-                //intent.putExtra("boolean", true)
-                startActivity(intent)
-                (applicationContext as GlobalVariable).boolean = true           //전역변수
 
-                SymptomCheck()
+                //만약 아무것도 입력하지 않았다면 저장할 수 없음. - BooleanArray에 저장하고 for문 돌리는걸로 바꿔보기
+                //지금 3월 1일이 다 0인데 넘어간다..? 수정!!!!
+                if(vomit || headache || backache || constipation || giddiness || tiredness || fainting || sensitivity || acne || muscular_pain){
+                    // 액티비티1에서 변수를 전달하는 코드
+                    val intent = Intent(this@SymptomActivity, FreeActivity::class.java)
+                    //intent.putExtra("boolean", true)
+                    startActivity(intent)
+                    (applicationContext as GlobalVariable).boolean = true           //전역변수
+
+                    SymptomCheck()                                                  //입력한 증상 서버로 보내기
+                    Log.d("BtnSave","조건문 실행됨.")
+                }else{
+                    btnSave.isClickable = false
+                    Toast.makeText(this@SymptomActivity,"No symptom selected.",Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
-    /*
-    fun setClick(viewBinding: ActivitySymptomBinding){
-        if (selectedSymptom.contains(item)) {
-            selectedSymptom.remove(item)
-            changeBackground(viewBinding, R.color.primary_dark)
-            changeTextColor(viewBinding,R.color.primary_light)
-            changeDrawable(viewBinding,R.drawable.style_symptom_content)
-        } else {
-            selectedSymptom.add(item)
-            changeBackground(viewBinding, R.color.primary_light)
-            changeTextColor(viewBinding,R.color.primary_dark)
-            changeDrawable(viewBinding,R.drawable.style_symptom_content_dark)
+
+    //증상 선택시 데코
+    fun checkDeco(b:Boolean,symptom:TextView){
+        if(b){
+            symptom.setBackgroundResource(R.drawable.style_symptom_content_dark)
+            symptom.setTextColor(Color.parseColor("#1A2A46"))
+        }else{
+            symptom.setBackgroundResource(R.drawable.style_symptom_content)
+            symptom.setTextColor(Color.parseColor("#FDE3F4"))
         }
-    }*/
-
-
-
-
+    }
 
         //email : 사용자 이메일
         //data : 사용자가 누른 날짜
-        //증상 입력
+        //증상 입력 서버 연결
         fun SymptomCheck() {
             val dataInfo = SymptomCheckDTO(
                 email,
@@ -218,8 +271,8 @@ class SymptomActivity : AppCompatActivity() {
                     //Log.d("Symptom11",response.body().toString())    //어차피 null 값이라..
                     if (response.isSuccessful) {
                         // 응답이 성공적으로 왔을 때 처리할 내용
+                        Log.d("SymptomTest", response.body().toString())      //void니까 null값!!
                         Log.d("SymptomTest", "연결성공")
-
                     } else {
                         // 응답이 실패한 경우
                         // 에러 메시지 출력 등의 처리 수행

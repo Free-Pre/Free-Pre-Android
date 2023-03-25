@@ -10,6 +10,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.data.PeriodAddDTO
+import com.example.free_pre_android.data.PeriodAddResultDTO
+import com.example.free_pre_android.data.PeriodUpdateDTO
+import com.example.free_pre_android.data.PeriodUpdateResultDTO
 import com.example.free_pre_android.databinding.ActivityEditPeriodBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import retrofit2.Call
@@ -29,6 +32,9 @@ class EditPeriodActivity : AppCompatActivity() {
     var startFragment:EditPeriodStartFragment?=null
     var endFragment:EditPeriodEndFragment?=null
     var email=""
+    var period_id:Int=-1//-1이면 월경일 입력. 이외엔 월경일 편집
+    var start_date:String="0000.00.00"
+    var end_date:String="0000.00.00"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityEditPeriodBinding.inflate(layoutInflater)
@@ -37,6 +43,17 @@ class EditPeriodActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
+
+        //EdirPreiodList에서 넘어온 intent
+        period_id=intent.getIntExtra("period_id",-1)
+        Log.d("EDIT_PERIOD",period_id.toString())
+        if(period_id==-1){//월경일 추가
+
+        }
+        else{//월경일 편집
+            start_date=intent.getStringExtra("start_date").toString()
+            end_date=intent.getStringExtra("end_date").toString()
+        }
         //초기 화면
         initSetFragment()
         //start 버튼 누를 시
@@ -131,24 +148,51 @@ class EditPeriodActivity : AppCompatActivity() {
             Toast.makeText(this,"start date can't be later than end date", Toast.LENGTH_SHORT).show()
             return
         }
+        //윌경일 입력
+        if(period_id==-1) {
+            val dateInfo=PeriodAddDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
+            RetrofitBuilder.periodAPi.periodAdd(dateInfo).enqueue(object: Callback<PeriodAddResultDTO>{
+                override fun onResponse(call: Call<PeriodAddResultDTO>, response: Response<PeriodAddResultDTO>) {
+                    Log.d("EDIT_PERIOD",response.body().toString())
 
-        val dateInfo=PeriodAddDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
-        RetrofitBuilder.periodAPi.periodAdd(dateInfo).enqueue(object: Callback<Void>{
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.d("EDIT_PERIOD",response.body().toString())
-                finish()
-                /*if(response.isSuccessful){//response 오류 수정 필요
-                    Log.d("EDIT_PERIOD","response success")
                     finish()
+                    /*if(response.isSuccessful){//response 오류 수정 필요
+                        Log.d("EDIT_PERIOD","response success")
+                        finish()
+                    }
+                    else{
+                        Log.e("EDIT_PERIOD","response fail")
+                    }*/
                 }
-                else{
-                    Log.e("EDIT_PERIOD","response fail")
-                }*/
-            }
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("EDIT_PERIOD",t.message.toString())
-            }
-        })
+                override fun onFailure(call: Call<PeriodAddResultDTO>, t: Throwable) {
+                    Log.e("EDIT_PERIOD",t.message.toString())
+                }
+            })
+        }
+        //월경일 편집
+        else{
+            val dateInfo= PeriodUpdateDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
+            RetrofitBuilder.periodAPi.periodEdit(period_id,dateInfo).enqueue(object: Callback<PeriodUpdateResultDTO>{
+                override fun onResponse(call: Call<PeriodUpdateResultDTO>, response: Response<PeriodUpdateResultDTO>) {
+                    Log.d("EDIT_PERIOD_EDIT","period_id: $period_id")
+                    Log.d("EDIT_PERIOD_EDIT",response.body().toString())
+                    Log.d("EDIT_PERIOD_EDIT",response.message().toString())
+                    Log.d("EDIT_PERIOD_EDIT",response.code().toString())
+                    finish()
+                    /*if(response.isSuccessful){//response 오류 수정 필요
+                        Log.d("EDIT_PERIOD","response success")
+                        finish()
+                    }
+                    else{
+                        Log.e("EDIT_PERIOD","response fail")
+                    }*/
+                }
+                override fun onFailure(call: Call<PeriodUpdateResultDTO>, t: Throwable) {
+                    Log.e("EDIT_PERIOD_EDIT",t.message.toString())
+                }
+            })
+        }
+
     }
 }
 
