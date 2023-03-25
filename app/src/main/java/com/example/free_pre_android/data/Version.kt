@@ -15,16 +15,12 @@ data class VersionChangeResultDTO(
     @SerializedName("message")
     val message:String,
     @SerializedName("result")
-    val result:String
+    val result:CycleCheckResultDTO
 ):Serializable
 
 data class CycleCheckResultDTO(
-    @SerializedName("isSuccess")
-    val isSuccess:Boolean,
-    @SerializedName("code")
-    val code:Int,
-    @SerializedName("message")
-    val message:String,
-    @SerializedName("result")
-    val result:Boolean
+    @SerializedName("msg")
+    val msg:String,
+    @SerializedName("cycle")
+    val cycle:Boolean
 ):Serializable

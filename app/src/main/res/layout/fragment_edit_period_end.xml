@@ -17,9 +17,10 @@
         android:layout_marginStart="69dp"
         android:layout_marginTop="119dp"
         android:textSize="36dp"
-        android:inputType="date"
+        android:inputType="number"
         android:textColor="@color/primary_light"
         android:gravity="center"
+        android:maxLength="4"
         android:padding="10dp" />
     <TextView
         android:id="@+id/text_year"
@@ -45,10 +46,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="69dp"
         android:layout_marginTop="57dp"
-        android:inputType="date"
+        android:inputType="number"
         android:textSize="36dp"
         android:textColor="@color/primary_light"
         android:gravity="center"
+        android:maxLength="2"
         android:padding="10dp"/>
     <TextView
         android:id="@+id/text_month"
@@ -75,9 +77,10 @@
         android:layout_marginStart="69dp"
         android:layout_marginTop="57dp"
         android:textSize="36dp"
-        android:inputType="date"
+        android:inputType="number"
         android:textColor="@color/primary_light"
         android:gravity="center"
+        android:maxLength="2"
         android:padding="10dp"/>
     <TextView
         android:id="@+id/text_day"

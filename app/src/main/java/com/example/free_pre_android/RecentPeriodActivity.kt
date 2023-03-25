@@ -44,22 +44,6 @@ class RecentPeriodActivity : AppCompatActivity() {
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
 
-        RetrofitBuilder.versionApi.cycleCheck(email).enqueue(object :Callback<CycleCheckResultDTO>{
-            override fun onResponse(call: Call<CycleCheckResultDTO>, response: Response<CycleCheckResultDTO>) {
-                if(response.isSuccessful){
-                    Log.d("RECENT_PERIOD_CYCLE",response.body().toString())
-                    if(response.body()?.result==true){//이미 free였던 적이 있음. FreeHome으로 넘기기
-                        Log.d("RECENT_PERIOD","cycle: true")
-                        val intent = Intent(this@RecentPeriodActivity, FreeHomeActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                }
-            }
-            override fun onFailure(call: Call<CycleCheckResultDTO>, t: Throwable) {
-            }
-        })
-
         //초기 화면
         initSetFragment()
         //start 버튼 누를 시
