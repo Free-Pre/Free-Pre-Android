@@ -156,7 +156,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                 if (response.isSuccessful) {//연결 성공한 경우에만 처리
                     if (response.body()?.result == true) {//회원이 DB에 존재하는 경우
                         Log.d("LOGIN","exist email")
-                        startActivity(Intent(this@GoogleLoginActivity, FreeHomeActivity::class.java))
+                        startActivity(Intent(this@GoogleLoginActivity, FreeActivity::class.java))
                     } else {//회원이 DB에 존재하지 않는 경우
                         Log.d("LOGIN","new email")
                         startActivity(Intent(this@GoogleLoginActivity, NicknameActivity::class.java))

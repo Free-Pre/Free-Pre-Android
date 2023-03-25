@@ -6,10 +6,9 @@ import retrofit2.http.*
 
 interface CalendarService {
     //캘린더
-    @GET("freepre/user/{userEmail}/{month}")
+    @GET("freepre/period/calendar/{userEmail}/{month}")
     fun calendarCheck(
-        @Path("email")user_email:String,
-        @Path("month")user_month:String
+        @Path("userEmail")userEmail:String,
+        @Path("month")month:String
     ): Call<CalendarCheckResultDTO>
-
 }

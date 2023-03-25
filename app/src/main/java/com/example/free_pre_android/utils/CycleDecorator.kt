@@ -20,7 +20,8 @@ class CycleDecorator(val context: Context, val dates: List<String>): DayViewDeco
     override fun decorate(view: DayViewFacade) {
         view?.addSpan(object: StyleSpan(Typeface.BOLD){})
         view?.addSpan(object: RelativeSizeSpan(1.4f){})
-        view?.addSpan(object: ForegroundColorSpan(Color.parseColor("#E80000")){})
+        view?.addSpan(object: ForegroundColorSpan(Color.parseColor("#1A2A46")){})
+
     }
 
 }

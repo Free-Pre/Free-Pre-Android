@@ -11,7 +11,7 @@ import com.example.free_pre_android.model.SymptomData
 
 class SymptomAdapter(private val items: ArrayList<SymptomData>) : RecyclerView.Adapter<SymptomAdapter.ViewHolder>(/*DiffUtils*/) {
 
-    public var selectedSymptom = arrayListOf<SymptomData>()
+    public var selectedSymptom = arrayListOf<SymptomData>()//<SymptomData>()        //arrayListOf
 
 
     inner class ViewHolder(
@@ -81,7 +81,6 @@ class SymptomAdapter(private val items: ArrayList<SymptomData>) : RecyclerView.A
 
     private fun changeBackground(binding: ListitemSymptomBinding, resId: Int) {
         binding.layoutContainer.setBackgroundColor(ContextCompat.getColor(binding.root.context, resId))
-
 
     }
     private fun changeTextColor(binding: ListitemSymptomBinding, resId: Int){

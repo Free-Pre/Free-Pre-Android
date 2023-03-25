@@ -8,6 +8,7 @@
     android:background="@color/primary_dark">
 
 
+    <!--
     <TextView
         android:id="@+id/Head"
         android:layout_width="match_parent"
@@ -56,7 +57,185 @@
         android:background="@color/primary_light"
         android:gravity="center"
         android:textAllCaps="false">
-    </Button>
+    </Button>-->
 
+    <TextView
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:text="Check Your Symptoms"
+        android:textColor="@color/primary_dark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Head">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_vomit"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="vomit"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_headache"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="headache"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_backache"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="backache"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_constipation"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="constipation"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_giddiness"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="giddiness"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_tiredness"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="tiredness"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_fainting"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="fainting"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_sensitivity"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="sensitivity"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_acne"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="acne"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_muscular_pain"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="muscular_pain"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:text="save"
+        android:textColor="@color/primary_dark"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:textAllCaps="false">
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

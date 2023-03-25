@@ -123,7 +123,7 @@
             android:exported="true" />
         <activity
             android:name=".EditPeriodListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FreeAlarmEditActivity"
             android:exported="true" />
@@ -135,9 +135,6 @@
             android:exported="true" />
         <activity
             android:name=".SymptomActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FreeHomeActivity"
             android:exported="false" />
         <activity
             android:name=".RecentPeriodActivity"

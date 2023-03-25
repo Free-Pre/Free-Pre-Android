@@ -2,7 +2,6 @@ package com.example.free_pre_android
 
 import android.app.Activity
 import android.content.ContentValues
-import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
@@ -133,16 +132,18 @@ class EditPeriodActivity : AppCompatActivity() {
             return
         }
 
-        val dateInfo= PeriodAddDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
-        RetrofitBuilder.periodAPi.periodAdd(dateInfo).enqueue(object: Callback<Void> {
+        val dateInfo=PeriodAddDTO(email, "$start_year.$start_month.$start_day","$end_year.$end_month.$end_day")
+        RetrofitBuilder.periodAPi.periodAdd(dateInfo).enqueue(object: Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.d("EDIT_PERIOD",response.message())
-                if(response.isSuccessful){
+                Log.d("EDIT_PERIOD",response.body().toString())
+                finish()
+                /*if(response.isSuccessful){//response 오류 수정 필요
+                    Log.d("EDIT_PERIOD","response success")
                     finish()
                 }
                 else{
                     Log.e("EDIT_PERIOD","response fail")
-                }
+                }*/
             }
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.e("EDIT_PERIOD",t.message.toString())

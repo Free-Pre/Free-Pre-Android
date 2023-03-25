@@ -1,95 +1,68 @@
 package com.example.free_pre_android.data
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 //증상입력
 data class SymptomCheckDTO(
 
-    @Expose
     @SerializedName("email")
     val email: String,
-    @Expose
     @SerializedName("date")
     val date: String,
-    @Expose
     @SerializedName("vomit")
-    val vomit: String,
-    @Expose
+    val vomit: Boolean,
     @SerializedName("headache")
-    val headache: String,
-    @Expose
+    val headache: Boolean,
     @SerializedName("backache")
-    val backache: String,
-    @Expose
+    val backache: Boolean,
     @SerializedName("constipation")
-    val constipation: String,
-    @Expose
+    val constipation: Boolean,
     @SerializedName("giddiness")
-    val giddiness: String,
-    @Expose
+    val giddiness: Boolean,
     @SerializedName("tiredness")
-    val tiredness: String,
-    @Expose
+    val tiredness: Boolean,
     @SerializedName("fainting")
-    val fainting: String,
-    @Expose
+    val fainting: Boolean,
     @SerializedName("sensitivity")
-    val sensitivity: String,
-    @Expose
+    val sensitivity: Boolean,
     @SerializedName("acne")
-    val acne: String,
-    @Expose
+    val acne: Boolean,
     @SerializedName("muscular_pain")
-    val muscular_pain: String
+    val muscular_pain: Boolean
 ): Serializable
 
 //증상 가져오기
 data class SymptomGetDTO(
-    @Expose
     @SerializedName("isSuccess")
     var isSuccess: Boolean,
-    @Expose
     @SerializedName("code")
     var code: Int,
-    @Expose
     @SerializedName("message")
     val message: String,
-    @Expose
     @SerializedName("result")
-    var result: ResultSymptom
+    var result: List<ResultSymptom>
 ): Serializable
 
 data class ResultSymptom(
-    @Expose
     @SerializedName("vomit")
     var vomit: Boolean,
-    @Expose
     @SerializedName("headache")
     var headache: Boolean,
-    @Expose
     @SerializedName("backache")
     var backache: Boolean,
-    @Expose
     @SerializedName("constipation")
     var constipation: Boolean,
-    @Expose
     @SerializedName("giddiness")
     var giddiness: Boolean,
-    @Expose
     @SerializedName("tiredness")
     var tiredness: Boolean,
-    @Expose
     @SerializedName("fainting")
     var fainting: Boolean,
-    @Expose
     @SerializedName("sensitivity")
     var sensitivity: Boolean,
-    @Expose
     @SerializedName("acne")
     var acne: Boolean,
-    @Expose
     @SerializedName("muscular_pain")
     var muscular_pain: Boolean
 ): Serializable
