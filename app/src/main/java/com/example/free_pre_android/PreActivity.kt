@@ -109,6 +109,9 @@ class PreActivity : AppCompatActivity() {
             btnFaq.setOnClickListener {
                 startActivity(Intent(this@PreActivity,PreFaqActivity::class.java))
             }
+            btnSetting.setOnClickListener {
+                startActivity(Intent(this@PreActivity,PreSettingActivity::class.java))
+            }
         }
     }
 }

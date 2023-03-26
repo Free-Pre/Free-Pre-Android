@@ -59,6 +59,7 @@ class CalendarFragment : Fragment() {
 
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,7 +67,6 @@ class CalendarFragment : Fragment() {
     ): View? {
         viewBinding = FragmentCalendarBinding.inflate(layoutInflater)
         return viewBinding.root
-
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -84,6 +84,8 @@ class CalendarFragment : Fragment() {
         viewBindingRun()
         viewBindingView()
         CalendarCheck("${userEmail}", "${month}")       //api 연결
+
+
 
     }
 
@@ -115,6 +117,7 @@ class CalendarFragment : Fragment() {
     }
 
     //클릭시 이동
+
     fun viewBindingRun() {
         viewBinding.run {
             btnAddSymptom.setOnClickListener {
@@ -129,11 +132,11 @@ class CalendarFragment : Fragment() {
             }
             btnSetting.setOnClickListener {
                 startActivity(Intent(activity, FreeSettingActivity::class.java))
+
             }
 
         }
     }
-
 
     private fun setSharedData(context: Context, key: String, data: org.threeten.bp.LocalDate?) {
         //Editor로 데이터 저장하기
@@ -384,6 +387,8 @@ class CalendarFragment : Fragment() {
             view!!.setSelectionDrawable(ContextCompat.getDrawable(context, R.drawable.style_calendar_cycle)!!)
         }
     }
+
+
 
 }
 

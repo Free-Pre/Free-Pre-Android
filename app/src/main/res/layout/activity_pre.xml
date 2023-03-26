@@ -112,12 +112,12 @@
                 android:textStyle="bold"></Button>
 
             <Button
-                android:id="@+id/btn_test1"
+                android:id="@+id/btn_setting"
                 android:layout_width="288dp"
                 android:layout_height="128dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/style_unclicked_period_border"
-                android:text="TEST1"
+                android:text="Setting"
                 android:textAllCaps="false"
                 android:textColor="@color/primary_light"
                 android:textSize="36dp"
