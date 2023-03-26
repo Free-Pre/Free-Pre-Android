@@ -11,9 +11,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Required only when requesting background location access on Android 10 (API level 29) and higher. -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />  <!--가속도계센서-진동,운동가속을 감지-->
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" /> <!--가속도계센서-진동,운동가속을 감지-->
 
     <application
         android:allowBackup="true"
@@ -26,6 +26,7 @@
         android:theme="@style/Theme.FreePreAndroid"
         android:usesCleartextTraffic="true"
         android:hardwareAccelerated="true"
+        android:name=".model.GlobalVariable"
         tools:targetApi="31">
         <activity
             android:name=".information.PreProductActivity"
@@ -134,9 +135,6 @@
             android:exported="true" />
         <activity
             android:name=".SymptomActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FreeHomeActivity"
             android:exported="false" />
         <activity
             android:name=".RecentPeriodActivity"

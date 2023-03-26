@@ -187,7 +187,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                 "You are already logged in!",
                 Toast.LENGTH_SHORT
             ).show()
-            //startActivity(Intent(this,FreeActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
+            //startActivity(Intent(this,NicknameActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
 
 
         } else {
@@ -218,7 +218,7 @@ class GoogleLoginActivity : AppCompatActivity() {
 
 
     //sharedPreference
-    fun setSharedData(name: String, key: String, data: String) {
+    public fun setSharedData(name: String, key: String, data: String) {
         //Editor로 데이터 저장하기
         var sharedPreferences: SharedPreferences = getSharedPreferences(name, Activity.MODE_PRIVATE)
         var editor: SharedPreferences.Editor = sharedPreferences.edit()

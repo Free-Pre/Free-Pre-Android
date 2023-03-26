@@ -10,17 +10,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.free_pre_android.data.CycleCheckResultDTO
 import com.example.free_pre_android.data.PeriodAddDTO
 import com.example.free_pre_android.data.PeriodAddResultDTO
-import com.example.free_pre_android.data.VersionChangeResultDTO
 import com.example.free_pre_android.databinding.ActivityRecentPeriodBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.ParseException
-import java.util.*
 
 class RecentPeriodActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecentPeriodBinding
@@ -43,6 +40,25 @@ class RecentPeriodActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
+
+
+        /*여기 부분 response.body()?.result
+        RetrofitBuilder.versionApi.cycleCheck(email).enqueue(object :Callback<CycleCheckResultDTO>{
+            override fun onResponse(call: Call<CycleCheckResultDTO>, response: Response<CycleCheckResultDTO>) {
+                if(response.isSuccessful){
+                    Log.d("RECENT_PERIOD_CYCLE",response.body().toString())
+                    if(response.body()?.cycle==true){//이미 free였던 적이 있음. FreeHome으로 넘기기
+                        Log.d("RECENT_PERIOD","cycle: true")
+                        val intent = Intent(this@RecentPeriodActivity, FreeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+            override fun onFailure(call: Call<CycleCheckResultDTO>, t: Throwable) {
+            }
+        })*/
+
 
         //초기 화면
         initSetFragment()

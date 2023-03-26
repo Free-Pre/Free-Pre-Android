@@ -11,15 +11,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.data.PeriodAddDTO
 import com.example.free_pre_android.data.PeriodAddResultDTO
+import com.example.free_pre_android.data.PeriodUpdateDTO
+import com.example.free_pre_android.data.PeriodUpdateResultDTO
 import com.example.free_pre_android.databinding.ActivityEditPeriodBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.ParseException
-import android.content.Intent
-import com.example.free_pre_android.data.PeriodUpdateDTO
-import com.example.free_pre_android.data.PeriodUpdateResultDTO
 
 class EditPeriodActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityEditPeriodBinding

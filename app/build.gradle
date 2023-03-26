@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.free_pre_android"
-        minSdk 24
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -94,5 +94,10 @@ dependencies {
     //캘린더
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1'
+
+    //recycler view
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    //선택 모두의 항목 선택 제어용
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
 
 }
