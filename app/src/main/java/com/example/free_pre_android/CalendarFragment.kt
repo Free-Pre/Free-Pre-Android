@@ -59,7 +59,6 @@ class CalendarFragment : Fragment() {
 
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,8 +66,6 @@ class CalendarFragment : Fragment() {
     ): View? {
         viewBinding = FragmentCalendarBinding.inflate(layoutInflater)
         return viewBinding.root
-
-
 
     }
 
@@ -84,18 +81,11 @@ class CalendarFragment : Fragment() {
         month = viewBinding.calendarView.currentDate.month.toString()                    //현재달
 
 
-
         viewBindingRun()
         viewBindingView()
         CalendarCheck("${userEmail}", "${month}")       //api 연결
 
-
-        // 요일 선택 시 내가 정의한 드로어블이 적용되도록 함
-        calendarView.setOnRangeSelectedListener { widget, dates -> // 아래 로그를 통해 시작일, 종료일이 어떻게 찍히는지 확인하고 본인이 필요한 방식에 따라 바꿔 사용한다
-        }
-
     }
-
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun viewBindingView() {
@@ -267,7 +257,10 @@ class CalendarFragment : Fragment() {
                                 //date = 선택한 날짜
                                 GetSymptoms(userEmail,selectedDate.toString())
                             }
-
+                            //선택한 날짜가 없다면 오늘 날짜의 증상들 보여주기
+                            if(viewBinding.calendarView.selectedDate == null){
+                                GetSymptoms(userEmail,CalendarDay.today().date.toString())  //오늘 날짜 증상들
+                            }
 
                         }
                     } else {
@@ -324,20 +317,6 @@ class CalendarFragment : Fragment() {
                                 viewBinding.textViewContents.text = symptomList.joinToString(", ")
 
                             }
-
-
-
-                            /*증상 넣기
-                            //val vomit = result.result.vomit
-                            if (result.result == null){
-                                //입력한 증상이 없습니다. 증상을 추가해 보세요!
-                                viewBinding.textViewContents.text="There are no recorded symptoms.\n" + "Enter your symptoms!"
-                            }else if(result.result != null && result.result.vomit){
-                                viewBinding.textViewContents.text="vomit"
-                            }else{
-                                viewBinding.textViewContents.text = "그 외의 증상들입니다."
-                            }*/
-
 
                         }
                     } else {
@@ -406,208 +385,6 @@ class CalendarFragment : Fragment() {
         }
     }
 
-
-    /*
-    @RequiresApi(Build.VERSION_CODES.N)
-    class CycleDecorator(
-        var startCycleDate: String,
-        var endCycleDate: String
-    ) : DayViewDecorator {
-
-        @RequiresApi(Build.VERSION_CODES.N)
-        private val Day = Calendar.getInstance()
-        @RequiresApi(Build.VERSION_CODES.N)
-        private val startCycleDay = Calendar.getInstance()
-        @RequiresApi(Build.VERSION_CODES.N)
-        private val endCycleDay = Calendar.getInstance()
-
-        init {
-            startCycleDay.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startCycleDate)
-            endCycleDay.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endCycleDate)
-
-        }
-
-        override fun shouldDecorate(day: CalendarDay?): Boolean {
-            val dateInMillis1 = day?.date?.time
-            val dayInMillis = day?.date ?: return false
-            Log.d("calendarTest", "${dayInMillis}")
-            val startCycleInMillis = startCycleDay.timeInMillis
-            val endCycleInMillis = endCycleDay.timeInMillis
-            return dayInMillis >= startCycleInMillis && dayInMillis <= endCycleInMillis
-        }
-
-        override fun decorate(view: DayViewFacade?) {
-            view?.addSpan(object: StyleSpan(Typeface.BOLD){})
-            view?.addSpan(object: RelativeSizeSpan(1.4f){})
-            view?.addSpan(object: ForegroundColorSpan(Color.parseColor("#E80000")){})
-        }
-    }*/
-
-    /*
-    class CycleDecorator1(
-        val startCycleDate: String,
-        val endCycleDate: String
-    ) : DayViewDecorator {
-
-        private val Day = Calendar.getInstance()
-        private val startCycleDay = Calendar.getInstance()
-        private val endCycleDay = Calendar.getInstance()
-        private val drawable = ContextCompat.getDrawable(MaterialCalendarView(context), R.drawable.calendar_selector)
-
-        init {
-            startCycleDay.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startCycleDate)
-            endCycleDay.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endCycleDate)
-        }
-
-        override fun shouldDecorate(day: CalendarDay?): Boolean {
-            val dayInMillis = day?.Day?.time ?: return false
-            val startCycleInMillis = startCycleDay.timeInMillis
-            val endCycleInMillis = endCycleDay.timeInMillis
-            return dayInMillis >= startCycleInMillis && dayInMillis <= endCycleInMillis
-        }
-
-        override fun decorate(view: DayViewFacade?) {
-            view?.setBackgroundDrawable(drawable)
-        }
-    } */
-
-
-    /*
-    @RequiresApi(Build.VERSION_CODES.N)
-    class CycleDecorator(
-        val startCycleDate: String,
-        val endCycleDate: String,
-        context: Context
-    ) : DayViewDecorator {
-        private val startCycleDay = Calendar.getInstance()
-        private val endCycleDay = Calendar.getInstance()
-        private val drawable: Drawable? = ContextCompat.getDrawable(context, R.drawable.calendar_selector)
-
-        init {
-            startCycleDay.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(startCycleDate)
-            endCycleDay.time = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(endCycleDate)
-        }
-        override fun shouldDecorate(day: CalendarDay?): Boolean {
-            return if (day != null) {
-                day.date in startCycleDay.time..endCycleDay.time
-            } else {
-                false
-            }
-        }
-
-        override fun decorate(view: DayViewFacade?) {
-            view?.setBackgroundDrawable(drawable!!)
-        }
-    }
-
-
-
-
-
-    /*
-    class MenstrualCycleDecorator(
-        context: Context,
-        private val startYear: Int,
-        private val startMonth: Int,
-        private val startDate: Int,
-        private val endYear: Int,
-        private val endMonth: Int,
-        private val endDate: Int
-    ) : DayViewDecorator {
-
-        private val drawable: Drawable?
-
-        init {
-            drawable = ContextCompat.getDrawable(context, R.drawable.calendar_selector)
-        }
-
-
-        @RequiresApi(Build.VERSION_CODES.N)
-        override fun shouldDecorate(day: CalendarDay): Boolean {
-            val day = Calendar.getInstance()              //현재 날짜와 현재 시간 저장
-            val startCycleDay = Calendar.getInstance().apply {
-                set(startYear, startMonth, startDate)
-            }
-
-            val endCycleDay = Calendar.getInstance().apply {
-                set(endYear, endMonth, endDate)
-            }
-
-            // 주기 계산
-            val cyclePeriod = 28 * 24 * 60 * 60 * 1000L // 28일
-            val periodLength = endDate - startDate +1   //주기 기간
-
-
-            // 주기에 해당하는 날짜 계산
-            val dayInMillis = day.timeInMillis
-            val startCycleInMillis = startCycleDay.timeInMillis
-            val endCycleInMillis = endCycleDay.timeInMillis
-
-            if (dayInMillis < startCycleInMillis || dayInMillis > endCycleInMillis) {
-                // 주기 기간이 아니면 무시
-                return false
-            }
-
-            val diff = dayInMillis - startCycleInMillis
-            val mod = diff % cyclePeriod
-            val isCycleDay = mod < periodLength
-
-            return isCycleDay
-        }
-
-        override fun decorate(view: DayViewFacade) {
-            view.addSpan(DotSpan(5f, drawable!!))
-        }
-    }*/
-
-    /*class BoldDecorator(min:CalendarDay, max:CalendarDay): DayViewDecorator {
-        val maxDay = max           //생리 시작 날짜
-        val minDay = min           //생리 끝 날짜
-        override fun shouldDecorate(day: CalendarDay?): Boolean {
-            return (day?.month == maxDay.month && day.day <= maxDay.day)
-                    || (day?.month == minDay.month && day.day >= minDay.day)
-                    || (minDay.month < day?.month!! && day.month < maxDay.month)
-        }
-        override fun decorate(view: DayViewFacade?) {
-            view?.addSpan(object: StyleSpan(Typeface.BOLD){})
-            view?.addSpan(object: RelativeSizeSpan(1.4f){})
-        }
-    }*/
-
-
-}
-
-     */
-
-
-    /*생리 주기 부분
-    class BoldDecorator(
-        minYear: Int,
-        minMonth: Int,
-        minDate: Int,
-        maxYear: Int,
-        maxMonth: Int,
-        maxDate: Int
-    ) : DayViewDecorator {
-        val MinYear = minYear
-        val MinMonth = minMonth
-        val MinDate = minDate
-        val MaxYear = maxYear
-        val MaxMonth = maxMonth
-        val MaxDate = maxDate
-
-        override fun shouldDecorate(day: CalendarDay?): Boolean { //커스텀 여부 반환
-            return (day?.month == MaxMonth && day.day <= MaxDate)
-                    || (day?.month == MinMonth && day.day >= MinDate)
-                    || (MinMonth < day?.month!! && day.month < MaxMonth)
-            //Log.d("calendarTest", "잘 호출됨")
-        }
-
-        override fun decorate(view: DayViewFacade?) {            //커스텀 설정
-            view?.addSpan(object : StyleSpan(Typeface.BOLD) {})
-            view?.addSpan(object : RelativeSizeSpan(1.4f) {})
-        }
-    }*/
 }
 
 

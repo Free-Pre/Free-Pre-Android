@@ -66,3 +66,29 @@ data class ResultSymptom(
     @SerializedName("muscular_pain")
     var muscular_pain: Boolean
 ): Serializable
+
+//증상 수정하기
+data class SymptomModifyDTO(
+    @SerializedName("vomit")
+    val vomit: Boolean,
+    @SerializedName("headache")
+    val headache: Boolean,
+    @SerializedName("backache")
+    val backache: Boolean,
+    @SerializedName("constipation")
+    val constipation: Boolean,
+    @SerializedName("giddiness")
+    val giddiness: Boolean,
+    @SerializedName("tiredness")
+    val tiredness: Boolean,
+    @SerializedName("fainting")
+    val fainting: Boolean,
+    @SerializedName("sensitivity")
+    val sensitivity: Boolean,
+    @SerializedName("acne")
+    val acne: Boolean,
+    @SerializedName("muscular_pain")
+    val muscular_pain: Boolean
+): Serializable
+
+
