@@ -14,7 +14,6 @@ import com.example.free_pre_android.information.KnowledgeOfMenstruationActivity
 class FreeHomeFragment : Fragment() {
     private lateinit var viewBinding: FragmentFreeHomeBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +47,9 @@ class FreeHomeFragment : Fragment() {
             btnFaq.setOnClickListener {
                 startActivity(Intent(activity,FreeFaqActivity::class.java))
             }
-
+            btnSetting.setOnClickListener {
+                startActivity(Intent(activity,FreeSettingActivity::class.java))
+            }
             btnEditPeriod.setOnClickListener {
                 startActivity(Intent(activity,EditPeriodActivity::class.java))
             }
