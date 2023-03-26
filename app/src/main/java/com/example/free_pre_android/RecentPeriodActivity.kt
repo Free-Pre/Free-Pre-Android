@@ -43,6 +43,7 @@ class RecentPeriodActivity : AppCompatActivity() {
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
 
+
         RetrofitBuilder.versionApi.cycleCheck(email).enqueue(object :Callback<CycleCheckResultDTO>{
             override fun onResponse(call: Call<CycleCheckResultDTO>, response: Response<CycleCheckResultDTO>) {
                 if(response.isSuccessful){
@@ -58,6 +59,7 @@ class RecentPeriodActivity : AppCompatActivity() {
             override fun onFailure(call: Call<CycleCheckResultDTO>, t: Throwable) {
             }
         })
+
 
         //초기 화면
         initSetFragment()

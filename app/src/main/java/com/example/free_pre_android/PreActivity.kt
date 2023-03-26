@@ -52,8 +52,15 @@ class PreActivity : AppCompatActivity() {
                     Log.d("PRE_TO_FREE", response.code().toString())
                     Log.d("PRE_TO_FREE", response.body().toString())
                     Log.d("PRE_TO_FREE", response.message().toString())
-                    val intent = Intent(this@PreActivity, RecentPeriodActivity::class.java)
-                    startActivity(intent)
+                    if(response.body()?.result?.cycle == true)//free였던 적이 있음. freehome으로 이동
+                    {
+                        val intent = Intent(this@PreActivity, FreeActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        val intent = Intent(this@PreActivity, RecentPeriodActivity::class.java)
+                        startActivity(intent)
+                    }
                     finish()
                 }
                 override fun onFailure(call: Call<VersionChangeResultDTO>, t: Throwable) {
