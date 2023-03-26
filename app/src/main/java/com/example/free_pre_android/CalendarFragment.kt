@@ -171,100 +171,135 @@ class CalendarFragment : Fragment() {
                     if (response.isSuccessful) {
                         // 응답이 성공적으로 왔을 때 처리할 내용
                         val result: CalendarCheckResultDTO? = response.body()
-                        result?.let {
-                            // result 객체를 이용하여 UI 업데이트 등의 작업 수행
-                            Log.d("calendarTest", "연결성공")
+                        if(result?.isSuccess!!) {
+                            result?.let {
+                                // result 객체를 이용하여 UI 업데이트 등의 작업 수행
+                                Log.d("calendarTest", "연결성공")
 
-                            //result의 start_date 부분
-                            val firstResult = it.result.firstOrNull()          //result 리스트 가져옴
-                            startDay = firstResult?.start_date.toString()      //시작 날짜
-                            endDay = firstResult?.end_date.toString()          //끝 날짜
-                            Log.d("calendarTest", startDay)
-                            Log.d("calendarTest", endDay)
+                                //result의 start_date 부분
+                                val firstResult = it.result.firstOrNull()          //result 리스트 가져옴
+                                startDay = firstResult?.start_date.toString()      //시작 날짜
+                                endDay = firstResult?.end_date.toString()          //끝 날짜
+                                Log.d("calendarTest", startDay)
+                                Log.d("calendarTest", endDay)
 
-                            startPeriodYear = startDay.substring(0, 4)          //2023
-                            startPeriodMonth = startDay.substring(5, 7)         //03
-                            startPeriodDate = startDay.substring(8, 10)         //03
+                                startPeriodYear = startDay.substring(0, 4)          //2023
+                                startPeriodMonth = startDay.substring(5, 7)         //03
+                                startPeriodDate = startDay.substring(8, 10)         //03
 
-                            endPeriodYear = endDay.substring(0, 4)              //2023
-                            endPeriodMonth = endDay.substring(5, 7)              //03
-                            endPeriodDate = endDay.substring(8, 10)             //10
-                            Log.d("calendarTest", "안녕 : ${endPeriodMonth.toInt()}")
-
-
-                            // start_date와 end_date를 String 형태로 받아옴
-                            val start_date = firstResult?.start_date.toString()
-                            val end_date = firstResult?.end_date.toString()
-
-                            // 날짜 포맷 지정
-                            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-
-                            // start_date와 end_date를 LocalDate 객체로 변환
-                            val startDate = LocalDate.parse(start_date, formatter)
-                            val endDate = LocalDate.parse(end_date, formatter)
+                                endPeriodYear = endDay.substring(0, 4)              //2023
+                                endPeriodMonth = endDay.substring(5, 7)              //03
+                                endPeriodDate = endDay.substring(8, 10)             //10
+                                Log.d("calendarTest", "안녕 : ${endPeriodMonth.toInt()}")
 
 
-                            // CalendarDay 객체 생성
-                            val startDay = CalendarDay.from(startDate.year, startDate.monthValue, startDate.dayOfMonth)
-                            val endDay = CalendarDay.from(endDate.year, endDate.monthValue, endDate.dayOfMonth)
+                                // start_date와 end_date를 String 형태로 받아옴
+                                val start_date = firstResult?.start_date.toString()
+                                val end_date = firstResult?.end_date.toString()
 
-                            // 월경기간 데코-start_date와 end_date 사이의 날짜를 모두 Decorator로 지정하여 핑크 배경으로 만듦
-                            viewBinding.calendarView.addDecorator(RangeDayDecorator(context!!,startDay, endDay))
+                                // 날짜 포맷 지정
+                                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+                                // start_date와 end_date를 LocalDate 객체로 변환
+                                val startDate = LocalDate.parse(start_date, formatter)
+                                val endDate = LocalDate.parse(end_date, formatter)
 
 
-                            //클릭한 날짜 데코
-                            val clickedDrawable = ContextCompat.getDrawable(context!!, R.drawable.style_calendar_clicked)
-                            val clickedDayDecorator = ClickedDayDecorator(clickedDrawable!!)
-                            calendarView.addDecorator(clickedDayDecorator)
+                                // CalendarDay 객체 생성
+                                val startDay = CalendarDay.from(
+                                    startDate.year,
+                                    startDate.monthValue,
+                                    startDate.dayOfMonth
+                                )
+                                val endDay = CalendarDay.from(
+                                    endDate.year,
+                                    endDate.monthValue,
+                                    endDate.dayOfMonth
+                                )
 
-                            //날짜를 클릭하지 않았을 때 Symptom 위의 날짜는 현재 날짜로 한다. (디폴트)
-                            val calendar = Calendar.getInstance()
+                                // 월경기간 데코-start_date와 end_date 사이의 날짜를 모두 Decorator로 지정하여 핑크 배경으로 만듦
+                                viewBinding.calendarView.addDecorator(
+                                    RangeDayDecorator(
+                                        context!!,
+                                        startDay,
+                                        endDay
+                                    )
+                                )
 
-                            //현재 달 한국어로 출력됨
-                            //val TodayMonth = SimpleDateFormat("MMMM", Locale.getDefault()).format(calendar.time)
-                            //현재 달 숫자로 출력됨
-                            //val TodayMonth = CalendarDay.today().month.toString()
 
-                            //현재 달 영어로 출력됨 - March
-                            val TodayMonth = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH)
-                            Log.d("hello", TodayMonth) // March
+                                //클릭한 날짜 데코
+                                val clickedDrawable = ContextCompat.getDrawable(
+                                    context!!,
+                                    R.drawable.style_calendar_clicked
+                                )
+                                val clickedDayDecorator = ClickedDayDecorator(clickedDrawable!!)
+                                calendarView.addDecorator(clickedDayDecorator)
 
-                            //날짜를 클릭하지 않았을 때는 현재 날짜가 보인다.
-                            viewBinding.textSymptomSelectDate.text = "${TodayMonth} ${CalendarDay.today().day}"
-                            Log.d("hello","noSelectClick: ${viewBinding.textSymptomSelectDate.text}")
+                                //날짜를 클릭하지 않았을 때 Symptom 위의 날짜는 현재 날짜로 한다. (디폴트)
+                                val calendar = Calendar.getInstance()
 
-                            //날짜 클릭 했을 때
-                            calendarView.setOnDateChangedListener { widget, date, selected ->
-                                val selectedDate = date?.date                     //선택된 날짜
-                                //Log.d("hello","${selectedDate}")
-                                clickedDayDecorator.setClickedDay(date)          //선택된 날짜 데코
-                                widget.invalidateDecorators()
+                                //현재 달 한국어로 출력됨
+                                //val TodayMonth = SimpleDateFormat("MMMM", Locale.getDefault()).format(calendar.time)
+                                //현재 달 숫자로 출력됨
+                                //val TodayMonth = CalendarDay.today().month.toString()
 
-                                // 사용자가 선택한 날짜 저장 - sharedPreference
-                                setSharedData(requireContext(), "selectDate",selectedDate) // 사용자가 선택한 날짜를 저장합니다.
-                                Log.d("hello","setSharedData: ${selectedDate}")
+                                //현재 달 영어로 출력됨 - March
+                                val TodayMonth = calendar.getDisplayName(
+                                    Calendar.MONTH,
+                                    Calendar.LONG,
+                                    Locale.ENGLISH
+                                )
+                                Log.d("hello", TodayMonth) // March
 
-                                // 사용자가 선택한 날짜 가져오기- sharedPreference
-                                val getDate = getSharedData(requireContext(), "selectDate","")
-                                //Log.d("hello","getSharedData: ${getDate}")
+                                //날짜를 클릭하지 않았을 때는 현재 날짜가 보인다.
+                                viewBinding.textSymptomSelectDate.text =
+                                    "${TodayMonth} ${CalendarDay.today().day}"
+                                Log.d(
+                                    "hello",
+                                    "noSelectClick: ${viewBinding.textSymptomSelectDate.text}"
+                                )
 
-                                val selectedYear = selectedDate!!.year
-                                val selectedMonth = selectedDate!!.month
-                                val selectedDay = selectedDate!!.dayOfMonth
+                                //날짜 클릭 했을 때
+                                calendarView.setOnDateChangedListener { widget, date, selected ->
+                                    val selectedDate = date?.date                     //선택된 날짜
+                                    //Log.d("hello","${selectedDate}")
+                                    clickedDayDecorator.setClickedDay(date)          //선택된 날짜 데코
+                                    widget.invalidateDecorators()
 
-                                //날짜를 선택했으니 증상 위의 날짜 부분은 현재 날짜를 띄워준다.
-                                viewBinding.textSymptomSelectDate.text = "${selectedMonth} ${selectedDay}"
+                                    // 사용자가 선택한 날짜 저장 - sharedPreference
+                                    setSharedData(
+                                        requireContext(),
+                                        "selectDate",
+                                        selectedDate
+                                    ) // 사용자가 선택한 날짜를 저장합니다.
+                                    Log.d("hello", "setSharedData: ${selectedDate}")
 
-                                //해당 날짜의 증상 가져오기
-                                //email = 사용자의 이메일
-                                //date = 선택한 날짜
-                                GetSymptoms(userEmail,selectedDate.toString())
+                                    // 사용자가 선택한 날짜 가져오기- sharedPreference
+                                    val getDate = getSharedData(requireContext(), "selectDate", "")
+                                    //Log.d("hello","getSharedData: ${getDate}")
+
+                                    val selectedYear = selectedDate!!.year
+                                    val selectedMonth = selectedDate!!.month
+                                    val selectedDay = selectedDate!!.dayOfMonth
+
+                                    //날짜를 선택했으니 증상 위의 날짜 부분은 현재 날짜를 띄워준다.
+                                    viewBinding.textSymptomSelectDate.text =
+                                        "${selectedMonth} ${selectedDay}"
+
+                                    //해당 날짜의 증상 가져오기
+                                    //email = 사용자의 이메일
+                                    //date = 선택한 날짜
+                                    GetSymptoms(userEmail, selectedDate.toString())
+                                }
+                                //선택한 날짜가 없다면 오늘 날짜의 증상들 보여주기
+                                if (viewBinding.calendarView.selectedDate == null) {
+                                    GetSymptoms(
+                                        userEmail,
+                                        CalendarDay.today().date.toString()
+                                    )  //오늘 날짜 증상들
+                                }
+
                             }
-                            //선택한 날짜가 없다면 오늘 날짜의 증상들 보여주기
-                            if(viewBinding.calendarView.selectedDate == null){
-                                GetSymptoms(userEmail,CalendarDay.today().date.toString())  //오늘 날짜 증상들
-                            }
-
                         }
                     } else {
                         // 응답이 실패한 경우
