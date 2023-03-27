@@ -116,5 +116,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     //선택 모두의 항목 선택 제어용
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
+    //코루틴
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
 
 }
