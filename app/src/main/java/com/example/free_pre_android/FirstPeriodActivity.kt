@@ -32,6 +32,7 @@ class FirstPeriodActivity : AppCompatActivity() {
 
     }
 
+
     fun clickBtn(){
         viewBinding.btnYes.setOnClickListener {
             signUp(true)

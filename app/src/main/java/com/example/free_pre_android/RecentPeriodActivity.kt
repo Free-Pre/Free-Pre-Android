@@ -76,6 +76,7 @@ class RecentPeriodActivity : AppCompatActivity() {
             saveDate()
         }
     }
+
     fun initSetFragment(){
         startFragment= RecentPeriodStartFragment()
         fragmentManager.beginTransaction().replace(viewBinding.frameFragment.id, startFragment!!).commit()
