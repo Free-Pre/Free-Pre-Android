@@ -8,6 +8,57 @@
     android:background="@color/primary_dark">
 
 
+    <!--
+    <TextView
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:text="Check Your Symptoms"
+        android:textColor="@color/primary_dark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/user_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Head"
+        app:layout_constraintBottom_toTopOf="@id/btn_save">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_symptom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/listitem_symptom"
+            />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="save"
+        android:textColor="@color/primary_dark"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:textAllCaps="false">
+    </Button>-->
+
     <TextView
         android:id="@+id/Head"
         android:layout_width="match_parent"
@@ -37,23 +88,23 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text_vomit"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="vomit"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
                 android:id="@+id/text_headache"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
                 android:text="headache"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@color/primary_light"
-                android:background="@drawable/style_symptom_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/text_breast_pain"
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:text="breast pain"
                 android:textStyle="bold"
                 android:textSize="36sp"
                 android:gravity="center"
@@ -63,62 +114,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/text_depressed"
+                android:id="@+id/text_backache"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
-                android:text="depressed"
-                android:textStyle="bold"
-                android:textSize="36sp"
-                android:gravity="center"
-                android:textColor="@color/primary_light"
-                android:background="@drawable/style_symptom_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/text_fatigue"
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:text="fatigue"
-                android:textStyle="bold"
-                android:textSize="36sp"
-                android:gravity="center"
-                android:textColor="@color/primary_light"
-                android:background="@drawable/style_symptom_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/text_anxious"
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:text="anxious"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@color/primary_light"
-                android:background="@drawable/style_symptom_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/text_swollen_breast"
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:text="swollen breasts"
-                android:textStyle="bold"
-                android:textSize="36sp"
-                android:gravity="center"
-                android:textColor="@color/primary_light"
-                android:background="@drawable/style_symptom_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/text_appetite_change"
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:text="appetite changes"
+                android:text="backache"
                 android:textStyle="bold"
                 android:textSize="36sp"
                 android:gravity="center"
@@ -141,10 +140,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/text_diarrhea"
+                android:id="@+id/text_giddiness"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
-                android:text="diarrhea"
+                android:text="giddiness"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_tiredness"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="tiredness"
                 android:textStyle="bold"
                 android:textSize="36sp"
                 android:gravity="center"
@@ -154,10 +166,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/text_dema"
+                android:id="@+id/text_fainting"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
-                android:text="dema"
+                android:text="fainting"
                 android:textStyle="bold"
                 android:textSize="36sp"
                 android:gravity="center"
@@ -167,10 +179,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
-                android:id="@+id/text_back_pain"
+                android:id="@+id/text_sensitivity"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
-                android:text="back pain"
+                android:text="sensitivity"
                 android:textStyle="bold"
                 android:textSize="36sp"
                 android:gravity="center"
@@ -179,6 +191,33 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_acne"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="acne"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_muscular_pain"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:text="muscular_pain"
+                android:textStyle="bold"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@color/primary_light"
+                android:background="@drawable/style_symptom_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </LinearLayout>
     </ScrollView>
@@ -198,4 +237,5 @@
         android:gravity="center"
         android:textAllCaps="false">
     </Button>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

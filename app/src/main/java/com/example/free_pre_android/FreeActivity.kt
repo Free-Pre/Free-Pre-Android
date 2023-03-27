@@ -7,6 +7,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.databinding.ActivityFreeBinding
+import com.example.free_pre_android.model.GlobalVariable
 
 class FreeActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityFreeBinding
@@ -14,6 +15,9 @@ class FreeActivity : AppCompatActivity() {
     private var mSensorManager: SensorManager? = null
     private var mAccelerometer: Sensor? = null
     private var mShakeDetector: ShakeDetector? = null
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityFreeBinding.inflate(layoutInflater)
@@ -39,6 +43,7 @@ class FreeActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(viewBinding.frameFragment.id,FreeHomeFragment())
             .commitAllowingStateLoss()
+
 
         //BottomNav - Home 부분
         viewBinding.btnHome.setOnClickListener {
@@ -68,7 +73,18 @@ class FreeActivity : AppCompatActivity() {
                 .commitAllowingStateLoss()
 
         }
+
+        //symptom에서 save 버튼 누르면 boolean 값 true로 바뀜
+        //화면 전환시 캘린더 화면으로 전환됨
+        if ((applicationContext as GlobalVariable).boolean){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(viewBinding.frameFragment.id,CalendarFragment())
+                .commitAllowingStateLoss()
+        }
     }
+
+
 
     override fun onResume() {
         //Sensor Manager 등록을 취소
@@ -83,3 +99,4 @@ class FreeActivity : AppCompatActivity() {
         super.onPause()
     }
 }
+

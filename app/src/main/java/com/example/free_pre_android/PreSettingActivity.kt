@@ -9,61 +9,41 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.free_pre_android.data.DeleteUserDTO
-import com.example.free_pre_android.data.VersionChangeDTO
-import com.example.free_pre_android.data.VersionChangeResultDTO
-import com.example.free_pre_android.databinding.ActivityFreeSettingBinding
+import com.example.free_pre_android.databinding.ActivityPreSettingBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FreeSettingActivity : AppCompatActivity() {
-    private lateinit var viewBinding:ActivityFreeSettingBinding
+class PreSettingActivity : AppCompatActivity() {
+    private lateinit var viewBinding : ActivityPreSettingBinding
     private lateinit var firebaseAuth: FirebaseAuth
     var email=""
     override fun onCreate(savedInstanceState: Bundle?) {
-        viewBinding = ActivityFreeSettingBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        viewBinding = ActivityPreSettingBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
-        //초기에 설정한 닉네임 값 가져오기
-        val nickname = intent.getStringExtra("nickname")
-        Log.d("FreeSettingNickname",nickname.toString())
-
-
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
         email= sharedPreferences.getString("emailKey","there's no email").toString()
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
 
-        //free->pre
-        viewBinding.btnFreeToPre.setOnClickListener {
-            val datainfo= VersionChangeDTO(true)
-            RetrofitBuilder.versionApi.versionChange(email,datainfo).enqueue(object:
-                Callback<VersionChangeResultDTO> {
-                override fun onResponse(call: Call<VersionChangeResultDTO>, response: Response<VersionChangeResultDTO>) {
-                    Log.d("FREE_TO_PRE",response.code().toString())
-                    Log.d("FREE_TO_PRE",response.body().toString())
-                    Log.d("FREE_TO_PRE",response.message().toString())
-                    val intent = Intent(this@FreeSettingActivity, PreActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+        //초기에 설정한 닉네임 값 가져오기
+        val nickname = intent.getStringExtra("nickname")
+        Log.d("FreeSettingNickname",nickname.toString())
 
-                override fun onFailure(call: Call<VersionChangeResultDTO>, t: Throwable) {
-                    Log.e("FREE_TO_PRE",t.message.toString())
-                }
+        //닉네임 편집
+        viewBinding.btnEditNickname.setOnClickListener {
 
-            })
         }
 
-        //회원탈퇴
-        viewBinding.btnDeleteAcount.setOnClickListener {
+        //계정탈퇴
+        viewBinding.btnDeleteAccount.setOnClickListener {
             val datainfo= DeleteUserDTO(nickname.toString())
             RetrofitBuilder.userApi.deleteUser(email).enqueue(object: Callback<Unit> {
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                    val dialogBuilder = AlertDialog.Builder(this@FreeSettingActivity)
+                    val dialogBuilder = AlertDialog.Builder(this@PreSettingActivity)
                     dialogBuilder.setTitle("Are you sure you want to delete your account??")  //탈퇴하시겠습니까?
                         .setPositiveButton("Yse") { dialog, id ->
                             Log.d("DeleteUser","회원 탈퇴 성공")
@@ -73,14 +53,14 @@ class FreeSettingActivity : AppCompatActivity() {
                                 ?.addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         // 사용자 삭제 성공
-                                        Log.d("DeleteUser","free: firebase 회원 탈퇴 성공")
-                                        val intent = Intent(this@FreeSettingActivity, GoogleLoginActivity::class.java)
+                                        Log.d("DeleteUser","pre: firebase 회원 탈퇴 성공")
+                                        val intent = Intent(this@PreSettingActivity, GoogleLoginActivity::class.java)
                                         startActivity(intent)
-                                        this@FreeSettingActivity.finish()
+                                        this@PreSettingActivity.finish()
 
                                     } else {
                                         // 사용자 삭제 실패
-                                        Log.d("DeleteUser","free: firebase 회원 탈퇴 실패")
+                                        Log.d("DeleteUser","pre: firebase 회원 탈퇴 실패")
                                     }
                                 }
                             //val intent = Intent(this@FreeSettingActivity, GoogleLoginActivity::class.java)
@@ -96,7 +76,7 @@ class FreeSettingActivity : AppCompatActivity() {
                 }
 
             })
+
         }
     }
 }
-

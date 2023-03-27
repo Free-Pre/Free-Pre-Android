@@ -139,9 +139,9 @@ class GoogleLoginActivity : AppCompatActivity() {
                                 "Logout Success!!",
                                 Toast.LENGTH_SHORT
                             ).show()
-                  }
+                        }
                 }else{
-                    Toast.makeText(this@GoogleLoginActivity,"you are not login yet",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleLoginActivity,"you are not login yet",Toast.LENGTH_SHORT).show()   //이게 호출됨.
                 }
 
             }
@@ -179,24 +179,31 @@ class GoogleLoginActivity : AppCompatActivity() {
     //앱 시작할 때 로그인이 되어있는 상태라면
     override fun onStart() {
         super.onStart()
-        val account = this?.let { GoogleSignIn.getLastSignedInAccount(this) }  //로그인한 기존 사용자인지 확인 //it...?
-        if (account != null) {
-            getSharedData("Email","emailKey")
-            Toast.makeText(
-                this@GoogleLoginActivity,
-                "You are already logged in!",
-                Toast.LENGTH_SHORT
-            ).show()
-            //startActivity(Intent(this,FreeActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
+        //파이어베이스에 계정이 있다면-계정이 가입되어있는 상태
+        if(firebaseAuth.currentUser != null){
+            val account = this?.let { GoogleSignIn.getLastSignedInAccount(this) }  //로그인한 기존 사용자인지 확인 //it...?
+            if (account != null) {
+                getSharedData("Email","emailKey")
+                Toast.makeText(
+                    this@GoogleLoginActivity,
+                    "You are already logged in!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                //startActivity(Intent(this,NicknameActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
 
 
-        } else {
-            Toast.makeText(
-                this@GoogleLoginActivity,
-                "You are not logged in yet!",
-                Toast.LENGTH_SHORT
-            ).show()
+            } else {
+                Toast.makeText(
+                    this@GoogleLoginActivity,
+                    "You are not logged in yet!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }else{//파이어베이스에 계정이 없다면-탈퇴한 경우 염두
+            //계정이 가입되어있지 않은 상태입니다.
+            Toast.makeText(this,"Your account is not registered.",Toast.LENGTH_SHORT).show()
         }
+
 
     }
 
@@ -218,7 +225,7 @@ class GoogleLoginActivity : AppCompatActivity() {
 
 
     //sharedPreference
-    fun setSharedData(name: String, key: String, data: String) {
+    public fun setSharedData(name: String, key: String, data: String) {
         //Editor로 데이터 저장하기
         var sharedPreferences: SharedPreferences = getSharedPreferences(name, Activity.MODE_PRIVATE)
         var editor: SharedPreferences.Editor = sharedPreferences.edit()
@@ -243,13 +250,13 @@ class GoogleLoginActivity : AppCompatActivity() {
 
 
 
-    //1. 이미 로그인 -> 자동로그인이 되어있는 상태
-    //2. 자동 로그인이 안되어 있는 상태
-    //3. 처음 로그인을 하는 상태
+//1. 이미 로그인 -> 자동로그인이 되어있는 상태
+//2. 자동 로그인이 안되어 있는 상태
+//3. 처음 로그인을 하는 상태
 
-    /*
-    override fun onBackPressed(){
-        startActivity(Intent(this,GoogleLoginActivity::class.java))
-    }*/
+/*
+override fun onBackPressed(){
+    startActivity(Intent(this,GoogleLoginActivity::class.java))
+}*/
 
-    /*이미 로그인이 되어있을 경우.. 바로 Free나 Pre 홈으로 넘어가게 하는 것도 필요하다.*/
+/*이미 로그인이 되어있을 경우.. 바로 Free나 Pre 홈으로 넘어가게 하는 것도 필요하다.*/

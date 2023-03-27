@@ -39,7 +39,8 @@ class NicknameActivity : AppCompatActivity() {
             }
             else{
                 val intent = Intent(this, FirstPeriodActivity::class.java)
-                intent.putExtra("nickname",nickname)
+                intent.putExtra("nickname",nickname)                      //intent.getStringExtra("nickname")으로 닉네임값 가져오기
+                Log.d("NicknameLog","${nickname}")                     //잘됨.
                 startActivity(intent)
             }
         }
