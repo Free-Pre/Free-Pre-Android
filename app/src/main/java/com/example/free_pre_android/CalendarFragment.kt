@@ -79,13 +79,29 @@ class CalendarFragment : Fragment() {
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Email", Activity.MODE_PRIVATE)
         userEmail = sharedPreferences.getString("emailKey", "there's no email").toString()               //로그인 되어있는 유저의 이메일
         month = viewBinding.calendarView.currentDate.month.toString()                    //현재달
-
+        /*Log.d("Hello","현재: ${month}")
+        //month = viewBinding.calendarView.selectedDate!!.month.toString()
+        //val selectedDate: CalendarDay = viewBinding.calendarView.selectedDate!!
+        //val selectedMonth: Int = selectedDate.month + 1 // 선택한 달(month)을 1월부터 12월까지의 숫자로 얻습니다.
+        //month = selectedMonth.toString()
+        //month: 가져올 월경일의 월이다.
+        //val sharedMonth: SharedPreferences = requireActivity().getSharedPreferences("month", Activity.MODE_PRIVATE)
+        //var month = sharedMonth.getString("Month", "there's no Month").toString()
+        //Log.d("TestGetMonth","캘린더 뷰에서: ${month}")*/
 
         viewBindingRun()
         viewBindingView()
         CalendarCheck("${userEmail}", "${month}")       //api 연결
 
-
+        calendarView.setOnMonthChangedListener { widget, date ->
+            val currentMonth: Int = date?.month ?: return@setOnMonthChangedListener
+            month = currentMonth.toString()
+            Log.d("Hello","변할 때: ${month}")
+            // 달이 변경될 때 실행되는 코드
+            CalendarCheck("${userEmail}", "${month}")
+            /*처음엔 month는 현재 달이고 현재 달의 월경일을 불러온다.
+            * 달이 변할 때마다 CalendarCheck 함수를 호출하여 그 달의 월경일을 캘린더에 표시한다.*/
+        }
 
     }
 
@@ -159,6 +175,7 @@ class CalendarFragment : Fragment() {
         userEmail: String,
         month: String,
     ) {
+        Log.d("calendar11", "캘린더 체크 함수 호출${month}")
         // API 호출
         RetrofitBuilder.calendarApi.calendarCheck(userEmail, month)
             .enqueue(object : Callback<CalendarCheckResultDTO> {

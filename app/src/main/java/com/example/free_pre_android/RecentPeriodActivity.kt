@@ -2,6 +2,7 @@ package com.example.free_pre_android
 
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
@@ -132,6 +133,10 @@ class RecentPeriodActivity : AppCompatActivity() {
         end_month=if(end_month?.trim()?.length==1)"0"+end_month?.trim()else end_month?.trim()
         end_day=if(end_day?.trim()?.length==1)"0"+end_day?.trim()else end_day?.trim()
 
+        //sharedPreference - 사용자가 입력한
+        setSharedData(this,"Month",start_month.toString())
+
+
         val start_date= "$start_year$start_month$start_day"
         val end_date= "$end_year$end_month$end_day"
 
@@ -173,5 +178,22 @@ class RecentPeriodActivity : AppCompatActivity() {
                 Log.e("RECENT_PERIOD",t.message.toString())
             }
         })
+    }
+
+    //사용자의 월경일 월
+    private fun setSharedData(context: Context, key: String, month: String) {
+        //Editor로 데이터 저장하기
+        var sharedPreferences: SharedPreferences =this.getSharedPreferences("month", Activity.MODE_PRIVATE)
+        var editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, start_month)
+        editor.apply()
+
+        Log.d("TestGetMonth","최근 월경일 입력: $start_month")   //값 잘 들어감
+    }
+
+    private fun getSharedData(context: Context, key: String, defaultValue: String) {
+        var sharedPreferences: SharedPreferences = this.getSharedPreferences("month", Activity.MODE_PRIVATE)
+        var getSelectedDate: String? = sharedPreferences.getString(key,"No month")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
+        Log.d(ContentValues.TAG,"getMonthData: $getSelectedDate")
     }
 }

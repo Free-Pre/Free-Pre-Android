@@ -48,6 +48,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btn_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"
@@ -59,6 +60,7 @@
                 android:textAllCaps="false"/>
 
             <Button
+                android:id="@+id/btn_record_period"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"
@@ -70,6 +72,7 @@
                 android:textAllCaps="false"/>
 
             <Button
+                android:id="@+id/btn_pad_time"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"

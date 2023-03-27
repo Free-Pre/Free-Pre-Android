@@ -18,7 +18,7 @@ data class DeleteUserDTO(
 ):Serializable
 
 
-//사용자 주기 존재여부
+//사용자 주기 존재여부 - 사용 안해도 됨.
 data class UserCycleDTO(
     @SerializedName("isSuccess")
     var isSuccess: Boolean,
@@ -30,7 +30,7 @@ data class UserCycleDTO(
     var result: Boolean
 ):Serializable
 
-//사용자 정보 가져오기
+//사용자 정보 가져오기 - Setting 부분
 data class UserInfoDTO(
     @SerializedName("isSuccess")
     var isSuccess: Boolean,

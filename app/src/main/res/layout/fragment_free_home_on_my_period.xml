@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OnMyPeriodFragment">
+    tools:context=".FreeHomeOnMyPeriodFragment">
 
     <!--생리 중 =  on one's period -->
     <!--위에 분홍색 부분 : Edit My Period-->

@@ -97,6 +97,10 @@ class FreeSettingActivity : AppCompatActivity() {
 
             })
         }
+
+        viewBinding.btnPadTime.setOnClickListener {
+            startActivity(Intent(this,FreeAlarmActivity::class.java))
+        }
     }
 }
 

@@ -16,6 +16,7 @@ object RetrofitBuilder {
     val symptomApi : SymptomService
     val versionApi:VersionService
     val userApi : UserService
+    val homeApi : HomeService
 
     val gson:Gson= GsonBuilder().setLenient().create()
 
@@ -32,5 +33,6 @@ object RetrofitBuilder {
         symptomApi = retrofit.create(SymptomService::class.java)     //증상
         versionApi=retrofit.create(VersionService::class.java)
         userApi = retrofit.create(UserService::class.java)           //유저관련련
+        homeApi = retrofit.create(HomeService::class.java)           //홈 정보
 
     }}
