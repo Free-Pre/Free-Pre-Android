@@ -82,14 +82,16 @@
                     android:background="@drawable/style_alarm_edit_border"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="10"
                     android:textColor="@color/primary_dark"
                     android:textSize="36sp"
                     android:textStyle="bold"
+                    android:maxLength="2"
+                    android:inputType="number"
                     app:layout_constraintEnd_toStartOf="@+id/edit_start_min"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/btn_start"
-                    app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_start_time"
+                    android:nextFocusDown="@+id/edit_start_min"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -126,14 +128,16 @@
                     android:background="@drawable/style_alarm_edit_border"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="30"
                     android:textColor="@color/primary_dark"
                     android:textSize="36sp"
                     android:textStyle="bold"
+                    android:maxLength="2"
+                    android:inputType="number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/edit_start_hour"
-                    app:layout_constraintTop_toBottomOf="@+id/text_start_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_start_time"
+                    android:nextFocusDown="@+id/edit_end_hour"/>
 
                 <TextView
                     android:id="@+id/text_end_time"
@@ -173,14 +177,16 @@
                     android:background="@drawable/style_alarm_edit_border"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="10"
                     android:textColor="@color/primary_dark"
                     android:textSize="36sp"
                     android:textStyle="bold"
+                    android:maxLength="2"
+                    android:inputType="number"
                     app:layout_constraintEnd_toStartOf="@+id/edit_end_min"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/btn_end"
-                    app:layout_constraintTop_toBottomOf="@+id/text_end_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_end_time"
+                    android:nextFocusDown="@+id/edit_end_min"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -218,14 +224,16 @@
                     android:background="@drawable/style_alarm_edit_border"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="30"
                     android:textColor="@color/primary_dark"
                     android:textSize="36sp"
                     android:textStyle="bold"
+                    android:maxLength="2"
+                    android:inputType="number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/edit_end_hour"
-                    app:layout_constraintTop_toBottomOf="@+id/text_end_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_end_time"
+                    android:nextFocusDown="@+id/edit_cycle"/>
 
                 <TextView
                     android:id="@+id/text_cycle_time"
@@ -247,10 +255,11 @@
                     android:background="@drawable/style_alarm_edit_border"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="4"
                     android:textColor="@color/primary_dark"
                     android:textSize="36sp"
                     android:textStyle="bold"
+                    android:maxLength="2"
+                    android:inputType="number"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_cycle_time" />
 
