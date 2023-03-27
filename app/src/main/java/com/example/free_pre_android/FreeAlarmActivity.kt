@@ -93,9 +93,10 @@ class FreeAlarmActivity : AppCompatActivity(){
                 alarmList.add(alarm)
             }
             Log.d("ALARM_ROOM",alarms.toString())
-            if(alarms.isEmpty())
-                selectedAlarm.id=-1
-                selectedItem=-1
+            if(alarms.isEmpty()) {
+                selectedAlarm.id = -1
+                selectedItem = -1
+            }
         }
         adapter.alarmList=alarmList
         viewBinding.recyAlarm.adapter=adapter
