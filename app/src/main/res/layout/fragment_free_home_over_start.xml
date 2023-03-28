@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/top_over_start"
     tools:context=".FreeHomeOverStartFragment">
 
 
@@ -16,6 +17,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/text_over_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -25,7 +27,7 @@
             android:textStyle="bold"></TextView>
 
         <Button
-            android:id="@+id/edit_period_button"
+            android:id="@+id/btn_start_period"
             android:layout_width="288dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"

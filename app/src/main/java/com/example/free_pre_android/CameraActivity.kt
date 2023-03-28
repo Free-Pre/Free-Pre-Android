@@ -21,6 +21,7 @@ class CameraActivity : BaseActivity() {
     val REQ_CAMERA=101//카메라 촬영 요청
 
     var result:String=""
+    //private var mediaPlayer: MediaPlayer? = null
     private lateinit var viewBinding: ActivityCameraBinding
 
     companion object{
@@ -54,6 +55,7 @@ class CameraActivity : BaseActivity() {
         }
     }
 
+
     override fun permissionGranted(requestCode: Int) {
         when(requestCode){
             PERM_CAMERA->openCamera()
@@ -69,6 +71,7 @@ class CameraActivity : BaseActivity() {
         }
     }
     fun openCamera(){
+        //playShutterSound()
         val intent=Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent,REQ_CAMERA)
     }
@@ -105,5 +108,18 @@ class CameraActivity : BaseActivity() {
                 //...
             }
     }
+
+
+
+    /*
+    fun playShutterSound() {
+        try {
+            mediaPlayer = MediaPlayer.create(this, R.raw.shutter_sound)
+            mediaPlayer?.start()
+            mediaPlayer?.setOnCompletionListener { mp -> mp.release() }
+        } catch (e: Exception) {
+            Log.e("CamerSound", "Failed to play shutter sound", e)
+        }
+    }*/
 
 }

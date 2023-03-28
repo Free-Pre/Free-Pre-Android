@@ -38,7 +38,7 @@ class EditPeriodListActivity : AppCompatActivity() {
         getList()
     }
     fun getList(){
-        RetrofitBuilder.periodAPi.periodList("flora7883@gmail.com").enqueue(object : Callback<PeriodListResultDTO> {
+        RetrofitBuilder.periodAPi.periodList(email).enqueue(object : Callback<PeriodListResultDTO> {
             override fun onResponse(call: Call<PeriodListResultDTO>, response: Response<PeriodListResultDTO>) {
                 Log.d("EDIT_PERIOD_LIST",response.body().toString())
                 Log.d("EDIT_PERIOD_LIST",response.code().toString())

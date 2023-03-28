@@ -64,6 +64,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                     try {
                         task.getResult(ApiException::class.java)?.let { account ->
                             tokenId = account.idToken
+                            Log.d("TokenId",tokenId.toString())
                             if (tokenId != null && tokenId != "") {   //회원가입 되어있지 않은 경우?
                                 val credential: AuthCredential =
                                     GoogleAuthProvider.getCredential(account.idToken, null)
@@ -83,7 +84,9 @@ class GoogleLoginActivity : AppCompatActivity() {
                                             )          //sharedPreference 값 가져오기
                                             //Log.d(TAG,"email: $email")
                                             Log.e(TAG, "email : $email")
+
                                             val googleSignInToken = account.idToken ?: ""
+
                                             if (googleSignInToken != "") {
                                                 Log.e(TAG, "googleSignInToken : $googleSignInToken")
                                             } else {
@@ -98,6 +101,7 @@ class GoogleLoginActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
+
                 }
             })
 
@@ -131,6 +135,7 @@ class GoogleLoginActivity : AppCompatActivity() {
             btnGoogleLogout.setOnClickListener {
                 val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
                 val googleSignInClient = GoogleSignIn.getClient(this@GoogleLoginActivity, gso)
+                Log.e("TokenId", "TokenId : $tokenId")
                 if(tokenId != null && tokenId != ""){
                     googleSignInClient.signOut()
                         .addOnCompleteListener(this@GoogleLoginActivity) {
