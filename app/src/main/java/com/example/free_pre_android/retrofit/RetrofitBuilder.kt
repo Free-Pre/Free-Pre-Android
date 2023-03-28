@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 
 object RetrofitBuilder {
@@ -16,6 +17,7 @@ object RetrofitBuilder {
     val symptomApi : SymptomService
     val versionApi:VersionService
     val userApi : UserService
+    val settingApi: SettingService
 
     val gson:Gson= GsonBuilder().setLenient().create()
 
@@ -32,5 +34,5 @@ object RetrofitBuilder {
         symptomApi = retrofit.create(SymptomService::class.java)     //증상
         versionApi=retrofit.create(VersionService::class.java)
         userApi = retrofit.create(UserService::class.java)           //유저관련련
-
+        settingApi=retrofit.create(SettingService::class.java)
     }}
