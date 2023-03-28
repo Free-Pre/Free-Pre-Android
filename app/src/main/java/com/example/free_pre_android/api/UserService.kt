@@ -30,6 +30,6 @@ interface UserService {
     //사용자 정보 가져오기
     @GET("freepre/user/info/{userEmail}")
     fun userInfo(
-        @Path("userEmail")userEmail:String,
+        @Path("userEmail")userEmail: String
     ): Call<UserInfoDTO>
 }

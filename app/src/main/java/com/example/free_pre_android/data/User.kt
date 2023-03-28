@@ -33,13 +33,13 @@ data class UserCycleDTO(
 //사용자 정보 가져오기
 data class UserInfoDTO(
     @SerializedName("isSuccess")
-    var isSuccess: Boolean,
+    val isSuccess:Boolean,
     @SerializedName("code")
-    var code: Int,
+    val code:Int,
     @SerializedName("message")
-    val message: String,
+    val message:String,
     @SerializedName("result")
-    var result: ResultUserInfo
+    val result:ResultUserInfo
 ):Serializable
 
 data class ResultUserInfo(
@@ -48,15 +48,15 @@ data class ResultUserInfo(
     @SerializedName("nickname")
     val nickname: String,
     @SerializedName("first_period")
-    var first_period: Boolean,
+    val first_period: Boolean,
     @SerializedName("cycle")
-    var cycle: Int,
+    val cycle: Int,
     @SerializedName("term")
-    var term: Int,
+    val term: Int,
     @SerializedName("notice")
-    var notice: Boolean,
+    val notice: Boolean,
     @SerializedName("pregnancy")
-    var pregnancy: Boolean
+    val pregnancy: Boolean
 ):Serializable
 
 

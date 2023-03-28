@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.free_pre_android.data.DeleteUserDTO
-import com.example.free_pre_android.data.VersionChangeDTO
-import com.example.free_pre_android.data.VersionChangeResultDTO
+import com.example.free_pre_android.data.*
 import com.example.free_pre_android.databinding.ActivityFreeSettingBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -22,17 +20,26 @@ class FreeSettingActivity : AppCompatActivity() {
     private lateinit var viewBinding:ActivityFreeSettingBinding
     private lateinit var firebaseAuth: FirebaseAuth
     var email=""
+    var nickname:String?=""
+    var first_period:Boolean?=false
+    var cycle:Int?=0;
+    var term:Int?=0;
+    var notice:Boolean?=false
+    var pregnancy:Boolean?=false
     override fun onCreate(savedInstanceState: Bundle?) {
         viewBinding = ActivityFreeSettingBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 
-        //초기에 설정한 닉네임 값 가져오기
-        val nickname = intent.getStringExtra("nickname")
-        Log.d("FreeSettingNickname",nickname.toString())
-
         val sharedPreferences: SharedPreferences = getSharedPreferences("Email", Activity.MODE_PRIVATE)
-        email= sharedPreferences.getString("emailKey","there's no email").toString()
+        email = sharedPreferences.getString("emailKey","there's no email").toString()
+        getUserInfo()
+        //초기에 설정한 닉네임 값 가져오기
+        //val nickname = intent.getStringExtra("nickname")
+        //Log.d("FreeSettingNickname",nickname.toString())
+        viewBinding.textNickname.text="Hello! $nickname"
+        viewBinding.switchNotification.isChecked= (notice == true)
+        viewBinding.switchPregnancy.isChecked=(pregnancy==true)
         Log.d(ContentValues.TAG,"NickNameGetEmail: $email")
 
         //닉네임 수정
@@ -59,6 +66,30 @@ class FreeSettingActivity : AppCompatActivity() {
         viewBinding.btnDeleteAccount.setOnClickListener {
             signOut()
         }
+    }
+    fun getUserInfo(){
+        RetrofitBuilder.settingApi.settingUser(email).enqueue(object:Callback<SettingInfoDTO>{
+            override fun onResponse(call: Call<SettingInfoDTO>, response: Response<SettingInfoDTO>) {
+                Log.d("SETTING_GET_USER",response.body().toString())
+                if(response.isSuccessful){
+                    if(response.body()?.isSuccess==true){
+                        nickname= response.body()?.result?.nickname
+                        notice=response.body()?.result?.notice
+                        pregnancy=response.body()?.result?.pregnancy
+                        viewBinding.textNickname.text="Hello, $nickname"
+                        viewBinding.switchNotification.isChecked= (notice == true)
+                        viewBinding.switchPregnancy.isChecked=(pregnancy==true)
+                    }
+                }
+                else{
+                    Log.e("SETTING_GET_USER","response fail")
+                }
+            }
+            override fun onFailure(call: Call<SettingInfoDTO>, t: Throwable) {
+                Log.e("SETTING_GET_USER",t.message.toString())
+
+            }
+        })
     }
     fun freeToPre(){
         val datainfo= VersionChangeDTO(true)

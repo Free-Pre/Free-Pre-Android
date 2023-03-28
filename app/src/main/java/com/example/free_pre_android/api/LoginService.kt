@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface LoginService {
     //이메일 확인
-    @GET("freepre/user/{userEmail}")
+    @GET("freepre/user/check/{userEmail}")
     fun emailCheck(
         @Path("userEmail")userEmail:String
     ): Call<EmailCheckResultDTO>
