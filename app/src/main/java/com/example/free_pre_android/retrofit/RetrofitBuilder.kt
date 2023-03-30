@@ -20,7 +20,6 @@ object RetrofitBuilder {
     val homeApi : HomeService
     val settingApi: SettingService
 
-
     val gson:Gson= GsonBuilder().setLenient().create()
 
     init{
@@ -38,5 +37,4 @@ object RetrofitBuilder {
         userApi = retrofit.create(UserService::class.java)           //유저관련련
         homeApi = retrofit.create(HomeService::class.java)           //홈 정보
         settingApi=retrofit.create(SettingService::class.java)
-
     }}

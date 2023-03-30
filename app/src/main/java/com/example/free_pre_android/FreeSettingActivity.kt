@@ -57,17 +57,19 @@ class FreeSettingActivity : AppCompatActivity() {
             val intent =Intent(this, FreeAlarmActivity::class.java)
             startActivity(intent)
         }
+
         //free->pre
         viewBinding.btnFreeToPre.setOnClickListener {
             freeToPre()
         }
+
         //회원탈퇴
         viewBinding.btnDeleteAccount.setOnClickListener {
             signOut()
         }
     }
     fun getUserInfo(){
-        RetrofitBuilder.settingApi.settingUser(email).enqueue(object: Callback<SettingInfoDTO> {
+        RetrofitBuilder.settingApi.settingUser(email).enqueue(object:Callback<SettingInfoDTO>{
             override fun onResponse(call: Call<SettingInfoDTO>, response: Response<SettingInfoDTO>) {
                 Log.d("SETTING_GET_USER",response.body().toString())
                 if(response.isSuccessful){
@@ -86,7 +88,6 @@ class FreeSettingActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<SettingInfoDTO>, t: Throwable) {
                 Log.e("SETTING_GET_USER",t.message.toString())
-
             }
         })
     }
