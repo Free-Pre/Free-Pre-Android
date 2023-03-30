@@ -48,7 +48,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_nickname"
+                android:id="@+id/btn_edit_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"
@@ -72,7 +72,7 @@
                 android:textAllCaps="false"/>
 
             <Button
-                android:id="@+id/btn_pad_time"
+                android:id="@+id/btn_alarm"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"
@@ -84,7 +84,7 @@
                 android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch1"
+                android:id="@+id/switch_notification"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"
@@ -95,7 +95,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch2"
+                android:id="@+id/switch_pregnancy"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"
@@ -118,7 +118,7 @@
                 android:textAllCaps="false"/>
 
             <Button
-                android:id="@+id/btn_delete_acount"
+                android:id="@+id/btn_delete_account"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/style_free_setting_content"

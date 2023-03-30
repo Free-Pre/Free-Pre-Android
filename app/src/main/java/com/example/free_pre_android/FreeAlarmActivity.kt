@@ -35,11 +35,6 @@ class FreeAlarmActivity : AppCompatActivity(){
         db= Room.databaseBuilder(
             applicationContext,AppDatabase::class.java,"AlarmDB"
         ).build()
-        val sample1=Alarm(0,"01:00.:00","23:30:00","03:00:00",true)
-        val sample2=Alarm(0,"02:00.:00","23:30:00","03:00:00",false)
-        val sample3=Alarm(0,"03:00.:00","23:30:00","03:00:00",false)
-        val sample4=Alarm(0,"04:00.:00","23:30:00","03:00:00",false)
-
         getAlarmList()
         viewBinding.btnAdd.setOnClickListener {
             startActivity(Intent(this@FreeAlarmActivity, FreeAlarmEditActivity::class.java))
@@ -93,10 +88,16 @@ class FreeAlarmActivity : AppCompatActivity(){
                 alarmList.add(alarm)
             }
             Log.d("ALARM_ROOM",alarms.toString())
+
             if(alarms.isEmpty()) {
                 selectedAlarm.id = -1
                 selectedItem = -1
             }
+
+            if(alarms.isEmpty())
+                selectedAlarm.id=-1
+            selectedItem=-1
+
         }
         adapter.alarmList=alarmList
         viewBinding.recyAlarm.adapter=adapter
@@ -111,11 +112,13 @@ class FreeAlarmActivity : AppCompatActivity(){
         adapter.notifyItemChanged(position)
         Log.d("UPDATE_ALARM",alarm.toString())
     }
-    fun deleteAlarm(alarm:Alarm){
+    fun deleteAlarm(alarm:Alarm,position: Int){
         val alarmDao=db.alarmDao()
         CoroutineScope(Dispatchers.IO).launch {
             alarmDao.deleteAlarm(alarm)
         }
+        alarmList.removeAt(position)
+        adapter.notifyItemRemoved(position)
         Log.d("DELETE_ALARM",alarm.toString())
     }
 }

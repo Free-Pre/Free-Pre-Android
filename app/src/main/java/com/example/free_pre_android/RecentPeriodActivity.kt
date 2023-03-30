@@ -134,7 +134,7 @@ class RecentPeriodActivity : AppCompatActivity() {
         end_day=if(end_day?.trim()?.length==1)"0"+end_day?.trim()else end_day?.trim()
 
         //sharedPreference - 사용자가 입력한
-        setSharedData(this,"Month",start_month.toString())
+        //setSharedData(this,"Month",start_month.toString())
 
 
         val start_date= "$start_year$start_month$start_day"

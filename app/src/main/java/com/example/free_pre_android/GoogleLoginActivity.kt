@@ -158,6 +158,7 @@ class GoogleLoginActivity : AppCompatActivity() {
         RetrofitBuilder.loginApi.emailCheck(email).enqueue(object : Callback<EmailCheckResultDTO> {
             override fun onResponse(call: Call<EmailCheckResultDTO>, response: Response<EmailCheckResultDTO>) {
                 Log.d("LOGIN",response.body().toString())
+                Log.d("LOGIN",response.message().toString())
                 if (response.isSuccessful) {//연결 성공한 경우에만 처리
                     if (response.body()?.result == true) {//회원이 DB에 존재하는 경우
                         Log.d("LOGIN","exist email")

@@ -15,7 +15,7 @@ class FreeActivity : AppCompatActivity() {
     private var mSensorManager: SensorManager? = null
     private var mAccelerometer: Sensor? = null
     private var mShakeDetector: ShakeDetector? = null
-
+    val calendarFragment = CalendarFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,18 +84,27 @@ class FreeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+    }
 
 
     override fun onResume() {
         //Sensor Manager 등록을 취소
-        mSensorManager!!.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
+        mSensorManager!!.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(viewBinding.frameFragment.id,FreeHomeFragment())
+            .commitAllowingStateLoss()
+
         super.onResume()
     }
 
     // background 상황에서도 흔들림을 감지하고 적용할 필요는 없다
     override fun onPause() {
         //Sensor Manager 등록을 취소
-        mSensorManager!!.unregisterListener(mShakeDetector);
+        mSensorManager!!.unregisterListener(mShakeDetector)
         super.onPause()
     }
 }

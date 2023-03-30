@@ -22,7 +22,9 @@ data class ResultHomeInfo(
     @SerializedName("term")          //기간-7
     var term: Int,
     @SerializedName("start_date")    //월경 시작 날짜
-    val start_date: String
+    val start_date: String,
+    @SerializedName("end_date")    //월경 시작 날짜
+    val end_date: String
 )
 
 

@@ -121,6 +121,8 @@ class SymptomActivity : AppCompatActivity() {
         viewBindingRun()
         GetSymptoms(email,date)     //기록 된 증상 가져오기.
 
+
+
     }
 
 
@@ -130,46 +132,59 @@ class SymptomActivity : AppCompatActivity() {
             textVomit.setOnClickListener {
                 vomit = !vomit
                 checkDeco(vomit, textVomit)
+                SpeakSymptom(vomit,textVomit)
             }
             textHeadache.setOnClickListener {
                 headache = !headache
                 checkDeco(headache, textHeadache)
+                SpeakSymptom(headache,textHeadache)
             }
             textBackache.setOnClickListener {
                 backache = !backache
                 checkDeco(backache, textBackache)
+                SpeakSymptom(backache,textBackache)
             }
             textConstipation.setOnClickListener {
                 constipation = !constipation
                 checkDeco(constipation, textConstipation)
+                SpeakSymptom(constipation,textConstipation)
             }
             textGiddiness.setOnClickListener {
                 giddiness = !giddiness
                 checkDeco(giddiness, textGiddiness)
+                SpeakSymptom(giddiness,textGiddiness)
             }
             textTiredness.setOnClickListener {
                 tiredness = !tiredness
                 checkDeco(tiredness, textTiredness)
+                SpeakSymptom(tiredness,textTiredness)
             }
             textFainting.setOnClickListener {
                 fainting = !fainting
                 checkDeco(fainting, textFainting)
+                SpeakSymptom(fainting,textFainting)
             }
             textSensitivity.setOnClickListener {
                 sensitivity = !sensitivity
                 checkDeco(sensitivity, textSensitivity)
+                SpeakSymptom(sensitivity,textSensitivity)
             }
             textAcne.setOnClickListener {
                 acne = !acne
                 checkDeco(acne, textAcne)
+                SpeakSymptom(acne,textAcne)
             }
             textMuscularPain.setOnClickListener {
                 muscular_pain = !muscular_pain
                 checkDeco(muscular_pain, textMuscularPain)
+                SpeakSymptom(muscular_pain,textMuscularPain)
             }
 
         }
+
     }
+
+
 
     //증상 선택시 데코
     fun checkDeco(b: Boolean, symptom: TextView) {
@@ -181,6 +196,15 @@ class SymptomActivity : AppCompatActivity() {
             symptom.setTextColor(Color.parseColor("#FDE3F4"))
         }
     }
+    fun SpeakSymptom(b: Boolean, symptom: TextView){
+        if(b){
+            symptom.contentDescription = getString(R.string.label_symtpon_checked)   //체크됨
+        }else{
+            symptom.contentDescription = getString(R.string.label_symtpon_unchecked)  //체크되지 않음
+        }
+    }
+
+
 
     //email : 사용자 이메일
     //data : 사용자가 누른 날짜

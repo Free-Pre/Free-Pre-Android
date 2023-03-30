@@ -2,6 +2,7 @@ package com.example.free_pre_android
 
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
@@ -29,13 +30,25 @@ class FreeHomeFragment : Fragment() {
     private lateinit var viewBinding: FragmentFreeHomeBinding
     var userEmail: String = ""
 
-
+    //전역변수 선언
+    var calendar = Calendar.getInstance()
+    var nextPeriodStartDate:Date = calendar.time
+    var nextPeriodEndDate:Date = calendar.time
+    var term:Int =0
+    var cycle:Int=0
+    lateinit var mycontext: Context
     val FragmentLeftEdit = FreeHomeLeftEditFragment()
     val FragmentLeftStart = FreeHomeLeftStartFragment()
     val FragmentOverStart = FreeHomeOverStartFragment()
     val FragmentEnterDate = FreeHomeEnterDateFragment()
     val FragmentMyPeriod = FreeHomeOnMyPeriodFragment()
     val FragmentPridctToday = FreeHomePredictToday()      //예정 당일
+
+    override fun onAttach(context: Context) {
+        Log.d("FreeHomeFragment","onAttach")
+        super.onAttach(context)
+        mycontext=context
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,42 +57,13 @@ class FreeHomeFragment : Fragment() {
         viewBinding = FragmentFreeHomeBinding.inflate(layoutInflater)
         return viewBinding.root
 
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBindingRun()
 
-
-        /*childFragment HashMap에 저장 - 키: 조건 값, 값: fragment객체
-        val fragmentMap = hashMapOf(
-            "fragmentLeftEdit" to FragmentLeftEdit,
-            "fragmentLeftStart" to FragmentLeftStart,
-            "fragmentOverStart" to FragmentOverStart,
-            "fragmentEnterDate" to FragmentEnterDate,
-            "fragmentMyPeriod" to FragmentMyPeriod,
-        )*/
-
-        /*val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        if (sharedPref != null) {
-            val condition = sharedPref.getString("childFragment", "fragmentLeftEdit")  //fragmentLeftEdit는 "childFragment"으로 저장된 키값이 없을 경우 리턴되는 디폴트값
-            Log.d("hihihiTest",condition.toString())
-            val selectedFragment = when (condition) {
-                "fragmentLeftEdit" -> FragmentLeftEdit
-                "fragmentLeftStart" -> FragmentLeftStart
-                "fragmentOverStart" -> FragmentOverStart
-                "fragmentEnterDate" -> FragmentEnterDate
-                "fragmentMyPeriod" -> FragmentMyPeriod
-                else -> FragmentLeftEdit // 기본값
-            }
-
-        }*/
-
-        //자식 프래그먼트 이동
-        //초기 Left-Start
-
+        Log.d("FreeHomeFragment","CreatedView")
 
         //이메일 불러오기
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Email", Activity.MODE_PRIVATE)
@@ -91,11 +75,10 @@ class FreeHomeFragment : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-
+    override fun onStart() {
+        super.onStart()
     }
+
 
     fun viewBindingRun(){
         viewBinding.run {
@@ -117,14 +100,12 @@ class FreeHomeFragment : Fragment() {
             btnSetting.setOnClickListener {
                 startActivity(Intent(activity,FreeSettingActivity::class.java))
             }
-            /*
-            btnEditPeriod.setOnClickListener {
-                startActivity(Intent(activity,EditPeriodListActivity::class.java))
-            }*/
+
         }
     }
 
 
+    /*
     fun predictNextPeriod(startDates: List<String>, endDates: List<String>) :String{
         // 시작 날짜와 끝 날짜 리스트의 크기가 모두 4가 아니면 예외를 던진다.
         require(startDates.size == 4 && endDates.size == 4) { "Start and end dates lists must contain exactly 4 elements" }
@@ -148,7 +129,7 @@ class FreeHomeFragment : Fragment() {
 
         return SimpleDateFormat("yyyy.MM.dd").format(nextStartDate)
 
-    }
+    }*/
 
 
 
@@ -169,7 +150,7 @@ class FreeHomeFragment : Fragment() {
                             Log.d("GetHomeInfo", "연결성공")
 
                             //term 값 저장
-                            val term = resultHomeInfo.result.term
+                            term = resultHomeInfo.result.term
                             setSharedTerm("CycleTerm", "cycleTerm", term)
 
                             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -178,14 +159,20 @@ class FreeHomeFragment : Fragment() {
                             val startDate = dateFormat.parse(resultHomeInfo.result.start_date)
                             Log.d("GetHomeInfo", "startDate: ${startDate}")
 
+                            val endDate = dateFormat.parse(resultHomeInfo.result.end_date)
+                            Log.d("GetHomeInfo","endDate: ${endDate}")
+
                             //Date 객체
-                            val calendar = Calendar.getInstance()
+                            //val calendar = Calendar.getInstance()
+
                             calendar.time = startDate
                             calendar.add(Calendar.DAY_OF_MONTH, resultHomeInfo.result.cycle)
 
                             //다음 월경 예정일
-                            val nextPeriodDate = calendar.time
-                            Log.d("GetHomeInfo", "nextPeriodDate: ${nextPeriodDate}")
+                            nextPeriodStartDate = calendar.time
+                            Log.d("GetHomeInfo", "nextPeriodDate: ${nextPeriodStartDate}")
+
+
 
                             //현재 날짜
                             val currentDate = Date() // 현재 날짜와 시간을 가지고 있는 Date 객체
@@ -193,18 +180,25 @@ class FreeHomeFragment : Fragment() {
 
                             //다음 예정일까지 남은 일수
                             //계산하기 위해서는 Date 객체의 time 속성을 이용
-                            val timeDiff = nextPeriodDate.time - currentDate.time    //두 날짜 사이의 시간 차이 (예정일-현재날짜)
+                            val timeDiff = nextPeriodStartDate.time - currentDate.time    //두 날짜 사이의 시간 차이 (예정일-현재날짜)
                             val daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS) // 시간 차이를 일 수로 변환
                             setSharedDayDiff("DayDiff", "dayDiff", daysDiff)     //남은 일 수 저장
                             Log.d("GetHomeInfo", "남은 일 수: $daysDiff")
 
                             //오버 날짜 계산
-                            val overTimeDiff = currentDate.time - nextPeriodDate.time     //현재 날짜 - 예정일
+                            val overTimeDiff = currentDate.time - nextPeriodStartDate.time     //현재 날짜 - 예정일
                             val overDaysDiff = TimeUnit.DAYS.convert(overTimeDiff, TimeUnit.MILLISECONDS) // 오버일 수로 변환
 
                             setSharedOverDiff("OverDiff", "overDiff", overDaysDiff)      //오버일 수 저장
                             Log.d("GetHomeInfo", "오버 일 수: $overDaysDiff")
+//
+                            setSharedStartDate("SharedStartDate","sharedStartDate",resultHomeInfo.result.start_date)
+                            setSharedEndDate("SharedEndDate","sharedEndDate",resultHomeInfo.result.end_date)
 
+                            if(!isAdded)return
+                            val transaction = childFragmentManager.beginTransaction()
+
+                            /*
                             if (daysDiff > 7 && daysDiff <= 14) {
                                 //자식 프래그먼트 이동
                                 //초기 Left-Edit
@@ -213,6 +207,8 @@ class FreeHomeFragment : Fragment() {
                                 transaction.addToBackStack(null)
                                 transaction.commit()
                                 Log.d("GetHomeInfo", "LeftEdit 호출됨")
+
+
                             } else if (daysDiff >= 0 && daysDiff < 7) {
                                     //Left-Start,0일포함 - 메시지를 다르게 주자.
                                     val transaction = childFragmentManager.beginTransaction()
@@ -221,19 +217,67 @@ class FreeHomeFragment : Fragment() {
                                     transaction.commit()
                                     Log.d("GetHomeInfo", "LeftStart 호출됨")
 
+
                             } else if (overDaysDiff > 0 && overDaysDiff <= 5) {   //예정일 오버할 때
                                 val transaction = childFragmentManager.beginTransaction()
                                 transaction.replace(R.id.free_home_top_frame, FreeHomeOverStartFragment())
                                 transaction.addToBackStack(null)
                                 transaction.commit()
                                 Log.d("GetHomeInfo", "OverStart 호출됨")
-                            }else {
+
+                            }else{
                                 val transaction = childFragmentManager.beginTransaction()
                                 transaction.replace(R.id.free_home_top_frame, FreeHomeEnterDateFragment())
                                 transaction.addToBackStack(null)
                                 transaction.commit()
                                 Log.d("GetHomeInfo", "EnterDate 호출됨")
+                            }*/
+
+
+                            if(currentDate > endDate){
+                                if (daysDiff > 7 && daysDiff <= 14) {
+                                    //자식 프래그먼트 이동
+                                    //초기 Left-Edit
+                                    val transaction = childFragmentManager.beginTransaction()
+                                    transaction.replace(R.id.free_home_top_frame, FreeHomeLeftEditFragment())
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
+                                    Log.d("GetHomeInfo", "LeftEdit 호출됨")
+
+
+                                } else if (daysDiff >= 0 && daysDiff < 7) {
+                                    //Left-Start,0일포함 - 메시지를 다르게 주자.
+                                    val transaction = childFragmentManager.beginTransaction()
+                                    transaction.replace(R.id.free_home_top_frame, FreeHomeLeftStartFragment())
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
+                                    Log.d("GetHomeInfo", "LeftStart 호출됨")
+
+
+                                } else if (overDaysDiff > 0 && overDaysDiff <= 5) {   //예정일 오버할 때
+                                    val transaction = childFragmentManager.beginTransaction()
+                                    transaction.replace(R.id.free_home_top_frame, FreeHomeOverStartFragment())
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
+                                    Log.d("GetHomeInfo", "OverStart 호출됨")
+
+                                }else{
+                                    val transaction = childFragmentManager.beginTransaction()
+                                    transaction.replace(R.id.free_home_top_frame, FreeHomeEnterDateFragment())
+                                    transaction.addToBackStack(null)
+                                    transaction.commit()
+                                    Log.d("GetHomeInfo", "EnterDate 호출됨")
+                                }
+                            }else{//2
+                                val transaction = childFragmentManager.beginTransaction()
+                                transaction.replace(R.id.free_home_top_frame, FreeHomeOnMyPeriodFragment())
+                                transaction.addToBackStack(null)
+                                transaction.commit()
+                                Log.d("GetHomeInfo", "OnMyPeriod 호출됨")
                             }
+
+
+
 
                         }
                     }else {
@@ -254,7 +298,7 @@ class FreeHomeFragment : Fragment() {
     //sharedPreference
     public fun setSharedDayDiff(name: String, key: String, data: Long) {
         //Editor로 데이터 저장하기
-        var sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
         var editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putLong(key, data)
         editor.apply()
@@ -264,7 +308,7 @@ class FreeHomeFragment : Fragment() {
     }
 
     public fun getSharedDayDiff(name: String, key: String) {
-        var sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
         var sharedDayDiff: String? = sharedPreferences.getString(key,"there's no email")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
         Log.d(ContentValues.TAG,"getSharedDayDiff: $sharedDayDiff")
     }
@@ -272,7 +316,7 @@ class FreeHomeFragment : Fragment() {
     //오버일수 저장
     public fun setSharedOverDiff(name: String, key: String, data: Long) {
         //Editor로 데이터 저장하기
-        var sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
         var editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putLong(key, data)
         editor.apply()
@@ -282,7 +326,7 @@ class FreeHomeFragment : Fragment() {
     }
 
     public fun getSharedOverDiff(name: String, key: String) {
-        var sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
         var sharedOverDiff: String? = sharedPreferences.getString(key,"there's no email")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
         Log.d(ContentValues.TAG,"GetEmail: $sharedOverDiff")
     }
@@ -290,19 +334,55 @@ class FreeHomeFragment : Fragment() {
     //월경 term
     public fun setSharedTerm(name: String, key: String, data: Int) {
         //Editor로 데이터 저장하기
-        var sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
         var editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putInt(key, data)
         editor.apply()
 
-        Log.d(ContentValues.TAG,"SetEmail: $data")   //값 잘 들어감
+        Log.d(ContentValues.TAG,"setTerm: $data")   //값 잘 들어감
 
     }
 
     public fun getSharedTerm(name: String, key: String) {
-        var sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(name, Activity.MODE_PRIVATE)
-        var sharedOverDiff: String? = sharedPreferences.getString(key,"there's no email")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedOverDiff: String? = sharedPreferences.getString(key,"there's no Term")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
         Log.d(ContentValues.TAG,"GetEmail: $sharedOverDiff")
+    }
+
+    //월경 최근 시작 날짜
+    public fun setSharedStartDate(name: String, key: String, data: String) {
+        //Editor로 데이터 저장하기
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, data)
+        editor.apply()
+
+        Log.d(ContentValues.TAG,"setSharedStartDate: $data")   //값 잘 들어감
+
+    }
+
+    public fun getSharedStartDate(name: String, key: String) {
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedStartDate: String? = sharedPreferences.getString(key,"there's no sharedStartDate")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
+        Log.d(ContentValues.TAG,"sharedStartDate: $sharedStartDate")
+    }
+
+    //월경 term
+    public fun setSharedEndDate(name: String, key: String, data: String) {
+        //Editor로 데이터 저장하기
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, data)
+        editor.apply()
+
+        Log.d(ContentValues.TAG,"setSharedEndDate: $data")   //값 잘 들어감
+
+    }
+
+    public fun getSharedEndDate(name: String, key: String) {
+        var sharedPreferences: SharedPreferences = mycontext.getSharedPreferences(name, Activity.MODE_PRIVATE)
+        var sharedStartDate: String? = sharedPreferences.getString(key,"there's no sharedStartDate")   //키에 상응하는 데이터가 없다면 두번째 파라미터에 적힌 디폴트 값을 반환한다.
+        Log.d(ContentValues.TAG,"sharedEndDate: $sharedStartDate")
     }
 
 }
