@@ -29,4 +29,8 @@
         <item>Dec</item>
     </string-array>
 
+    <string name="label_setting_button">This is the settings button</string>
+    <string name="label_symtpon_checked">This is a checked symptom.</string>
+    <string name="label_symtpon_unchecked">This is an unchecked symptom</string>
+
 </resources>

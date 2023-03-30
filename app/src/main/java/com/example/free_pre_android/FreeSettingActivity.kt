@@ -1,5 +1,4 @@
 package com.example.free_pre_android
-
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -8,7 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.free_pre_android.data.*
+import com.example.free_pre_android.data.SettingInfoDTO
+import com.example.free_pre_android.data.VersionChangeDTO
+import com.example.free_pre_android.data.VersionChangeResultDTO
 import com.example.free_pre_android.databinding.ActivityFreeSettingBinding
 import com.example.free_pre_android.retrofit.RetrofitBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -87,7 +88,6 @@ class FreeSettingActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<SettingInfoDTO>, t: Throwable) {
                 Log.e("SETTING_GET_USER",t.message.toString())
-
             }
         })
     }
@@ -103,11 +103,9 @@ class FreeSettingActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-
             override fun onFailure(call: Call<VersionChangeResultDTO>, t: Throwable) {
                 Log.e("FREE_TO_PRE",t.message.toString())
             }
-
         })
     }
     fun signOut(){
@@ -127,7 +125,6 @@ class FreeSettingActivity : AppCompatActivity() {
                                     val intent = Intent(this@FreeSettingActivity, GoogleLoginActivity::class.java)
                                     startActivity(intent)
                                     this@FreeSettingActivity.finish()
-
                                 } else {
                                     // 사용자 삭제 실패
                                     Log.d("DeleteUser","free: firebase 회원 탈퇴 실패")
@@ -135,16 +132,13 @@ class FreeSettingActivity : AppCompatActivity() {
                             }
                         //val intent = Intent(this@FreeSettingActivity, GoogleLoginActivity::class.java)
                         //Toast.makeText(this@FreeSettingActivity, "탈퇴가 완료되었습니다.",Toast.LENGTH_SHORT).show()
-
                     }
                     .setNegativeButton("No") { dialog, id -> }
                 dialogBuilder.show()
             }
-
             override fun onFailure(call: Call<Unit>, t: Throwable) {
                 Log.e("DeleteUser",t.message.toString())
             }
-
         })
     }
 }

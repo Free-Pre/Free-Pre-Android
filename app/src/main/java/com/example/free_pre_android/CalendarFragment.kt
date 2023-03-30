@@ -14,6 +14,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -57,7 +59,13 @@ class CalendarFragment : Fragment() {
 
     lateinit var sharedPreferences: SharedPreferences     //sharedPreference
 
+    lateinit var mContext: Context
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("CalendarFragment", "onAttach")
+        mContext = context
+    }
 
 
     override fun onCreateView(
@@ -79,14 +87,36 @@ class CalendarFragment : Fragment() {
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Email", Activity.MODE_PRIVATE)
         userEmail = sharedPreferences.getString("emailKey", "there's no email").toString()               //로그인 되어있는 유저의 이메일
         month = viewBinding.calendarView.currentDate.month.toString()                    //현재달
-
+        /*Log.d("Hello","현재: ${month}")
+        //month = viewBinding.calendarView.selectedDate!!.month.toString()
+        //val selectedDate: CalendarDay = viewBinding.calendarView.selectedDate!!
+        //val selectedMonth: Int = selectedDate.month + 1 // 선택한 달(month)을 1월부터 12월까지의 숫자로 얻습니다.
+        //month = selectedMonth.toString()
+        //month: 가져올 월경일의 월이다.
+        //val sharedMonth: SharedPreferences = requireActivity().getSharedPreferences("month", Activity.MODE_PRIVATE)
+        //var month = sharedMonth.getString("Month", "there's no Month").toString()
+        //Log.d("TestGetMonth","캘린더 뷰에서: ${month}")*/
 
         viewBindingRun()
         viewBindingView()
         CalendarCheck("${userEmail}", "${month}")       //api 연결
 
+        calendarView.setOnMonthChangedListener { widget, date ->
+            val currentMonth: Int = date?.month ?: return@setOnMonthChangedListener
+            month = currentMonth.toString()
+            Log.d("Hello","변할 때: ${month}")
+            // 달이 변경될 때 실행되는 코드
+            CalendarCheck("${userEmail}", "${month}")
+            /*처음엔 month는 현재 달이고 현재 달의 월경일을 불러온다.
+            * 달이 변할 때마다 CalendarCheck 함수를 호출하여 그 달의 월경일을 캘린더에 표시한다.*/
+        }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CalendarCheck(userEmail, month)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -136,6 +166,9 @@ class CalendarFragment : Fragment() {
             }
 
         }
+        viewBinding.apply {
+            btnSetting.contentDescription = getString(R.string.label_setting_button)    //setting 버튼 labeled 해주기
+        }
     }
 
     private fun setSharedData(context: Context, key: String, data: org.threeten.bp.LocalDate?) {
@@ -159,6 +192,7 @@ class CalendarFragment : Fragment() {
         userEmail: String,
         month: String,
     ) {
+        Log.d("calendar11", "캘린더 체크 함수 호출${month}")
         // API 호출
         RetrofitBuilder.calendarApi.calendarCheck(userEmail, month)
             .enqueue(object : Callback<CalendarCheckResultDTO> {
@@ -205,7 +239,7 @@ class CalendarFragment : Fragment() {
                                 val endDate = LocalDate.parse(end_date, formatter)
 
 
-                                // CalendarDay 객체 생성
+                                //CalendarDay 객체 생성
                                 val startDay = CalendarDay.from(
                                     startDate.year,
                                     startDate.monthValue,
@@ -217,19 +251,19 @@ class CalendarFragment : Fragment() {
                                     endDate.dayOfMonth
                                 )
 
+                                if(!isAdded)return
                                 // 월경기간 데코-start_date와 end_date 사이의 날짜를 모두 Decorator로 지정하여 핑크 배경으로 만듦
                                 viewBinding.calendarView.addDecorator(
                                     RangeDayDecorator(
-                                        context!!,
+                                        mContext,
                                         startDay,
                                         endDay
                                     )
                                 )
 
-
                                 //클릭한 날짜 데코
                                 val clickedDrawable = ContextCompat.getDrawable(
-                                    context!!,
+                                    mContext,
                                     R.drawable.style_calendar_clicked
                                 )
                                 val clickedDayDecorator = ClickedDayDecorator(clickedDrawable!!)
@@ -262,7 +296,8 @@ class CalendarFragment : Fragment() {
                                 //날짜 클릭 했을 때
                                 calendarView.setOnDateChangedListener { widget, date, selected ->
                                     val selectedDate = date?.date                     //선택된 날짜
-                                    //Log.d("hello","${selectedDate}")
+                                    //val selectDate = date   //calenday 자료형
+                                    //Log.d("hello","selectDate: ${selectDate}")
                                     clickedDayDecorator.setClickedDay(date)          //선택된 날짜 데코
                                     widget.invalidateDecorators()
 
@@ -290,7 +325,31 @@ class CalendarFragment : Fragment() {
                                     //email = 사용자의 이메일
                                     //date = 선택한 날짜
                                     GetSymptoms(userEmail, selectedDate.toString())
+
+                                    //선택한 날짜가 월경일이라면
+                                    if(date?.isInRange(startDay, endDay) == true) {
+                                        // TalkBack API를 사용하여 선택한 날짜가 월경일인지 아닌지를 음성으로 알립니다.
+                                        val accessibilityManager = requireContext().getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+                                        if (accessibilityManager.isEnabled) {
+                                            val event = AccessibilityEvent.obtain(AccessibilityEvent.TYPE_ANNOUNCEMENT)
+                                            event.text.add("${date.month}Month ${date.day}Day is the day of menstruation")      //~월 ~일은 월경일입니다.
+                                            accessibilityManager.sendAccessibilityEvent(event)
+                                            Log.d("SelectCalendarTalkBack","${date.month}월 ${date.day}일은 월경일입니다.")
+                                        }
+                                    }else{//선택한 날짜가 월경일이 아니라면
+                                        // TalkBack API를 사용하여 선택한 날짜가 월경일인지 아닌지를 음성으로 알립니다.
+                                        val accessibilityManager = requireContext().getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+                                        if (accessibilityManager.isEnabled) {
+                                            val event = AccessibilityEvent.obtain(AccessibilityEvent.TYPE_ANNOUNCEMENT)
+                                            event.text.add("${date.month}Month ${date.day}Day is not menstrual day")   //~월 ~일은 월경일이 아닙니다.
+                                            accessibilityManager.sendAccessibilityEvent(event)
+                                            Log.d("SelectCalendarTalkBack","${date.month}월 ${date.day}일은 월경일 아닙니다.")
+                                        }
+                                    }
+
                                 }
+
+
                                 //선택한 날짜가 없다면 오늘 날짜의 증상들 보여주기
                                 if (viewBinding.calendarView.selectedDate == null) {
                                     GetSymptoms(

@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/top_left_start"
     tools:context=".FreeHomeLeftStartFragment">
 
     <!--위에 분홍색 부분 : Edit My Period-->
@@ -15,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/text_left_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -24,7 +26,7 @@
             android:textStyle="bold"></TextView>
 
         <Button
-            android:id="@+id/edit_period_button"
+            android:id="@+id/btn_start_period"
             android:layout_width="288dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"

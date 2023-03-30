@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OnMyPeriodFragment">
+    tools:context=".FreeHomeOnMyPeriodFragment">
 
     <!--생리 중 =  on one's period -->
     <!--위에 분홍색 부분 : Edit My Period-->
@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/text_period_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -25,7 +26,7 @@
             android:textStyle="bold"></TextView>
 
         <Button
-            android:id="@+id/edit_period_button"
+            android:id="@+id/btn_edit_period"
             android:layout_width="288dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
