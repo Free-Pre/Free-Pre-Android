@@ -4,7 +4,7 @@
 <br>
 
 ## 📌 project duration
-#### 2023.01~
+#### 2023.01 ~ 
 
 <br>
 
@@ -16,6 +16,7 @@
 <br>
 
 ## 📌 References
+#### [Free&Pre Demo⬇️](https://youtu.be/aJ0DtfM04ag )
 <a href="https://youtu.be/aJ0DtfM04ag"><img src="https://user-images.githubusercontent.com/65242294/231161224-353cf4e9-d55a-43ca-883f-74fcb5eee465.JPG" width="30%" height="30%"/></a>
 
 <br>
@@ -34,6 +35,12 @@
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=black">
 <img src="https://img.shields.io/badge/googlemaps-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white">
 <img src="https://img.shields.io/badge/googlecloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white">
+
+#### - Retrofit
+#### - Room
+#### - Coroutine
+#### - Material-Calendarview
+#### - Google Cloud Vision
 
 
 <br>
