@@ -23,8 +23,8 @@
 
 ## 📌 Project Introduction
 ### ✏️Explain
-#### Free&Pre is a service that helps visually impaired people manage their menstrual schedules and purchase menstrual products directly without the help of others.
-#### We have designed this service to ensure the menstrual rights of visually impaired women and to feel free, not afraid, of the upcoming menstruation every month.
+#### Free&Pre is a service that helps visually impaired women manage their menstrual schedules and purchase menstrual products directly without others help.
+#### We designed this service to ensure the menstrual rights of visually impaired women and to feel free, not afraid, of the upcoming menstruation every month.
 
 <br>
 
