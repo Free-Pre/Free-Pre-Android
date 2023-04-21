@@ -139,14 +139,10 @@ class GoogleLoginActivity : AppCompatActivity() {
                 if(tokenId != null && tokenId != ""){
                     googleSignInClient.signOut()
                         .addOnCompleteListener(this@GoogleLoginActivity) {
-                            Toast.makeText(
-                                this@GoogleLoginActivity,
-                                "Logout Success!!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            //Toast.makeText(this@GoogleLoginActivity, "Logout Success!!", Toast.LENGTH_SHORT).show()
                         }
                 }else{
-                    Toast.makeText(this@GoogleLoginActivity,"you are not login yet",Toast.LENGTH_SHORT).show()   //이게 호출됨.
+                    //Toast.makeText(this@GoogleLoginActivity,"you are not login yet",Toast.LENGTH_SHORT).show()   //이게 호출됨.
                 }
 
             }
@@ -190,24 +186,16 @@ class GoogleLoginActivity : AppCompatActivity() {
             val account = this?.let { GoogleSignIn.getLastSignedInAccount(this) }  //로그인한 기존 사용자인지 확인 //it...?
             if (account != null) {
                 getSharedData("Email","emailKey")
-                Toast.makeText(
-                    this@GoogleLoginActivity,
-                    "You are already logged in!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                //Toast.makeText(this@GoogleLoginActivity, "You are already logged in!", Toast.LENGTH_SHORT).show()
                 //startActivity(Intent(this,NicknameActivity::class.java))   //로그인 되어있을 경우 바로 FreeActivity로 이동
 
 
             } else {
-                Toast.makeText(
-                    this@GoogleLoginActivity,
-                    "You are not logged in yet!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                //Toast.makeText( this@GoogleLoginActivity, "You are not logged in yet!", Toast.LENGTH_SHORT ).show()
             }
         }else{//파이어베이스에 계정이 없다면-탈퇴한 경우 염두
             //계정이 가입되어있지 않은 상태입니다.
-            Toast.makeText(this,"Your account is not registered.",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"Your account is not registered.",Toast.LENGTH_SHORT).show()
         }
 
 

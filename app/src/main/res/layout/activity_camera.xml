@@ -45,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="텍스트 인식 결과값"
                 android:textColor="@color/primary_light"
                 android:textSize="30dp"
                 android:textStyle="bold" />
